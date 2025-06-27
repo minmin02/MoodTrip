@@ -1,0 +1,495 @@
+* {
+    box-sizing: border-box;
+    border: 0 solid #f2f3f7;
+}
+
+.wrap {
+    min-width: 1200px;
+}
+
+.page {
+    width: 100%;
+}
+
+.page-inner {
+    display: flex;
+    width: 1200px;
+    padding: 0px 16px;
+    margin: 40px auto;
+    min-height: 600px;
+}
+
+.user-settings-nav {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+}
+
+.account-settings {
+    font-size: 18px;
+    color: rgb(48, 52, 65);
+    font-weight: 500;
+}
+
+.horizontal-line {
+    margin: 20px 0px;
+    border: none;
+    flex-shrink: 0;
+    background-color: rgb(48, 52, 65);
+    height: 2px;
+}
+
+.my_profile {
+    padding: 8px 20px;
+    font-size: 14px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(48, 52, 65);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.my_matching, .my_tourist_attraction_wishlist, .change_password, .alarm {
+        padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(48, 52, 65);
+    text-decoration: none;
+}
+
+.mypage_info {
+    flex: 1 1 0%;
+}
+
+.total-wrapper {
+    margin-left: 1.5rem;
+}
+
+.info-title {
+    font-size: 18px;
+    color: rgb(48, 52, 65);
+    font-weight: bold;
+    margin: 0px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 8px;
+}
+
+/* tw는 border: 1px solid rgb(228, 229, 237);로 변경함 */
+.main-wrapper { 
+    padding: 2.5rem;
+    border: 1px solid rgb(228, 229, 237);
+    gap: 2.5rem;
+    flex-direction: column;
+    margin-top: 1.25rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.change-profile-section {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.profile-image-part {
+    width: 120px;
+    height: 120px;
+    background-color: rgb(228, 229, 237);
+    position: relative;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    border-radius: 50%;
+}
+
+.profile-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s;
+    border-radius: 50%;
+    opacity: 1;
+    max-width: none;
+    vertical-align: middle;
+}
+
+.change-profile-btn-main-wrapper {
+    margin-top: 8px;
+}
+
+.profile-btn-wrapper {
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 120px;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    transition: all .15s linear;
+    border-radius: 4px;
+}
+
+.profile-btn {
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s, border-color 0.3s;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    white-space: nowrap;
+    max-width: 100%;
+    height: 36px;
+    font-size: 14px;
+    padding: 0px 16px;
+    line-height: 14px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 202, 210);
+    color: rgb(33, 34, 36);
+    background-image: none;
+    -webkit-appearance: button;
+    font-family: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    margin: 0;
+}
+
+.file-input-label {
+    cursor: pointer;
+}
+
+.change-info-section {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    flex: 1 1 0%;
+}
+
+.info-section-wrapper {
+    margin-bottom: 20px;
+}
+
+.info-text-label {
+    display: flex;
+    margin-bottom: 8px;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.name-text, .email-text, .linked-account-text, .phone-authentication {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgb(85, 89, 105);
+}
+
+.name-input-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.name-input-section, .name-input-section:hover, .name-input-section:focus-within, .email-info-placeholder-wrapper, .email-info-placeholder-wrapper:hover, .email-info-placeholder-wrapper:focus-within, .phone-authentication-input-wrapper, .phone-authentication-input-wrapper:hover, .phone-authentication-input-wrapper:focus-within  {
+    background-color: rgb(250, 250, 252);
+    border-color: rgb(228, 229, 237);
+    color: rgb(200, 202, 210);
+}
+
+.name-input-section, .email-info-placeholder-wrapper, .phone-authentication-input-wrapper {
+    width: 100%;
+    border: 1px solid rgb(228, 229, 237);
+    border-radius: 8px;
+    transition: background-color 0.2s, border-color 0.2s;
+    display: inline-flex;
+    column-gap: 8px;
+    flex-direction: row;
+    overflow: hidden;
+    cursor: text;
+    height: 42px;
+    font-size: 14px;
+    padding: 0px 12px;
+    min-width: 64px;
+}
+
+.name-input, .email-info, .phone-authentication {
+    outline: none;
+    flex: 1 1 0%;
+    width: 100%;
+    background-image: none;
+    box-sizing: border-box;
+    font-size: inherit;
+    border: none;
+    font-weight: inherit;
+    background-color: transparent;
+    text-align: left;
+    color: inherit;
+    padding: 0px;
+}
+
+:disabled {
+    cursor: default;
+}
+
+.caution-info-wrapper {
+    margin: 6px 0px 0px;
+    padding: 0px;
+    color: rgb(154, 155, 167);
+    font-size: 12px;
+    list-style: none;
+}
+
+.email-info-label-wrapper, .phone-authentication-label-wrapper {
+    justify-content: space-between;
+    align-items: baseline;
+    display: flex;
+}
+
+.email-info-wrapper {
+    -webkit-box-align: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.email-info-section {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.email-info-placeholder-wrapper .suffix-wrapper {
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    flex-basis: auto;
+}
+
+.email-check-icon-wrapper {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.email-check-icon {
+    display: inline-block;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    color: rgb(48, 52, 65);
+}
+
+
+.email-check-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.email-svg-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.linked-account-type {
+    display: flex;
+    column-gap: 20px;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+.kakao-logo-icon, .google-logo-disabled-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+.info-text-label {
+    display: flex;
+    margin-bottom: 8px;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.phone-authentication-wrapper {
+    -webkit-box-align: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 90px;
+}
+
+.phone-authentication-info-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.phone-recertification {
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s, border-color 0.3s;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 100%;
+    height: 42px;
+    font-size: 16px;
+    padding: 0px 20px;
+    line-height: 16px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 202, 210);
+    color: rgb(33, 34, 36);
+    margin-left: 8px;
+    -webkit-appearance: button;
+    background-image: none;
+    text-transform: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.self-introduction-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px; 
+}
+
+.edit-self-introduction {
+    color: rgb(17, 106, 212);
+    font-size: .8rem;
+    line-height: 1.25rem;
+    -webkit-appearance: button;
+    background-color: transparent;
+    background-image: none;
+    font-family: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.self-introduction-box{
+    display: inline;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 340px;
+}
+
+.self-introduction-textarea {
+     height: 100px;
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #666;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid hsl(0, 0%, 87%);
+    border-radius: 2px;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    font-family: inherit;
+    overflow: auto;
+    vertical-align: top;
+    margin: 0;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+.withdraw-btn-wrapper {
+    display: flex;
+    justify-content: flex-end; /* ✅ 오른쪽 정렬 */
+    margin-top: 12px; /* 필요 시 위쪽 여백 추가 */
+}
+
+.withdraw-btn {
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s, border-color 0.3s;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 100%;
+    height: 42px;
+    font-size: 16px;
+    padding: 0px 20px;
+    line-height: 16px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 202, 210);
+    color: rgb(33, 34, 36);
+    margin-left: 8px;
+    -webkit-appearance: button;
+    background-image: none;
+    text-transform: none;
+    width: auto; 
+    max-width: none;
+}

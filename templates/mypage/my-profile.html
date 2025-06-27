@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>무드 트립</title>
+    <link rel="stylesheet" href="/static/css/mypage/my-profile.css">
 </head>
 <body>
     <div>
@@ -12,7 +13,7 @@
                 <div class="page-inner"> <!--css-1jnf2ee eglsog60-->
                     <aside class="user-settings-nav">
                         <div class="account-settings">계정 설정</div>
-                        <hr orientation="horizontal" class="line">
+                        <hr orientation="horizontal" class="horizontal-line">
                         <a class="my_profile" href="/my_profile">내 정보</a>
                         <a class="my_matching" href="/my_matching">매칭 정보</a>
                         <a class="my_tourist_attraction_wishlist" href="/my_tourist_attraction_wishlist">관광짐 찜 목록</a>
@@ -22,11 +23,11 @@
                     <main class="mypage_info"> <!--css-1rr4qq7 eglsog61-->
                         <div class="total-wrapper">
                             <h1 class="info-title">내 정보</h1>
-                            <section class="main-wrapper">
+                            <section class="flex main-wrapper">
                                 <div class="flex main-info-wrapper">
                                     <section class="change-profile-section">
                                         <div role="article" shape="0" size="120" class="profile-image-part">
-                                            <img alt="프로필 사진" loading="lazy" shape="0" src="" class="profile-image">
+                                            <img alt="프로필 사진" loading="lazy" shape="0" src="/static/image/mypage/test-profile-img.jpg" class="profile-image">
                                         </div>
                                         <div class="change-profile-btn-main-wrapper">
                                             <div class="profile-btn-wrapper" style="border: none; overflow: auto; padding: 4px;">
@@ -42,7 +43,7 @@
                                         </div>
                                     </section>
                                     <section class="change-info-section">
-                                        <div class="info-section-wrapper"> <!--info-text-label클래스는 info-section-wrapper의 모든 label이 공통으로 사 -->
+                                        <div class="info-section-wrapper"> <!--info-text-label클래스는 info-section-wrapper의 모든 label이 공통으로 사용 -->
                                             <label for="username" class="info-text-label">
                                                 <span class="name-text">닉네임</span>
                                             </label>
@@ -57,21 +58,23 @@
                                                 <li class="caution-info">* 한글/영문/숫자만 사용할 수 있습니다.</li>
                                             </ul>
                                         </div>
-                                        <div class="flex info-section-wrapper">
-                                            <label class="info-text-label">
-                                                <span class="email-text">이메일</span>
-                                            </label>
+                                        <div class="info-section-wrapper">
+                                            <div class="flex email-info-label-wrapper">
+                                                <label class="info-text-label">
+                                                    <span class="email-text">이메일</span>
+                                                </label>
+                                            </div>
                                             <div class="email-info-wrapper">
                                                 <div class="email-info-section">
                                                     <div class="email-info-placeholder-wrapper">
                                                         <input disabled type="text" class="email-info" value="test@email.com">
-                                                    </div>
-                                                    <div class="suffix-wrapper email-check-icon-wrapper">
-                                                        <span color="#303441" role="img" rotate="0" class="email-check-icon">
-                                                            <svg aria-hidden="true" fill="currentColor" focusable="false" height="24" preserv="xMidYMid meet" viewBox="0 0 24 24" width="24" class="css-7kp13n">
-                                                                <path clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM16.301 10.2319C16.6329 9.86186 16.6019 9.29285 16.2319 8.96099C15.8619 8.62913 15.2929 8.66008 14.961 9.03012L11.1606 13.2677L8.94642 11.0535C8.59494 10.7021 8.0251 10.7021 7.67362 11.0535C7.32215 11.405 7.32215 11.9749 7.67363 12.3263L10.5598 15.2125C10.7345 15.3873 10.9735 15.4825 11.2206 15.4757C11.4677 15.469 11.7011 15.361 11.8662 15.177L16.301 10.2319Z" fill-rule="evenodd"></path>
-                                                            </svg>
-                                                        </span>
+                                                        <div class="suffix-wrapper email-check-icon-wrapper">
+                                                            <span color="#303441" role="img" rotate="0" class="email-check-icon">
+                                                                <svg aria-hidden="true" fill="currentColor" focusable="false" height="24" preserv="xMidYMid meet" viewBox="0 0 24 24" width="24" class="email-svg-icon">
+                                                                    <path clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM16.301 10.2319C16.6329 9.86186 16.6019 9.29285 16.2319 8.96099C15.8619 8.62913 15.2929 8.66008 14.961 9.03012L11.1606 13.2677L8.94642 11.0535C8.59494 10.7021 8.0251 10.7021 7.67362 11.0535C7.32215 11.405 7.32215 11.9749 7.67363 12.3263L10.5598 15.2125C10.7345 15.3873 10.9735 15.4825 11.2206 15.4757C11.4677 15.469 11.7011 15.361 11.8662 15.177L16.301 10.2319Z" fill-rule="evenodd"></path>
+                                                                </svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -82,8 +85,8 @@
                                             </label>
                                             <ul class="linked-account-type">
                                                 <!--이미지 수정해야됨 kmong으로 되어있음-->
-                                                <li aria-selected="true" style="background-color:#FEE500;border:none" class="css-1nurzie e76s5er1"><img src="https://static.cdn.kmong.com/assets/icon/kakao-logo_v2.png" alt="카카오 계정 연동 상태" style="width:24px;height:24px"></li>
-                                                <li aria-selected="false" style="background-color:#f2f3f7;border:none" class="css-1nurzie e76s5er1"><img src="https://static.cdn.kmong.com/assets/icon/google-logo-disabled.png" alt="구글 계정 미연동 상태" style="width:24px;height:24px"></li>
+                                                <li aria-selected="true" style="background-color:#FEE500;border:none" class="kakao-logo-icon"><img src="/static/image/mypage/kakao-logo_v2.png" alt="카카오 계정 연동 상태" style="width:24px;height:24px; max-width: none;"></li>
+                                                <li aria-selected="false" style="background-color:#f2f3f7;border:none" class="google-logo-disabled-icon"><img src="/static/image/mypage/google-logo-disabled.png" alt="구글 계정 미연동 상태" style="width:24px;height:24px; max-width: none;"></li>
                                             </ul>
                                         </div>
                                         <div class="info-section-wrapper">
@@ -104,25 +107,25 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="info-section-wrapper">
+                                        <div class="info-section-wrapper self-introduction-wrapper">
                                             <label class="info-text-label">
                                                 <span class="self-introduction-text">자기소개</span>
                                             </label>
                                             <button type="button" class="cursor-pointer edit-self-introduction">자기소개 수정하기</button>
-                                            <div class="self-introduction-box">
+                                        </div>
+                                        <div class="self-introduction-box">
                                                 <!--js로 변경되게 수정해야됨, textarea크기고 키워야됨-->
                                                 <textarea id="selfIntroduction" class="self-introduction-textarea" disabled>
                                                     안녕하세요 저는 여행을 좋아하고, 신나는 액티비티를 즐겨 합니다.
                                                     저의 성향은 밝고 사교적인 사람과 친해지는 것을 좋아합니다.
                                                 </textarea>
                                             </div>
+                                        <div class="withdraw-btn-wrapper">
+                                            <button class="withdraw-btn">탈퇴하기</button>
                                         </div>
                                     </section>
                                 </div>
                             </section>
-                        </div>
-                        <div class="withdraw-btn-wrapper">
-                            <button class="withdraw-btn">탈퇴하기</button>
                         </div>
                     </main>
                 </div>
