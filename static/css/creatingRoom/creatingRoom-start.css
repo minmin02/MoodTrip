@@ -1,0 +1,227 @@
+body {
+    height: 100%;
+    background-color: #f5f5f5;
+    display : block;
+
+}
+* {
+    box-sizing: border-box;
+    margin : 0;
+    padding : 0;
+    font-family : 'NotoSansKR', sans-serif;
+    line-height: 1rem;
+    -webkit-font-smoothing: antialiased;
+}
+.big-frame {
+    min-width: 1080px;
+    height : auto;
+    min-height : 70%;
+}
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+body.matching
+.introduction {
+    padding : 53px 0 52px;
+    background-color: #fff;
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+.container{
+    width: 1080px;
+    margin : 0 auto;
+}
+body.matching
+.introduction
+.introduction-guide {
+    padding-top: 10px;
+    float : left;
+    margin: 40px 0 32px;
+}
+body.matching
+.introduction
+.introduction-guide .title-wrapper {
+    width: 580px;
+    margin-bottom: 40px;
+}
+.title-1{
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 64px;
+}
+.text900 {
+    color : #212121;
+}
+body.matching
+.introduction
+.introduction-guide .guide-body{
+    margin-bottom: 40px;
+    margin-top: 2px;
+    color : #616161;
+}
+.text600 {
+    color: #616161;
+}
+.subtitle-2 {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight : 400;
+}
+p{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    font-weight: bold;
+}
+body.matching
+.introduction
+.introduction-guide .guide-btn {
+    background: linear-gradient(to bottom, #005792 0%, #001A2C 100%);
+    padding: 16px 24px;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow:
+        0px 32px 32px -12px rgba(46, 107, 170, .12);
+    border: none;
+    cursor: pointer;
+}
+body.matching .hover-top-btn {
+    position: relative;
+    transition: top ease .5s;
+    top : 0;
+}
+.subtitle-2-medium {
+    font-weight: 500;
+}
+.subtitle-2-medium {
+    font-size: 18px;
+    line-height: 28px;
+}
+.btn {
+    cursor : pointer;
+    display : inline-block;
+    text-align : center;
+    white-space : nowrap;
+    vertical-align: middle;
+    user-select : none;
+    border : none;
+}
+a {
+    text-decoration : none;
+}
+body.matching
+.introduction
+.introduction-guide .ask-btn {
+    background-color: #fff; 
+    padding: 16px 24px;
+    border-radius: 12px;
+    color: #005792;
+    border: 1px solid #005792; 
+    cursor: pointer;
+}
+body.matching .hover-top-btn {
+    position : relative;
+    transition : top ease .5s;
+    top : 0;
+}
+body.matching
+.introduction
+.introduction-img {
+    float : right;
+}
+body.matching
+.introduction
+.introduction-img img {
+    width : 500px;
+    margin-top : 50px;
+}
+.container::after{
+    content: "";
+    display : table;
+    clear : both;
+}
+body.matching
+.introduction-detail-container {
+    background-color: #fff;
+    border-top: 1px solid #e6ebf0;
+    padding-top: 32px;
+}
+body.matching
+.introduction-detail-container
+.intro-part-1
+.intro-subtitle {
+    text-align: center;
+}
+.subtitle-2-bold {
+    font-weight: 700;
+}
+.subtitle-2-bold {
+    font-size: 18px;
+    line-height : 28px;
+}
+.mb6 {
+    margin-bottom: 6px;
+}
+body.matching
+.introduction-detail-container
+.intro-part-1 .client-logo-carousel {
+    height : 32px;
+    width : 100%;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    overflow: hidden;
+    position : relative;
+    z-index : 80;
+}
+body.matching
+.introduction-detail-container
+.intro-part-1 .client-logo-carousel
+.bd-filter.left {
+    background : linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+    left : 0;
+    top : 0;
+    z-index : 83;
+    bottom : 0;
+    width : 80px;
+}
+body.matching
+.introduction-detail-container
+.intro-part-1 .client-logo-carousel
+.bd-filter {
+    position : absolute;
+}
+body.matching
+.introduction-detail-container
+.intro-part-1 .client-logo-carousel
+.bd-filter.right {
+    background : linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+    z-index : 83;
+    right : 0;
+    top : 0;
+    bottom : 0;
+    width : 80px;
+}
+body.matching
+.introduction-detail-container
+.intro-part-1 .client-logo-carousel
+.logo-item {
+    z-index: 81;
+    display: inline-block;
+    margin-right: 90px;
+    min-width: 70px;
+    padding : 0 2px;
+    align-items : center;
+    text-align: center;
+}
+body.matching
+.introduction-detail-container
+.intro-part-1 .client-logo-carousel
+.logo-item img {
+    width: 100px; 
+    height: 20px;  
+    object-fit: contain; 
+}
