@@ -16,7 +16,7 @@
                         <hr orientation="horizontal" class="horizontal-line">
                         <a class="my_profile" href="/my_profile">내 정보</a>
                         <a class="my_matching" href="/my_matching">매칭 정보</a>
-                        <a class="my_tourist_attraction_wishlist" href="/my_tourist_attraction_wishlist">관광짐 찜 목록</a>
+                        <a class="my_tourist_attraction_wishlist" href="/my_tourist_attraction_wishlist">관광지 찜 목록</a>
                         <a class="change_password" href="/change_password">비밀번호 변경 정보</a>
                         <a class="alarm" href="/alarm">알림 설정</a>
                     </aside>
@@ -46,11 +46,19 @@
                                         <div class="info-section-wrapper"> <!--info-text-label클래스는 info-section-wrapper의 모든 label이 공통으로 사용 -->
                                             <label for="username" class="info-text-label">
                                                 <span class="name-text">닉네임</span>
+                                                <div class="modify-nickname-wrapper">
+                                                    <span class="modify-nickname">수정</span>
+                                                </div>
+                                                <!-- 수정 누르면 아래 div가 떠야됨 js로 수정 -->
+                                                <div class="complete-nickname-wrapper" hidden>
+                                                    <span class="save-nickname">저장</span>
+                                                    <span class="modify-nickname-cancel">취소</span>
+                                                </div>
                                             </label>
                                             <div class="name-input-wrapper">
                                                 <div class="name-input-section">
                                                     <!--만약 이름 수정 텍스트를 누르면 input에서 disabled가 사라지고 텍스트를 입력할 수 있어야함 + 유효성 검사 필요 동일한 닉네임이 DB에 있는지(이건 아마 spring에서 할 듯) -->
-                                                    <input disabled type="text" maxlength="17" class="name-input" value="테스트이름1"> 
+                                                    <input id="username" disabled type="text" maxlength="17" class="name-input" value="테스트이름1"> 
                                                 </div>
                                             </div>
                                             <ul class="caution-info-wrapper">
@@ -101,6 +109,8 @@
                                                         <input disabled type="text" class="phone-authentication" value="010****9831">
                                                     </div>
                                                 </div>
+                                                <!-- js로 인증 안돼있을 시 아래 p로 변경되어야 함 -->
+                                                <p class="not-authentication" variant="body2" color="red500" hidden>원활한 서비스 이용을 위하여 인증을 완료해 주세요.</p>
                                                 <button role="button" class="phone-recertification">
                                                     <!--재인증을 누르면 핸드폰 인증 api가 켜져야됨-->
                                                     <span class="phone-recertification-text">재인증</span>
@@ -110,16 +120,22 @@
                                         <div class="info-section-wrapper self-introduction-wrapper">
                                             <label class="info-text-label">
                                                 <span class="self-introduction-text">자기소개</span>
+                                                
+                                                <div class="cursor-pointer edit-self-introduction-wrapper">
+                                                    <span class="edit-self-introduction">수정</span>
+                                                </div>
+                                                <!-- 수정 누르면 아래 div가 떠야됨 js로 수정 -->
+                                                <div class="complete-self-introduction-wrapper" hidden>
+                                                    <span class="save-nickname">저장</span>
+                                                    <span class="modify-nickname-cancel">취소</span>
+                                                </div>
+                                                
                                             </label>
-                                            <button type="button" class="cursor-pointer edit-self-introduction">자기소개 수정하기</button>
-                                        </div>
-                                        <div class="self-introduction-box">
+                                            <div class="self-introduction-box">
                                                 <!--js로 변경되게 수정해야됨, textarea크기고 키워야됨-->
-                                                <textarea id="selfIntroduction" class="self-introduction-textarea" disabled>
-                                                    안녕하세요 저는 여행을 좋아하고, 신나는 액티비티를 즐겨 합니다.
-                                                    저의 성향은 밝고 사교적인 사람과 친해지는 것을 좋아합니다.
-                                                </textarea>
+                                                <textarea id="selfIntroduction" class="self-introduction-textarea" disabled>안녕하세요 저는 여행을 좋아하고, 신나는 액티비티를 즐겨 합니다. 저의 성향은 밝고 사교적인 사람과 친해지는 것을 좋아합니다.</textarea>
                                             </div>
+                                        </div>
                                         <div class="withdraw-btn-wrapper">
                                             <button class="withdraw-btn">탈퇴하기</button>
                                         </div>
@@ -132,5 +148,6 @@
             </div>
         </div>
     </div>
+    <script src="/static/js/mypage/my-profile..js"></script>
 </body>
 </html>
