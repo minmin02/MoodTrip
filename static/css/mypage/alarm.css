@@ -52,8 +52,8 @@
     font-weight: 600;
 }
 
-.my_matching, .my_tourist_attraction_wishlist, .change_password, .alarm {
-        padding: 8px 20px;
+.my_matching, .my_tourist_attraction_wishlist, .change_password {
+    padding: 8px 20px;
     font-size: 14px;
     font-weight: 400;
     display: flex;
@@ -63,6 +63,19 @@
     align-items: center;
     color: rgb(48, 52, 65);
     text-decoration: none;
+}
+
+.alarm {
+    padding: 8px 20px;
+    font-size: 14px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(48, 52, 65);
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .mypage_info {
@@ -266,7 +279,7 @@
     padding: 30px 40px 40px;
 }
 
-.benefit-notification-total-wrapper {
+.benefit-notification-wrapper {
     text-align: center;
 }
 
