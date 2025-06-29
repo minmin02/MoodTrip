@@ -1,0 +1,382 @@
+header.header {
+    min-width: 1080px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'NotoSansKR', Sans-serif;
+    line-height: 1rem;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+header.header .header-nav {
+    width: 100%;
+    background-color: hsla(0, 0%, 100%, .8);
+    z-index: 1999;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+}
+
+header.header .base-nav-guest-renewal, header.header .header-nav, header.header .base-nav-landing-renewal, header.header .base-nav-client-renewal, header.header .base-nav-partner-renewal {
+    min-height: 65px;
+    border-bottom: 1px solid #eee;
+}
+
+header.header .container {
+    width: 1080px;
+}
+
+.container {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: #212121;
+}
+
+header.header .base-nav-guest-renewal .nav-logo-wrapper, header.header .header-nav .nav-logo-wrapper, header.header .base-nav-landing-renewal .nav-logo-wrapper, header.header .base-nav-client-renewal .nav-logo-wrapper, header.header .base-nav-partner-renewal .nav-logo-wrapper {
+    width: 77px;
+    padding: 20px 0;
+}
+
+
+
+header.header .base-nav .nav-logo-wrapper, header.header .base-nav-guest-renewal .nav-logo-wrapper, header.header .header-nav .nav-logo-wrapper, header.header .base-nav-landing-renewal .nav-logo-wrapper, header.header .base-nav-client-renewal .nav-logo-wrapper, header.header .base-nav-partner-renewal .nav-logo-wrapper, header.header .base-nav-guest .nav-logo-wrapper, header.header .base-nav-landing .nav-logo-wrapper, header.header .base-nav-partner .nav-logo-wrapper, header.header .base-nav-client .nav-logo-wrapper {
+    float: left;
+    padding: 22px 12px;
+    margin-right: 16px;
+    font-size: 18px;
+    line-height: 20px;
+    width: 100px;
+    text-indent: -9999em;
+    box-sizing: border-box;
+    background-size: 80px 20px;
+}
+
+
+header.header .base-nav-guest-renewal .nav-logo-wrapper .nav-logo,
+header.header .header-nav .nav-logo-wrapper .nav-logo,
+header.header .base-nav-landing-renewal .nav-logo-wrapper .nav-logo,
+header.header .base-nav-client-renewal .nav-logo-wrapper .nav-logo,
+header.header .base-nav-partner-renewal .nav-logo-wrapper .nav-logo {
+    width: 100%;
+    height: 30px;
+    background-image: url(/static/image/mainpage/logo-label.png);
+    background-size: contain;      /* 이미지가 div 크기에 맞게 조정됨 */
+    background-repeat: no-repeat;  /* 반복 없이 한 번만 표시 */
+    background-position: center;   /* div 중앙에 위치 */
+}
+
+
+
+
+
+
+
+
+
+
+header.header .base-nav-guest-renewal .left-nav, header.header .header-nav .left-nav, header.header .base-nav-landing-renewal .left-nav, header.header .base-nav-client-renewal .left-nav, header.header .base-nav-partner-renewal .left-nav {
+    display: flex
+;
+}
+
+header.header .base-nav .left-nav, header.header .base-nav-guest-renewal .left-nav, header.header .header-nav .left-nav, header.header .base-nav-landing-renewal .left-nav, header.header .base-nav-client-renewal .left-nav, header.header .base-nav-partner-renewal .left-nav, header.header .base-nav-guest .left-nav, header.header .base-nav-landing .left-nav, header.header .base-nav-partner .left-nav, header.header .base-nav-client .left-nav {
+    float: left;
+}
+
+header.header .base-nav-guest-renewal .left-nav .nav-divider, header.header .header-nav .left-nav .nav-divider, header.header .base-nav-landing-renewal .left-nav .nav-divider, header.header .base-nav-client-renewal .left-nav .nav-divider, header.header .base-nav-partner-renewal .left-nav .nav-divider {
+    margin: 25px 4px 0 4px;
+    height: 14px;
+    border-left: 1px solid #e0e0e0;
+}
+
+header.header .base-nav-guest-renewal .right-nav, header.header .header-nav .right-nav, header.header .base-nav-landing-renewal .right-nav, header.header .base-nav-client-renewal .right-nav, header.header .base-nav-partner-renewal .right-nav {
+    display: flex
+;
+}
+
+header.header .base-nav .right-nav, header.header .base-nav-guest-renewal .right-nav, header.header .header-nav .right-nav, header.header .base-nav-landing-renewal .right-nav, header.header .base-nav-client-renewal .right-nav, header.header .base-nav-partner-renewal .right-nav, header.header .base-nav-guest .right-nav, header.header .base-nav-landing .right-nav, header.header .base-nav-partner .right-nav, header.header .base-nav-client .right-nav {
+    display: flex
+;
+    align-items: center;
+    justify-content: flex-end;
+    height: 64px;
+    position: relative;
+}
+
+div {
+    unicode-bidi: isolate;
+}
+
+
+header.header .base-nav-guest-renewal .left-nav .left-nav-menu, header.header .header-nav .left-nav .left-nav-menu, header.header .base-nav-landing-renewal .left-nav .left-nav-menu, header.header .base-nav-client-renewal .left-nav .left-nav-menu, header.header .base-nav-partner-renewal .left-nav .left-nav-menu, header.header .base-nav-guest-renewal .left-nav .dropdown-container.left-nav-menu {
+    padding: 20px 16px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
+header.header .base-nav-guest-renewal .left-nav .left-nav-menu.pr-12, header.header .header-nav .left-nav .left-nav-menu.pr-12, header.header .base-nav-landing-renewal .left-nav .left-nav-menu.pr-12, header.header .base-nav-client-renewal .left-nav .left-nav-menu.pr-12, header.header .base-nav-partner-renewal .left-nav .left-nav-menu.pr-12, header.header .base-nav-guest-renewal .left-nav .dropdown-container.left-nav-menu.pr-12 {
+    padding-right: 12px;
+}
+
+header.header .base-nav-guest-renewal .left-nav .left-nav-menu, header.header .header-nav .left-nav .left-nav-menu, header.header .base-nav-landing-renewal .left-nav .left-nav-menu, header.header .base-nav-client-renewal .left-nav .left-nav-menu, header.header .base-nav-partner-renewal .left-nav .left-nav-menu, header.header .base-nav-guest-renewal .left-nav .dropdown-container.left-nav-menu {
+    padding: 20px 16px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
+.text900 {
+    color: #212121;
+}
+
+.body-2, #profile_image_edit_modal .modal__body .modal-body-wrapper .body-btn-group .body-btn, #profile_image_edit_modal .modal__body .modal-body-wrapper .modal-content, .body-2-bold, .body-2-medium, .body-2-light {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+header.header .base-nav-guest-renewal .left-nav .left-nav-menu .img-container, header.header .header-nav .left-nav .left-nav-menu .img-container, header.header .base-nav-landing-renewal .left-nav .left-nav-menu .img-container, header.header .base-nav-client-renewal .left-nav .left-nav-menu .img-container, header.header .base-nav-partner-renewal .left-nav .left-nav-menu .img-container, header.header .base-nav-guest-renewal .left-nav .dropdown-container.left-nav-menu .img-container {
+    display: flex
+;
+    align-items: center;
+    margin-left: 4px;
+}
+
+header.header .base-nav-guest-renewal .left-nav .left-nav-menu .img-container img+img, header.header .header-nav .left-nav .left-nav-menu .img-container img+img, header.header .base-nav-landing-renewal .left-nav .left-nav-menu .img-container img+img, header.header .base-nav-client-renewal .left-nav .left-nav-menu .img-container img+img, header.header .base-nav-partner-renewal .left-nav .left-nav-menu .img-container img+img, header.header .base-nav-guest-renewal .left-nav .dropdown-container.left-nav-menu .img-container img+img {
+    margin-left: 4px;
+}
+
+header.header .base-nav-guest-renewal .left-nav .left-nav-menu, header.header .header-nav .left-nav .left-nav-menu, header.header .base-nav-landing-renewal .left-nav .left-nav-menu, header.header .base-nav-client-renewal .left-nav .left-nav-menu, header.header .base-nav-partner-renewal .left-nav .left-nav-menu, header.header .base-nav-guest-renewal .left-nav .dropdown-container.left-nav-menu {
+    padding: 20px 16px;
+    display: flex
+;
+    cursor: pointer;
+    align-items: center;
+}
+
+header.header .base-nav-guest-renewal .right-nav .log-in-section, header.header .header-nav .right-nav .log-in-section, header.header .base-nav-landing-renewal .right-nav .log-in-section, header.header .base-nav-client-renewal .right-nav .log-in-section, header.header .base-nav-partner-renewal .right-nav .log-in-section {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 4px;
+}
+
+/* 가운데 줄(nav-divider) 제거 */
+.header .left-nav .nav-divider {
+    display: none;
+}
+
+/* 네비게이션 메뉴 텍스트를 세로 중앙 정렬 */
+.header .left-nav,
+.header .right-nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+/* 각 메뉴 항목도 세로 중앙 정렬 */
+.header .left-nav .left-nav-menu,
+.header .right-nav .log-in-section,
+.header .right-nav .sign-up-button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 1.15rem; /* 필요시 크기 조절 */
+    position: static;   /* top 보정 제거 */
+    line-height: normal;
+}
+
+.search-bar-wrapper {
+  width: 240px;
+  margin-left: 24px;
+}
+
+.search-bar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+  font-size: 16px;
+  padding: 0 40px 0 12px; /* 오른쪽에 아이콘 공간 확보 */
+  box-sizing: border-box;
+  background: #fff;
+  outline: none;
+}
+
+.search-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;   /* 버튼 높이 input보다 약간 작게 */
+  width: 32px;    /* 버튼 너비 이미지와 맞춤 */
+}
+
+.search-icon {
+  width: 24px;    /* 아이콘 크기 */
+  height: 24px;
+  display: block;
+}
+
+
+/*드롭 확인하는 구간*/
+
+header.header .dropdown-nav-container {
+    border-radius: 0px 0px 16px 16px;
+    background: #fff;
+    z-index: 1999;
+    width: 100%;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .3s ease-out;
+    position: absolute;
+}
+
+header.header .dropdown-nav-container .dropdown-nav {
+    display: flex;
+    width: 1080px;
+    margin: 0 auto;
+    padding: 20px 0 32px 0;
+}
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container {
+    display: flex;
+    width: 840px;
+    margin: 0 auto;
+}
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container .dropdown-menu-list {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 12px;
+    row-gap: 12px;
+    column-gap: 12px;
+}
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container .dropdown-menu-list .dropdown-menu-item {
+    display: flex !important
+;
+    gap: 4px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 24px;
+    color: #424242;
+}
+
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container .dropdown-menu-list {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 12px;
+}
+
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container .dropdown-menu-list .dropdown-menu-item {
+    display: flex !important
+;
+    gap: 4px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 24px;
+    color: #424242;
+}
+
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container .dropdown-menu-list {
+    display: flex
+;
+    flex-direction: column;
+    position: relative;
+    gap: 12px;
+}
+
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container .dropdown-menu-list .dropdown-menu-item {
+    display: flex !important
+;
+    gap: 4px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 24px;
+    color: #424242;
+}
+
+header.header .dropdown-nav-container .dropdown-banner.client {
+    background-color: #f2fcff;
+}
+header.header .dropdown-nav-container .dropdown-banner {
+    position: relative;
+    padding: 20px 24px 44px 24px;
+    width: 240px;
+    border-radius: 16px;
+}
+
+header.header .dropdown-nav-container .dropdown-banner .dropdown-banner-subtitle {
+    margin-bottom: 4px;
+}
+
+.text500 {
+    color: #757575;
+}
+
+.body-3, .body-3-bold, .body-3-medium, .body-3-light {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+header.header .dropdown-nav-container .dropdown-banner .dropdown-banner-title {
+    margin-bottom: 8px;
+}
+
+.text700 {
+    color: #424242;
+}
+
+.body-1-medium {
+    font-weight: 500;
+}
+
+.body-1, #profile_image_edit_modal .modal__footer button, .body-1-bold, .body-1-medium, .body-1-light {
+    font-size: 16px;
+}
+
+header.header .dropdown-nav-container .dropdown-banner img {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+}
+header.header .base-nav-guest-renewal .right-nav .sign-up-button, header.header .header-nav .right-nav .sign-up-button, header.header .base-nav-landing-renewal .right-nav .sign-up-button, header.header .base-nav-client-renewal .right-nav .sign-up-button, header.header .base-nav-partner-renewal .right-nav .sign-up-button {
+    margin-left: 12px;
+    display: flex
+;
+    padding: 8px 16px;
+    align-items: center;
+    border-radius: 8px;
+    color: #fff;
+    background: linear-gradient(to right, #005792, #001A2C);
+    cursor: pointer;
+}
+.body-2-medium {
+    font-weight: 500;
+}
+
