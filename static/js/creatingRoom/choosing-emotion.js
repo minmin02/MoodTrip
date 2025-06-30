@@ -5,6 +5,8 @@ let selectedEmotions = [];
 document.addEventListener('DOMContentLoaded', function() {
     initializeEmotionTags();
     initializeCustomEmotionInput();
+    restoreTemporaryEmotions(); // 임시 저장된 감정 복원
+    initializeNextButton(); // 다음 버튼 초기화
 });
 
 // 감정 태그 초기화
@@ -161,6 +163,9 @@ function validationPhase(form) {
     
     // 폼 제출 준비
     prepareFormSubmission();
+    
+    // 선택된 감정들을 다음 페이지로 전달하기 위해 저장
+    saveEmotionsForNextPage();
     
     return true;
 }

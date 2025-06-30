@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>무드트립 : 동행자 매칭 방 만들기 감정 선택</title>
     <link rel="stylesheet" href="/static/css/creatingRoom/choosing-emotion.css">
+    <script src = "/static/js/creatingRoom/choosing-emotion.js">
+    </script>
 </head>
 <body class="room-create phase-1">
     <div class="big-frame">
@@ -13,7 +15,7 @@
                     <div class="room-status-box">
                         <a class="back-to-before link-text" onclick="exitWithSubmit('temporary_room_phase_1', 'False')" style="cursor: pointer;">
                             <img class="back-to-before-img" src="/static/image/creatingRoom/back-to-before.svg">
-                            <p class="back-to-before-title body-1-medium">저장 후 나가기</p>
+                            <p class="back-to-before-title body-1-medium">뒤로 가기</p>
                         </a>
                         <p class="menu-title subtitle-1-medium mb4">방 정보 입력하기</p>
                     </div>
@@ -131,10 +133,6 @@
                                         <input type="checkbox" id="emotion-solidarity" name="emotions" value="연대감" class="emotion-checkbox">
                                         <label for="emotion-solidarity" class="emotion-label">연대감</label>
                                     </div>
-                                    <div class="emotion-tag-item" data-emotion="무생각">
-                                        <input type="checkbox" id="emotion-indifferent" name="emotions" value="무생각" class="emotion-checkbox">
-                                        <label for="emotion-indifferent" class="emotion-label">무생각</label>
-                                    </div>
                                 </div>
 
                                 <div class="form-group-light">
@@ -175,7 +173,5 @@
             </div>
         </div>
     </div>
-
-    <script src="choosing-emotion.js"></script>
 </body>
 </html>
