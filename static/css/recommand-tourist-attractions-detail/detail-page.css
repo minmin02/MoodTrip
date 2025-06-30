@@ -1,0 +1,347 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    height: 100%;
+    background-color: #ffffff;
+}
+
+header {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+section {
+    display: block;
+    unicode-bidi: isolate;
+}
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+ .logo-img {
+  height: 40px; /* 로고 높이 조절 */
+  width: auto;  /* 가로 비율 유지 */
+  display: block;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.brandlanding {
+    min-height: 65px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.header-service-nav {
+    padding-top: 9px;
+    padding-bottom: 9px;
+    display: flex
+;
+}
+.container {
+  display: flex;
+    width: 1080px;
+    margin: 0 auto;
+}
+.container-place {
+  width: 1080px;
+  margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.container-match-service {
+    padding: 53px 0 52px;
+    background-image: -image-set(url("/static/img/recommand-tourist-attractions-detail/background.png?20250620") 1x, url("/static/img/acquisition/background@2x.png?20250620") 2x, url("/static/img/acquisition/background@3x.png") 3x);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+form {
+    display: block;
+    unicode-bidi: isolate;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.container {
+  width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.main {
+    min-width: 1080px;
+    height: auto;
+    min-height: 70%;
+}
+
+.place-header {
+    margin: 48px 0 38px;
+}
+
+.page-title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.divider1 {
+    position: relative;
+    border-bottom: 1px solid #000000;
+    margin-bottom: 24px;
+}
+
+.place-image-info {
+  display: flex;
+  margin-left: 10px;
+  font-size: 22px;
+  margin-top: 50px;
+
+}
+.placeInfo {
+  position: relative;
+  display: flex;
+  align-items: stretch; /* 이미지와 태그 높이 맞춤 */
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .12);
+  border: solid 1px rgba(0, 0, 0, 0);
+  margin-bottom: 12px;
+  margin-top: 10px;
+}
+
+.place-image {
+  width: calc(100% - 288px);
+  position: relative;
+  padding-right: 0; 
+}
+.place {
+  width: 1080px;
+  margin: 0 auto;
+  height: auto;
+  max-width: 100%;
+  border-right: 1px solid #eee;
+  object-fit: contain;
+  display: block;
+}
+
+.place-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.location-icon {
+height: 1em;            
+  width: auto;             
+  vertical-align: middle;  
+  margin-right: 6px; 
+}
+
+.place-tag-info {
+  display: flex;
+  align-items: flex-end;      /* 태그를 아래에 정렬 */
+  justify-content: flex-start;
+  width: 288px;
+  padding: 0 24px 24px 24px;  /* 아래 여백 추가 */
+}
+
+.place-tag {
+  display: flex;
+  flex-wrap: wrap-reverse;     /* 아래부터 위로 줄바꿈 */
+  align-content: flex-end;     /* 아래 정렬 */
+  justify-content: flex-start;
+  gap: 6px 12px;
+  max-height: 100%;
+}
+
+.place-tag p {
+  margin: 0;
+  font-size: 18px;
+  white-space: nowrap;
+  background: #f2f2f2;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+.divider2 {
+    position: relative;
+    border-bottom: 2px solid #000000;
+    margin-bottom: 24px;
+}
+
+.place-detail {
+  margin-top: 30px;
+  margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.place-detail-info {
+width: 1080px;
+  margin: 0 auto;
+height: auto;
+left: auto;
+top: auto;
+
+margin-top: 40px;
+margin-bottom: 30px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+}
+
+.place-detail-info ul {
+  width: 1080px;
+  margin: 0 auto;
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.place-detail-info li {
+  margin-bottom: 10px;
+}
+
+.place-detail strong {
+  font-weight: 400;
+}
+
+.place-detail-info-1 {
+width: 1080px;
+  margin: 0 auto;
+height: auto;
+left: auto;
+top: auto;
+
+margin-top: 40px;
+margin-bottom: 30px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+}
+
+.place-detail-info2 {
+width: 1080px;
+  margin: 0 auto;
+height: auto;
+left: auto;
+top: auto;
+
+margin-top: 40px;
+margin-bottom: 30px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+}
+
+.toggle-btn:hover {
+  color: #222;                 /* 호버 시 진하게 */
+}
+
+.hidden {
+  display: none;
+}
+
+.toggle-btn {
+  margin-top: 12px;
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+body.landing .introduction .introduction-guide {
+    margin-bottom: 40px;
+    margin-top: 2px;
+    color: #616161;
+}
+.guide-body {
+  height: 20px; /* 혹은 적절한 여백 */
+   margin-bottom: 40px;
+    margin-top: 2px;
+}
+
+body.landing .introduction .introduction-img {
+    width: 580px;
+    margin-bottom: 40px;
+    
+}
+.introduction-img {
+  margin-top: 64px;
+}
+
+.text900 {
+    color: #212121;
+}
+.title-1, .title-1-bold, .title-1-medium, .title-1-light {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 64px;
+}
+
+
+.guide-btn {
+  background: linear-gradient(90deg, #005792 0%, #001A2C 100%);
+  padding: 16px 24px;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0px 32px 32px -12px rgba(46, 107, 170, .12);
+}
+
+.ask-btn {
+    background-color: #fff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    color: #005792;
+    border: 1px solid #005792;
+}
+
+.container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.container-title {
+  width: 1080px;
+  margin: 0 auto;
+  height: 45px; /* 원하는 높이로 조절 가능 */
+  background: linear-gradient(90deg, #005792 0%, #001A2C 100%);
+  
+  display: flex;
+  align-items: center;       /* 세로(수직) 가운데 정렬 */
+  padding-left: 20px;        /* 왼쪽 여백 (텍스트 안쪽 여백) */
+
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+}
+
