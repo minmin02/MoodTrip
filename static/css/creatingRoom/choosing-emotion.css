@@ -1,0 +1,513 @@
+.big-frame {
+    min-width: 1080px;
+    height: auto;
+    min-height: 70%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "NotoSansKR", "Sans-serif";
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+}
+
+body.room-create .room-create-formview .container {
+    width: 1080px;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+/* 진행 상태 바 - 기존 스타일 유지 */
+body.room-create .submit-progress {
+    margin-right: 24px;
+    float: left;
+    width: 256px;
+    padding: 16px;
+}
+
+body.room-create .submit-progress .room-status-box {
+    margin-bottom: 50px;
+}
+
+body.room-create .submit-progress .room-status-box .back-to-before {
+    color: #005792;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.link-text {
+    text-decoration: none;
+}
+
+body.room-create .submit-progress .room-status-box .back-to-before .back-to-before-img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+body.room-create .submit-progress .room-status-box .back-to-before .back-to-before-title {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.body-1-medium {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+body.room-create .submit-progress .room-status-box .menu-title {
+    color: #212121;
+}
+
+.subtitle-1-medium {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+body.room-create .submit-progress .input-group-status .status-main-menu {
+    color: #bdbdbd;
+}
+
+.body-2 {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+body.room-create .submit-progress .input-group-status .status-main-menu+.status-main-menu {
+    margin-top: 24px;
+}
+
+body.room-create .submit-progress .input-group-status .status-main-menu.active {
+    color: #616161;
+    font-weight: 400;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu {
+    margin-left: 8px;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.active {
+    color: #616161;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title:first-child {
+    margin-top: 16px;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title {
+    padding: 8px 0;
+    position: relative;
+    color: #bdbdbd;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title .bottom-border {
+    height: 9px;
+    width: 1px;
+    left: 6px;
+    position: absolute;
+    bottom: 0;
+    border-left: 1px solid #e0e0e0;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title .top-border {
+    position: absolute;
+    height: 9px;
+    width: 1px;
+    top: 0;
+    left: 6px;
+    border-left: 1px solid #e0e0e0;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.active .sub-menu-marker {
+    background-color: #005792;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title .sub-menu-marker {
+    width: 14px;
+    height: 14px;
+    border-radius: 14px;
+    border: none;
+    display: inline-block;
+    color: #fff;
+    background-color: #bdbdbd;
+    font-size: 10px;
+    padding: 2.5px 4.5px;
+    margin-right: 20px;
+    vertical-align: top;
+    margin-top: 5px;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title .phase-complete-icon {
+    display: none;
+}
+
+/* 폼 섹션 - 기존 스타일 적용 */
+body.room-create .room-create-form-section {
+    background-color: #fff;
+    width: 800px;
+    float: left;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .16);
+}
+
+body.room-create .room-create-form-section .form-section-header {
+    padding: 26px 32px;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.subtitle-1 {
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 400;
+}
+
+body.room-create .room-create-form-section .form-section-header .room-form-guide-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 24px;
+    background-color: #fff;
+    color: #005792;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+body.room-create .room-create-form-section .form-section-header .header-button {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+}
+
+.btn-8-16 {
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border-radius: 4px;
+}
+
+button {
+    background: none;
+}
+
+body.room-create .room-create-form-section .form-input-section {
+    padding: 32px;
+    padding-bottom: 60px;
+}
+
+.form-group-light {
+    display: block;
+}
+
+.form-group-light .form-group-title {
+    display: block;
+}
+
+.body-1-bold {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.required {
+    color: red;
+}
+
+/* 감정 태그 그리드 - 기존 스타일 적용 */
+.form-group-guide {
+    color: #616161;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.text900 {
+    color: #212121;
+}
+
+.emotion-tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.emotion-tag-item {
+    position: relative;
+}
+
+.emotion-checkbox {
+    display: none;
+}
+
+.emotion-label {
+    display: block;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #616161;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+.emotion-label:hover {
+    border-color: #005792;
+    background: #f0f8ff;
+    color: #005792;
+}
+
+.emotion-checkbox:checked + .emotion-label {
+    border: 2px solid #005792;
+    background: #f0f8ff;
+    color: #005792;
+    font-weight: 500;
+}
+
+/* 커스텀 입력 섹션 - 기존 스타일 적용 */
+.roomName-search-form {
+    position: relative;
+}
+
+.roomName-search-form .roomName-search-typing-box {
+    position: relative;
+}
+
+.roomName-search-form .roomName-search-typing-box .roomName-search-input-group {
+    position: relative;
+}
+
+.search_icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.text-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+}
+
+.roomName-search-form .roomName-search-typing-box .roomName-search-input-group .roomName-search-typing-input {
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 9px 12px 9px 36px;
+    font-size: 14px;
+    color: #212121;
+    line-height: 24px;
+}
+
+.roomName-search-typing-input:focus {
+    outline: none;
+    border-color: #005792;
+}
+
+.roomName-search-typing-input::placeholder {
+    color: #bdbdbd;
+}
+
+/* 선택된 감정 태그 표시 영역 - 기존 스타일에 맞춤 */
+.selected-emotions-container {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.selected-emotions-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #212121;
+    margin: 0 0 16px 0;
+    line-height: 26px;
+}
+
+.selected-emotions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.selected-emotion-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: #005792;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    gap: 8px;
+    animation: slideIn 0.3s ease;
+    line-height: 24px;
+}
+
+.selected-emotion-tag.custom {
+    background: #3CC796;
+}
+
+.emotion-tag-remove {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.emotion-tag-remove:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 애니메이션 */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 버튼 스타일 - 기존 스타일 적용 */
+body.room-create .room-create-form-section .form-section-footer {
+    padding: 16px 32px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.btn-client {
+    background: linear-gradient(to right, #005792, #001A2C);
+    color: #fff;
+    border: none;
+}
+
+.btn-right {
+    float: right;
+}
+
+.btn-11-24 {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    padding: 11px 24px;
+}
+
+.btn-client:hover {
+    background: linear-gradient(to right, #004577, #001219);
+}
+
+.btn-client:disabled {
+    background: #bdbdbd;
+    cursor: not-allowed;
+}
+
+/* clearfix - 기존 스타일 */
+body.room-create .room-create-form-section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+body.room-create .room-create-formview .container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.big-frame:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+/* 마진 클래스들 */
+.mb4 { margin-bottom: 4px; }
+.mb8 { margin-bottom: 8px; }
+.mb16 { margin-bottom: 16px; }
+.mb32 { margin-bottom: 32px; }
+.mb48 { margin-bottom: 48px; }
+
+/* 반응형 */
+@media (max-width: 1200px) {
+    .big-frame {
+        min-width: auto;
+        padding: 20px;
+    }
+    
+    body.room-create .room-create-formview .container {
+        width: 100%;
+        max-width: 1080px;
+    }
+    
+    body.room-create .submit-progress {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 24px;
+    }
+    
+    body.room-create .room-create-form-section {
+        float: none;
+        width: 100%;
+    }
+    
+    .emotion-tags-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 8px;
+    }
+    
+    .emotion-label {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}

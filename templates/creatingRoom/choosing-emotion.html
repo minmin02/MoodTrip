@@ -3,13 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <title>무드트립 : 동행자 매칭 방 만들기 감정 선택</title>
-    <link rel="stylesheet" href="/static/css/creatingRoom/creatingRoom-detail.css">
-    <script src = "/static/js/creatingRoom/creatingRoom-detail.js">
+    <link rel="stylesheet" href="/static/css/creatingRoom/choosing-emotion.css">
+    <script src = "/static/js/creatingRoom/choosing-emotion.js">
     </script>
 </head>
-<body>
-    <!-- 예: 표시용 HTML -->
-<p id="preview-name"></p>
-<p id="preview-intro"></p>
+<body class="room-create phase-1">
+    <div class="big-frame">
+        <div class="room-create-formview">
+            <div class="container">
+                <div class="submit-progress">
+                    <div class="room-status-box">
+                        <a class="back-to-before link-text" onclick="exitWithSubmit('temporary_room_phase_1', 'False')" style="cursor: pointer;">
+                            <img class="back-to-before-img" src="/static/image/creatingRoom/back-to-before.svg">
+                            <p class="back-to-before-title body-1-medium">뒤로 가기</p>
+                        </a>
+                        <p class="menu-title subtitle-1-medium mb4">방 정보 입력하기</p>
+                    </div>
+                    <div class="input-group-status">
+                        <p class="status-main-menu body-2 first">개인정보 이용 동의</p>
+                        <p class="status-main-menu active body-2">방 상세 정보 입력</p>
+                        <div class="status-sub-menu">
+                            <p class="status-sub-menu-title completed">
+                                <span class="bottom-border"></span>
+                                <span class="sub-menu-marker">1</span>
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
+                                기본 정보
+                            </p>
+                            <p class="status-sub-menu-title active">
+                                <span class="top-border"></span>
+                                <span class="bottom-border"></span>
+                                <span class="sub-menu-marker">2</span>
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
+                                감정 선택
+                            </p>
+                            <p class="status-sub-menu-title">
+                                <span class="top-border"></span>
+                                <span class="bottom-border"></span>
+                                <span class="sub-menu-marker">3</span>
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
+                                여행지 선택
+                            </p>
+                            <p class="status-sub-menu-title">
+                                <span class="top-border"></span>
+                                <span class="sub-menu-marker">4</span>
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
+                                일정 선택
+                            </p>
+                        </div>
+                        <p class="status-main-menu status-menu-with-tooltip body-2">방 최종 등록</p>
+                    </div>
+                </div>
+                <form autocomplete="off" enctype="multipart/form-data" id="temporary_room_phase_1" method="POST" onsubmit="return validationPhase(this);" data-hs-cf-bound="true">
+                    <input name="csrfmiddlewaretoken" type="hidden" value="tLyscS3cOgu3CROlEEk0U8u43AL0s2XJkUqonCkA8AGVb6qzImREIKoGdO5DQoNU">
+                    
+                    <div class="room-create-form-section">
+                        <div class="form-section-header">
+                            <p class="form-section-title subtitle-1">기본 정보</p>
+                            <button class="room-form-guide-button header-button btn btn-8-16" type="button">
+                                <img class="room-form-guide-button-img" src="/static/image/creatingRoom/question.svg">
+                                도움말
+                            </button>
+                        </div>
+                        <div class="form-input-section">
+                            <div class="form-group-light mb48">
+                                <label class="form-group-title body-1-bold">감정 태그 선택
+                                    <span class="required">*</span>
+                                </label>
+                                <p class="body-2 text900 form-group-guide mb16">해당 감정을 가진 사람들이 들어올 수 있게 선택해주세요!</p>
+                                
+                                <!-- 감정 태그 그리드 -->
+                                <div class="emotion-tags-grid mb32">
+                                    <div class="emotion-tag-item" data-emotion="행복">
+                                        <input type="checkbox" id="emotion-happy" name="emotions" value="행복" class="emotion-checkbox">
+                                        <label for="emotion-happy" class="emotion-label">행복</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="즐거움">
+                                        <input type="checkbox" id="emotion-joy" name="emotions" value="즐거움" class="emotion-checkbox">
+                                        <label for="emotion-joy" class="emotion-label">즐거움</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="편안함">
+                                        <input type="checkbox" id="emotion-comfort" name="emotions" value="편안함" class="emotion-checkbox">
+                                        <label for="emotion-comfort" class="emotion-label">편안함</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="설렘">
+                                        <input type="checkbox" id="emotion-excitement" name="emotions" value="설렘" class="emotion-checkbox">
+                                        <label for="emotion-excitement" class="emotion-label">설렘</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="자신감">
+                                        <input type="checkbox" id="emotion-confidence" name="emotions" value="자신감" class="emotion-checkbox">
+                                        <label for="emotion-confidence" class="emotion-label">자신감</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="차분함">
+                                        <input type="checkbox" id="emotion-calm" name="emotions" value="차분함" class="emotion-checkbox">
+                                        <label for="emotion-calm" class="emotion-label">차분함</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="슬픔">
+                                        <input type="checkbox" id="emotion-sadness" name="emotions" value="슬픔" class="emotion-checkbox">
+                                        <label for="emotion-sadness" class="emotion-label">슬픔</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="우울함">
+                                        <input type="checkbox" id="emotion-depression" name="emotions" value="우울함" class="emotion-checkbox">
+                                        <label for="emotion-depression" class="emotion-label">우울함</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="분노">
+                                        <input type="checkbox" id="emotion-anger" name="emotions" value="분노" class="emotion-checkbox">
+                                        <label for="emotion-anger" class="emotion-label">분노</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="두려움">
+                                        <input type="checkbox" id="emotion-fear" name="emotions" value="두려움" class="emotion-checkbox">
+                                        <label for="emotion-fear" class="emotion-label">두려움</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="후회">
+                                        <input type="checkbox" id="emotion-regret" name="emotions" value="후회" class="emotion-checkbox">
+                                        <label for="emotion-regret" class="emotion-label">후회</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="속상함">
+                                        <input type="checkbox" id="emotion-upset" name="emotions" value="속상함" class="emotion-checkbox">
+                                        <label for="emotion-upset" class="emotion-label">속상함</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="놀람">
+                                        <input type="checkbox" id="emotion-surprise" name="emotions" value="놀람" class="emotion-checkbox">
+                                        <label for="emotion-surprise" class="emotion-label">놀람</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="감동">
+                                        <input type="checkbox" id="emotion-touched" name="emotions" value="감동" class="emotion-checkbox">
+                                        <label for="emotion-touched" class="emotion-label">감동</label>
+                                    </div>
+                                    <div class="emotion-tag-item" data-emotion="연대감">
+                                        <input type="checkbox" id="emotion-solidarity" name="emotions" value="연대감" class="emotion-checkbox">
+                                        <label for="emotion-solidarity" class="emotion-label">연대감</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-light">
+                                    <label class="form-group-title body-1-bold mb4">입력하고 싶은 감정 태그 입력</label>
+                                    <p class="mb16 body-2 text900">위에 원하시는 태그가 없다면 아래 검색창에 입력하여 새로운 감정 태그를 추가해보세요!</p>
+                                    <div class="form-content">
+                                        <div class="roomName-search-form theme-client mb8">
+                                            <input name="roomName_name" type="hidden">
+                                            <div class="roomName-search-typing-box">
+                                                <div class="roomName-search-input-group">
+                                                    <i class="search_icon">
+                                                        <img class="text-icon" src="/static/image/creatingRoom/search.svg">
+                                                    </i>
+                                                    <div class="roomName-search-selected"></div>
+                                                    <input class="roomName-search-typing-input theme-client body-2" id="customEmotionInput" placeholder="입력하고 싶은 감정 태그를 입력해주세요. ex) 기모찌" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 선택된 감정 태그 표시 -->
+                                <div class="selected-emotions-container" id="selectedEmotionsContainer">
+                                    <h4 class="selected-emotions-title">추가된 태그 확인</h4>
+                                    <div class="selected-emotions-list" id="selectedEmotionsList">
+                                        <!-- 선택된 감정들이 여기에 표시됩니다 -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section-footer" style="position: sticky; bottom: 0; background-color: white; z-index: 50">
+                                <button class="btn btn-client btn-11-24 btn-right" name="can_submit" type="submit" value="False" id="nextButton">다음</button>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -59,7 +59,7 @@ function validationPhase(form) {
     localStorage.setItem("room_name", roomNameInput.value.trim());
     localStorage.setItem("room_intro", roomIntroInput.value.trim());
 
-    window.location.href = "/templates/creatingRoom/choosing-emotion.html";  // 예시
+    window.location.href = "/templates/creatingRoom/choosing-emotion.html"; 
     return false; // form 제출 막기
 }
 
