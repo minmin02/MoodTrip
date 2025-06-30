@@ -20,6 +20,7 @@ header.header .header-nav {
     -webkit-backdrop-filter: blur(12px);
     position: relative;
 }
+
 header.header .header-nav{
     min-height: 65px;
     border-bottom: 1px solid #eee;
@@ -135,6 +136,7 @@ header.header .header-nav .left-nav .left-nav-menu .img-container{
 header.header .base-nav-guest-renewal .left-nav .left-nav-menu .img-container img+img, header.header .header-nav .left-nav .left-nav-menu .img-container img+img, header.header .base-nav-landing-renewal .left-nav .left-nav-menu .img-container img+img, header.header .base-nav-client-renewal .left-nav .left-nav-menu .img-container img+img, header.header .base-nav-partner-renewal .left-nav .left-nav-menu .img-container img+img, header.header .base-nav-guest-renewal .left-nav .dropdown-container.left-nav-menu .img-container img+img {
     margin-left: 4px;
 }
+
 header.header .header-nav .left-nav .left-nav-menu{
     padding: 20px 16px;
     display: flex;
@@ -241,11 +243,13 @@ header.header .dropdown-nav-container .dropdown-nav {
     margin: 0 auto;
     padding: 20px 0 32px 0;
 }
+
 header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container {
     display: flex;
     width: 840px;
     margin: 0 auto;
 }
+
 header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container .dropdown-menu-list {
     display: flex;
     flex-direction: column;
@@ -359,4 +363,73 @@ header.header .header-nav .right-nav .sign-up-button{
 .body-2-medium {
     font-weight: 500;
 }
+.header-nav::before{
+    display: table;
+    content: "";
+    clear: both;
+}
 
+/* 드롭하는 구간 */
+header.header .dropdown-nav-container .dropdown-nav {
+    display: flex;
+    width: 1080px;
+    margin: 0 auto;
+    padding: 20px 0 32px 0;
+}
+
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container {
+    display: flex;
+    width: 840px;
+    margin: 0 auto;
+}
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container .dropdown-menu-list .bubble-img {
+    display: block;
+    position: absolute;
+    top: 64px;
+}
+header.header .dropdown-nav-container .dropdown-nav .dropdown-menu-container {
+    display: flex
+;
+    width: 840px;
+    margin: 0 auto;
+}
+header.header .dropdown-nav-container .dropdown-banner .dropdown-banner-link {
+    color: #3ba3c7;
+    font-weight: 500;
+    display: flex
+;
+    align-items: center;
+    gap: 2px;
+}
+
+.body-3, .body-3-bold, .body-3-medium, .body-3-light {
+    font-size: 13px;
+    line-height: 20px;
+}
+.body-3 {
+    font-size: 13px;
+}
+
+header.header .dropdown-nav-container .dropdown-banner img {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+}
+
+
+.header-nav:before{
+    display: table;
+    content: "";
+    clear: both;
+
+}
+
+.container::before {
+    content: "";
+    display: table;
+    clear: both;
+}
