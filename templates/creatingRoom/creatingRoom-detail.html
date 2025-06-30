@@ -15,7 +15,7 @@
                     <div class="room-status-box">
                         <a class="back-to-before link-text" onclick="exitWithSubmit('temporary_room_phase_1', 'False')" style="cursor: pointer;">
                             <img class="back-to-before-img" src="/static/image/creatingRoom/back-to-before.svg">
-                            <p class="back-to-before-title body-1-medium">저장 후 나가기</p>
+                            <p class="back-to-before-title body-1-medium">뒤로 가기</p>
                         </a>
                         <p class="menu-title subtitle-1-medium mb4">방 정보 입력하기</p>
                     </div>
@@ -26,27 +26,27 @@
                             <p class="status-sub-menu-title active">
                                 <span class="bottom-border"></span>
                                 <span class="sub-menu-marker">1</span>
-                                <img class="phase-complete-icon" src="/static/image/creatingRoom/">
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
                                 기본 정보
                             </p>
                             <p class="status-sub-menu-title">
                                 <span class="top-border"></span>
                                 <span class="bottom-border"></span>
                                 <span class="sub-menu-marker">2</span>
-                                <img class="phase-complete-icon" src="static/">
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
                                 감정 선택
                             </p>
                             <p class="status-sub-menu-title">
                                 <span class="top-border"></span>
                                 <span class="bottom-border"></span>
                                 <span class="sub-menu-marker">3</span>
-                                <img class="phase-complete-icon" src="static/">
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
                                 여행지 선택
                             </p>
                             <p class="status-sub-menu-title">
                                 <span class="top-border"></span>
                                 <span class="sub-menu-marker">4</span>
-                                <img class="phase-complete-icon" src="static/">
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
                                 일정 선택
                             </p>
                         </div>
@@ -55,7 +55,6 @@
                 </div>
                 <form autocomplete="off" enctype="multipart/form-data" id="temporary_room_phase_1" method="POST" onsubmit="return validationPhase(this);" data-hs-cf-bound="true">
                     <input name="csrfmiddlewaretoken" type="hidden" value="tLyscS3cOgu3CROlEEk0U8u43AL0s2XJkUqonCkA8AGVb6qzImREIKoGdO5DQoNU">
-
                     <div class="room-create-form-section">
                         <div class="form-section-header">
                             <p class="form-section-title subtitle-1">기본 정보</p>
