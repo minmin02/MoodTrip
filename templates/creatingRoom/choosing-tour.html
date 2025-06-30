@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>무드트립 : 동행자 매칭 방 만들기 여행지 선택</title>
+    <link rel="stylesheet" href="/static/css/creatingRoom/choosing-tour.css">
+    <script src = "/static/js/creatingRoom/choosing-tour.js">
+    </script>
+</head>
+<body class="room-create phase-3">
+    <div class="big-frame">
+        <div class="room-create-formview">
+            <div class="container">
+                <div class="submit-progress">
+                    <div class="room-status-box">
+                        <a class="back-to-before link-text" onclick="goToPreviousPage()" style="cursor: pointer;">
+                            <img class="back-to-before-img" src="/static/image/creatingRoom/back-to-before.svg">
+                            <p class="back-to-before-title body-1-medium">뒤로 가기</p>
+                        </a>
+                        <p class="menu-title subtitle-1-medium mb4">방 정보 입력하기</p>
+                    </div>
+                    <div class="input-group-status">
+                        <p class="status-main-menu body-2 first">개인정보 이용 동의</p>
+                        <p class="status-main-menu active body-2">방 상세 정보 입력</p>
+                        <div class="status-sub-menu">
+                            <p class="status-sub-menu-title completed">
+                                <span class="bottom-border"></span>
+                                <span class="sub-menu-marker">1</span>
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
+                                기본 정보
+                            </p>
+                            <p class="status-sub-menu-title completed">
+                                <span class="top-border"></span>
+                                <span class="bottom-border"></span>
+                                <span class="sub-menu-marker">2</span>
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
+                                감정 선택
+                            </p>
+                            <p class="status-sub-menu-title active">
+                                <span class="top-border"></span>
+                                <span class="bottom-border"></span>
+                                <span class="sub-menu-marker">3</span>
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
+                                여행지 선택
+                            </p>
+                            <p class="status-sub-menu-title">
+                                <span class="top-border"></span>
+                                <span class="sub-menu-marker">4</span>
+                                <img class="phase-complete-icon" src="/static/image/creatingRoom/checkbox-checked.svg">
+                                일정 선택
+                            </p>
+                        </div>
+                        <p class="status-main-menu status-menu-with-tooltip body-2">방 최종 등록</p>
+                    </div>
+                </div>
+                <form autocomplete="off" enctype="multipart/form-data" id="temporary_room_phase_3" method="POST" onsubmit="return validationPhase(this);" data-hs-cf-bound="true">
+                    <input name="csrfmiddlewaretoken" type="hidden" value="tLyscS3cOgu3CROlEEk0U8u43AL0s2XJkUqonCkA8AGVb6qzImREIKoGdO5DQoNU">
+                    
+                    <div class="room-create-form-section">
+                        <div class="form-section-header">
+                            <p class="form-section-title subtitle-1">여행지 선택</p>
+                            <button class="room-form-guide-button header-button btn btn-8-16" type="button">
+                                <img class="room-form-guide-button-img" src="/static/image/creatingRoom/question.svg">
+                                도움말
+                            </button>
+                        </div>
+                        <div class="form-input-section">
+                            <div class="form-group-light mb48">
+                                <label class="form-group-title body-1-bold">가고 싶은 여행지 선택
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="form-content">
+                                    <div class="roomName-search-form theme-client mb8">
+                                        <input name="destination_name" type="hidden">
+                                        <div class="roomName-search-typing-box">
+                                            <div class="roomName-search-input-group">
+                                                <i class="search_icon">
+                                                    <img class="text-icon" src="/static/image/creatingRoom/search.svg">
+                                                </i>
+                                                <div class="roomName-search-selected"></div>
+                                                <input class="roomName-search-typing-input theme-client body-2" id="destinationInput" placeholder="가고싶은 여행지를 선택해주세요 ex ) 고양시" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-light">
+                                    <label class="form-group-title body-1-bold mb4">여행지 검색 결과</label>
+                                    <p class="mb16 body-2 text900">4개 검색어 추천</p>
+                                    
+                                    <div class="destination-filter mb16">
+                                        <select class="filter-select" id="regionFilter">
+                                            <option value="">추천순</option>
+                                            <option value="distance">거리순</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- 여행지 검색 결과 그리드 -->
+                                    <div class="destination-results-grid mb32" id="destinationResults">
+                                        <div class="destination-card" data-destination="고양 종합 운동장">
+                                            <input type="radio" id="dest-goyang" name="destination" value="고양 종합 운동장" class="destination-radio">
+                                            <label for="dest-goyang" class="destination-label">
+                                                <div class="destination-image">
+                                                    <img src="/static/image/creatingRoom/stadium.png" alt="고양 종합 운동장">
+                                                </div>
+                                                <div class="destination-info">
+                                                    <div class="destination-category">경기도 고양시 일산서구</div>
+                                                    <div class="destination-name">고양 종합 운동장</div>
+                                                    <div class="destination-description">
+                                                        일산의 중심부에 위치한 운동장으로 각종 체육행사와 축구 시합 등이 개최되는 종합 운동 시설입니다. 주변에는 호수공원이 조성되어 있어 시민들의 쉼터 역할을 하고 있습니다.
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="destination-card" data-destination="킨텍스">
+                                            <input type="radio" id="dest-kintex" name="destination" value="킨텍스" class="destination-radio">
+                                            <label for="dest-kintex" class="destination-label">
+                                                <div class="destination-image">
+                                                    <img src="/static/image/creatingRoom/kintex.png" alt="킨텍스">
+                                                </div>
+                                                <div class="destination-info">
+                                                    <div class="destination-category">경기도 고양시 일산서구</div>
+                                                    <div class="destination-name">킨텍스</div>
+                                                    <div class="destination-description">
+                                                        주차 할 곳이 상당히 많습니다! 차 가지고 오셔도 됩니다. 근데 지하철 GTX 타면 금방와요 gtx 요금이 쫌 비싸긴 한디.. 뭐.. 서울역까지 12분 걸려요.
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="destination-card" data-destination="고양 현대 모토 스튜디오">
+                                            <input type="radio" id="dest-motor" name="destination" value="고양 현대 모토 스튜디오" class="destination-radio">
+                                            <label for="dest-motor" class="destination-label">
+                                                <div class="destination-image">
+                                                    <img src="/static/image/creatingRoom/car.png" alt="고양 현대 모토 스튜디오">
+                                                </div>
+                                                <div class="destination-info">
+                                                    <div class="destination-category">경기도 고양시 일산서구</div>
+                                                    <div class="destination-name">고양 현대 모토 스튜디오</div>
+                                                    <div class="destination-description">
+                                                        멋있는 차들이 엄청 많아요 놀러와요~~ 남자분들 여기에서 멋잇는 차 한대 뽑아서 와이프한테 자랑해봐요~
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="destination-card" data-destination="한성대학교">
+                                            <input type="radio" id="dest-hansung" name="destination" value="한성대학교" class="destination-radio">
+                                            <label for="dest-hansung" class="destination-label">
+                                                <div class="destination-image">
+                                                    <img src="/static/image/creatingRoom/hansung.png" alt="한성대학교">
+                                                </div>
+                                                <div class="destination-info">
+                                                    <div class="destination-category">서울특별시 성북구</div>
+                                                    <div class="destination-name">한성대학교</div>
+                                                    <div class="destination-description">
+                                                        멋쟁이 김상우가 다니는 대학교에요 환영합니다^^
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 선택된 여행지 표시 -->
+                                <div class="selected-destination-container" id="selectedDestinationContainer" style="display: none;">
+                                    <h4 class="selected-destination-title">선택된 여행지</h4>
+                                    <div class="selected-destination-info" id="selectedDestinationInfo">
+                                        <!-- 선택된 여행지 정보가 여기에 표시됩니다 -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section-footer" style="position: sticky; bottom: 0; background-color: white; z-index: 50">
+                                <button class="btn btn-client btn-11-24 btn-right" name="can_submit" type="submit" value="False" id="nextButton">다음</button>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

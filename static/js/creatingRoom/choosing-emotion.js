@@ -203,7 +203,75 @@ function restoreTemporaryEmotions() {
             // 임시 저장 데이터 삭제
             localStorage.removeItem('temp_selected_emotions');
         } catch (e) {
-            console.error('임시 저장된 감정 데이터')
+            console.error('임시 저장된 감정 데이터 복원 실패:', e);
         }
     }
+}
+
+// 다음 버튼 초기화
+function initializeNextButton() {
+    const nextButton = document.getElementById('nextButton');
+    if (nextButton) {
+        nextButton.addEventListener('click', function(e) {
+            e.preventDefault(); // 기본 폼 제출 방지
+            
+            // 유효성 검사
+            if (selectedEmotions.length === 0) {
+                alert('최소 하나의 감정 태그를 선택해주세요.');
+                return;
+            }
+            
+            // 선택된 감정들 저장
+            saveEmotionsForNextPage();
+            
+            // 다음 페이지로 이동
+            goToNextPage();
+        });
+    }
+}
+
+// 다음 페이지로 전달할 감정 데이터 저장
+function saveEmotionsForNextPage() {
+    // 로컬 스토리지에 선택된 감정들 저장
+    localStorage.setItem('selected_emotions_step2', JSON.stringify(selectedEmotions));
+    
+    // 세션 스토리지에도 백업 저장
+    sessionStorage.setItem('selected_emotions_step2', JSON.stringify(selectedEmotions));
+    
+    console.log('다음 페이지로 전달할 감정 데이터 저장 완료:', selectedEmotions);
+}
+
+// 다음 페이지로 이동
+function goToNextPage() {
+    // 실제 다음 페이지 URL로 변경해주세요
+    window.location.href = "/templates/creatingRoom/choosing-tour.html"; 
+}
+
+// 다른 페이지에서 저장된 감정 데이터 불러오기 (다음 페이지에서 사용)
+function getSelectedEmotionsFromPreviousPage() {
+    try {
+        // 로컬 스토리지에서 먼저 시도
+        let emotions = localStorage.getItem('selected_emotions_step2');
+        if (emotions) {
+            return JSON.parse(emotions);
+        }
+        
+        // 세션 스토리지에서 백업 데이터 시도
+        emotions = sessionStorage.getItem('selected_emotions_step2');
+        if (emotions) {
+            return JSON.parse(emotions);
+        }
+        
+        return [];
+    } catch (e) {
+        console.error('저장된 감정 데이터 불러오기 실패:', e);
+        return [];
+    }
+}
+
+// 감정 데이터 정리 (최종 제출 시 호출)
+function clearEmotionData() {
+    localStorage.removeItem('selected_emotions_step2');
+    sessionStorage.removeItem('selected_emotions_step2');
+    localStorage.removeItem('temp_selected_emotions');
 }

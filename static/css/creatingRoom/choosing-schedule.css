@@ -1,0 +1,573 @@
+.big-frame {
+    min-width: 1080px;
+    height: auto;
+    min-height: 70%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "NotoSansKR", "Sans-serif";
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+}
+
+body.room-create .room-create-formview .container {
+    width: 1080px;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+/* 진행 상태 바 - 기존 스타일 유지 */
+body.room-create .submit-progress {
+    margin-right: 24px;
+    float: left;
+    width: 256px;
+    padding: 16px;
+}
+
+body.room-create .submit-progress .room-status-box {
+    margin-bottom: 50px;
+}
+
+body.room-create .submit-progress .room-status-box .back-to-before {
+    color: #005792;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.link-text {
+    text-decoration: none;
+}
+
+body.room-create .submit-progress .room-status-box .back-to-before .back-to-before-img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+body.room-create .submit-progress .room-status-box .back-to-before .back-to-before-title {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.body-1-medium {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+body.room-create .submit-progress .room-status-box .menu-title {
+    color: #212121;
+}
+
+.subtitle-1-medium {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+body.room-create .submit-progress .input-group-status .status-main-menu {
+    color: #bdbdbd;
+}
+
+.body-2 {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+body.room-create .submit-progress .input-group-status .status-main-menu+.status-main-menu {
+    margin-top: 24px;
+}
+
+body.room-create .submit-progress .input-group-status .status-main-menu.active {
+    color: #616161;
+    font-weight: 400;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu {
+    margin-left: 8px;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.active {
+    color: #616161;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title:first-child {
+    margin-top: 16px;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title {
+    padding: 8px 0;
+    position: relative;
+    color: #bdbdbd;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title .bottom-border {
+    height: 9px;
+    width: 1px;
+    left: 6px;
+    position: absolute;
+    bottom: 0;
+    border-left: 1px solid #e0e0e0;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title .top-border {
+    position: absolute;
+    height: 9px;
+    width: 1px;
+    top: 0;
+    left: 6px;
+    border-left: 1px solid #e0e0e0;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.active .sub-menu-marker {
+    background-color: #005792;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title .sub-menu-marker {
+    width: 14px;
+    height: 14px;
+    border-radius: 14px;
+    border: none;
+    display: inline-block;
+    color: #fff;
+    background-color: #bdbdbd;
+    font-size: 10px;
+    padding: 2.5px 4.5px;
+    margin-right: 20px;
+    vertical-align: top;
+    margin-top: 5px;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title .phase-complete-icon {
+    display: none;
+}
+
+/* 폼 섹션 - 기존 스타일 적용 */
+body.room-create .room-create-form-section {
+    background-color: #fff;
+    width: 800px;
+    float: left;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .16);
+}
+
+body.room-create .room-create-form-section .form-section-header {
+    padding: 26px 32px;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.subtitle-1 {
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 400;
+}
+
+body.room-create .room-create-form-section .form-section-header .room-form-guide-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 24px;
+    background-color: #fff;
+    color: #005792;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+body.room-create .room-create-form-section .form-section-header .header-button {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+}
+
+.btn-8-16 {
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border-radius: 4px;
+}
+
+button {
+    background: none;
+}
+
+body.room-create .room-create-form-section .form-input-section {
+    padding: 32px;
+    padding-bottom: 60px;
+}
+
+.form-group-light {
+    display: block;
+    margin-bottom: 24px;
+}
+
+.form-group-light .form-group-title {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.body-1-bold {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.required {
+    color: red;
+}
+
+.form-group-guide {
+    color: #616161;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.text900 {
+    color: #212121;
+}
+
+/* 월 선택 드롭다운 */
+.month-selector {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.month-select {
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #616161;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.month-select:focus {
+    outline: none;
+    border-color: #005792;
+}
+
+/* 달력 그리드 */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.calendar-month {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    background: #fff;
+    min-width: 0; /* 그리드 오버플로우 방지 */
+}
+
+.calendar-header {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    margin-bottom: 6px;
+}
+
+.weekday {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: #616161;
+    padding: 3px 0;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    grid-template-rows: repeat(6, 1fr); /* 6주 고정 */
+}
+
+.day {
+    text-align: center;
+    padding: 6px 2px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    color: #212121;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1; /* 정사각형 유지 */
+    font-weight: 400;
+}
+
+.day:hover {
+    background: #f0f8ff;
+    color: #005792;
+}
+
+.day.prev-month,
+.day.next-month {
+    color: #bdbdbd;
+    cursor: not-allowed;
+}
+
+.day.prev-month:hover,
+.day.next-month:hover {
+    background: none;
+    color: #bdbdbd;
+}
+
+.day.selected {
+    background: #005792;
+    color: white;
+}
+
+.day.in-range {
+    background: #e3f2fd;
+    color: #005792;
+}
+
+.day.range-start {
+    background: #005792;
+    color: white;
+    border-radius: 4px 0 0 4px;
+}
+
+.day.range-end {
+    background: #005792;
+    color: white;
+    border-radius: 0 4px 4px 0;
+}
+
+.day.range-start.range-end {
+    border-radius: 4px;
+}
+
+/* 선택된 날짜 표시 영역 */
+.selected-date-container {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.date-range-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.calendar-icon {
+    font-size: 20px;
+}
+
+.date-range-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #005792;
+}
+
+.date-info-text {
+    font-size: 14px;
+    color: #616161;
+}
+
+/* 버튼 스타일 - 기존 스타일 적용 */
+body.room-create .room-create-form-section .form-section-footer {
+    padding: 16px 32px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.btn-client {
+    background: linear-gradient(to right, #005792, #001A2C);
+    color: #fff;
+    border: none;
+}
+
+.btn-right {
+    float: right;
+}
+
+.btn-11-24 {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    padding: 11px 24px;
+}
+
+.btn-client:hover {
+    background: linear-gradient(to right, #004577, #001219);
+}
+
+.btn-client:disabled {
+    background: #bdbdbd;
+    cursor: not-allowed;
+}
+
+/* clearfix - 기존 스타일 */
+body.room-create .room-create-form-section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+body.room-create .room-create-formview .container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.big-frame:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+/* 마진 클래스들 */
+.mb4 { margin-bottom: 4px; }
+.mb8 { margin-bottom: 8px; }
+.mb16 { margin-bottom: 16px; }
+.mb32 { margin-bottom: 32px; }
+.mb48 { margin-bottom: 48px; }
+
+/* 단일 달력 컨테이너 - 중앙 정렬 강화 */
+.single-calendar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 500px;
+}
+
+.single-calendar-container .calendar-month {
+    max-width: 500px;
+    width: 100%;
+    border: 2px solid #005792;
+    border-radius: 12px;
+    padding: 32px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 87, 146, 0.1);
+    min-width: 0;
+    margin: 0 auto;
+}
+
+.single-calendar-container .calendar-header {
+    font-size: 24px;
+    font-weight: 700;
+    color: #005792;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f8ff;
+}
+
+.single-calendar-container .weekday {
+    font-size: 14px;
+    padding: 8px 0;
+    font-weight: 600;
+}
+
+.single-calendar-container .calendar-days {
+    gap: 4px;
+}
+
+.single-calendar-container .day {
+    min-height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 8px;
+}
+
+/* 반응형 */
+@media (max-width: 1200px) {
+    .big-frame {
+        min-width: auto;
+        padding: 20px;
+    }
+    
+    body.room-create .room-create-formview .container {
+        width: 100%;
+        max-width: 1080px;
+    }
+    
+    body.room-create .submit-progress {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 24px;
+    }
+    
+    body.room-create .room-create-form-section {
+        float: none;
+        width: 100%;
+    }
+    
+    .calendar-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .single-calendar-container .calendar-month {
+        max-width: 350px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .calendar-month {
+        padding: 12px;
+    }
+    
+    .day {
+        min-height: 28px;
+        font-size: 12px;
+    }
+    
+    .single-calendar-container .calendar-month {
+        max-width: 100%;
+        padding: 16px;
+    }
+}
