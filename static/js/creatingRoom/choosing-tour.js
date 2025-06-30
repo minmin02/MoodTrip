@@ -227,7 +227,7 @@ function saveDestinationForNextPage() {
 // 다음 페이지로 이동
 function goToNextPage() {
     // 실제 다음 페이지 URL로 변경해주세요
-    window.location.href = "/templates/creatingRoom/choosing-tour.html"; // 일정 선택 페이지
+    window.location.href = "/templates/creatingRoom/choosing-schedule.html"; // 일정 선택 페이지
     
 }
 
