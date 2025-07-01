@@ -623,7 +623,7 @@ function goToPreviousPage() {
     }
     
     // 이전 페이지로 이동
-    window.location.href = 'choosing-tour.html';
+    window.location.href = "/templates/creatingRoom/choosing-tour.html";
 }
 
 // 다음 페이지로 전달할 일정 데이터 저장
@@ -654,7 +654,7 @@ function saveScheduleForNextPage() {
 // 다음 페이지로 이동 (최종 완료 페이지)
 function goToNextPage() {
     // 실제 완료 페이지 URL로 변경해주세요
-    window.location.href = 'room-creation-complete.html';
+    window.location.href = "/templates/creatingRoom/final-registration.html";
     
     // 또는 최종 등록 처리
     // submitRoomCreation();

@@ -170,15 +170,26 @@ function validationPhase(form) {
     return true;
 }
 
-// 임시 저장 함수 (기존 exitWithSubmit 함수 대체/보완)
+// 뒤로가기 함수 (HTML에서 onclick으로 호출됨) - 확인 메시지 제거
 function exitWithSubmit(formId, canSubmit) {
-    // 현재 선택된 감정들을 로컬 스토리지에 저장 (임시 저장용)
+    // 현재 선택된 감정들을 로컬 스토리지에 저장 (조용히 저장)
     if (selectedEmotions.length > 0) {
         localStorage.setItem('temp_selected_emotions', JSON.stringify(selectedEmotions));
     }
     
-    // 기존 로직 실행 (있다면)
-    console.log('임시 저장:', selectedEmotions);
+    // 바로 이전 페이지로 이동 (확인 메시지 없음)
+    window.location.href = '/templates/creatingRoom/creatingRoom-detail.html';
+}
+
+// 뒤로가기 함수 (대안) - HTML onclick이 goToPreviousPage()인 경우
+function goToPreviousPage() {
+    // 현재 선택된 감정들을 로컬 스토리지에 저장 (조용히 저장)
+    if (selectedEmotions.length > 0) {
+        localStorage.setItem('temp_selected_emotions', JSON.stringify(selectedEmotions));
+    }
+    
+    // 바로 이전 페이지로 이동 (확인 메시지 없음)
+    window.location.href = '/templates/creatingRoom/creatingRoom-detail.html';
 }
 
 // 페이지 로드 시 임시 저장된 감정들 복원
