@@ -1,3 +1,20 @@
+// 다중 날짜 범위를 저장할 배열
+let selectedDateRanges = [];
+let selectedStartDate = null;
+let selectedEndDate = null;
+let previousData = {};
+
+// DOM 로드 후 실행
+document.addEventListener('DOMContentLoaded', function() {
+    loadPreviousData();
+    initializeCurrentMonthView(); // 현재 날짜 기준 3개월 표시
+    initializeDateSelection();
+    initializeMonthSelector();
+    initializeAddDateButton(); // 추가 버튼 초기화
+    initializeNextButton();
+    initializeBackButton();
+});
+
 // 현재 날짜 기준 3개월 표시 초기화
 function initializeCurrentMonthView() {
     const currentDate = new Date();
@@ -119,23 +136,7 @@ function generateMonthCalendarHTML(monthInfo) {
     `;
     
     return calendarHTML;
-}// 선택된 날짜 범위를 저장할 변수
-let selectedStartDate = null;
-let selectedEndDate = null;
-let previousData = {};
-
-// DOM 로드 후 실행
-document.addEventListener('DOMContentLoaded', function() {
-    loadPreviousData();
-    initializeCurrentMonthView(); // 현재 날짜 기준 3개월 표시
-    initializeDateSelection();
-    initializeMonthSelector();
-    initializeNextButton();
-    initializeBackButton();
-    
-    // 기본 날짜 범위 설정 제거 - 사용자가 직접 선택하도록
-    // setDefaultDateRange();
-});
+}
 
 // 이전 페이지들에서 선택된 데이터 불러오기
 function loadPreviousData() {
@@ -167,6 +168,9 @@ function initializeDateSelection() {
     
     days.forEach(day => {
         day.addEventListener('click', function() {
+            // 이미 추가된 날짜는 클릭 무시
+            if (this.classList.contains('added-date')) return;
+            
             const dayNumber = parseInt(this.textContent);
             const monthElement = this.closest('.calendar-month');
             const monthValue = monthElement.getAttribute('data-month');
@@ -183,7 +187,7 @@ function initializeDateSelection() {
 function handleDateSelection(clickedDate, dayElement) {
     if (!selectedStartDate || (selectedStartDate && selectedEndDate)) {
         // 새로운 선택 시작
-        clearDateSelection();
+        clearCurrentSelection();
         selectedStartDate = clickedDate;
         selectedEndDate = null;
         dayElement.classList.add('range-start', 'selected');
@@ -191,7 +195,7 @@ function handleDateSelection(clickedDate, dayElement) {
         // 종료 날짜 선택
         if (clickedDate < selectedStartDate) {
             // 시작일보다 이른 날짜를 선택한 경우 시작일로 설정
-            clearDateSelection();
+            clearCurrentSelection();
             selectedStartDate = clickedDate;
             selectedEndDate = null;
             dayElement.classList.add('range-start', 'selected');
@@ -201,25 +205,113 @@ function handleDateSelection(clickedDate, dayElement) {
             dayElement.classList.add('range-end', 'selected');
             
             // 범위 표시
-            highlightDateRange();
+            highlightCurrentRange();
         }
     }
     
-    updateSelectedDateDisplay();
+    updateCurrentSelectionDisplay();
 }
 
-// 날짜 선택 초기화
-function clearDateSelection() {
+// 현재 선택 초기화 (전체가 아닌 현재 선택만)
+function clearCurrentSelection() {
     const allDays = document.querySelectorAll('.day');
     allDays.forEach(day => {
-        day.classList.remove('selected', 'in-range', 'range-start', 'range-end');
+        // 이미 추가된 날짜는 유지하고 현재 선택만 제거
+        if (!day.classList.contains('added-date')) {
+            day.classList.remove('selected', 'in-range', 'range-start', 'range-end');
+        }
     });
 }
 
-// 날짜 범위 하이라이트
-function highlightDateRange() {
+// 현재 범위 하이라이트
+function highlightCurrentRange() {
     if (!selectedStartDate || !selectedEndDate) return;
     
+    const allDays = document.querySelectorAll('.day:not(.prev-month):not(.next-month)');
+    
+    allDays.forEach(day => {
+        if (day.classList.contains('added-date')) return; // 이미 추가된 날짜는 건드리지 않음
+        
+        const dayNumber = parseInt(day.textContent);
+        const monthElement = day.closest('.calendar-month');
+        const monthValue = monthElement.getAttribute('data-month');
+        const [year, month] = monthValue.split('-');
+        
+        const dayDate = new Date(year, month - 1, dayNumber);
+        
+        if (dayDate > selectedStartDate && dayDate < selectedEndDate) {
+            day.classList.add('in-range');
+        }
+    });
+}
+
+// 추가 버튼 초기화
+function initializeAddDateButton() {
+    // 추가 버튼을 달력 아래에 동적으로 생성
+    const calendarGrid = document.getElementById('calendarGrid');
+    const addButtonContainer = document.createElement('div');
+    addButtonContainer.className = 'add-date-container';
+    addButtonContainer.innerHTML = `
+        <button type="button" id="addDateRangeButton" class="btn btn-add-date" disabled>
+            선택한 날짜 추가
+        </button>
+        <p class="add-date-guide">날짜 범위를 선택한 후 '추가' 버튼을 눌러주세요</p>
+    `;
+    
+    // 달력 그리드 다음에 추가
+    calendarGrid.parentNode.insertBefore(addButtonContainer, calendarGrid.nextSibling);
+    
+    // 추가 버튼 이벤트 리스너
+    const addButton = document.getElementById('addDateRangeButton');
+    addButton.addEventListener('click', function() {
+        if (selectedStartDate && selectedEndDate) {
+            addDateRange();
+        }
+    });
+}
+
+// 날짜 범위 추가
+function addDateRange() {
+    if (!selectedStartDate || !selectedEndDate) return;
+    
+    // 중복 체크
+    const newRange = {
+        startDate: new Date(selectedStartDate),
+        endDate: new Date(selectedEndDate),
+        startDateFormatted: formatDate(selectedStartDate),
+        endDateFormatted: formatDate(selectedEndDate)
+    };
+    
+    // 기존 범위와 겹치는지 확인
+    const hasOverlap = selectedDateRanges.some(range => {
+        return (newRange.startDate <= range.endDate && newRange.endDate >= range.startDate);
+    });
+    
+    if (hasOverlap) {
+        alert('이미 선택된 날짜와 겹칩니다. 다른 날짜를 선택해주세요.');
+        return;
+    }
+    
+    // 범위 추가
+    selectedDateRanges.push(newRange);
+    
+    // 추가된 날짜들을 달력에 표시
+    markAddedDatesOnCalendar(newRange);
+    
+    // 현재 선택 초기화
+    clearCurrentSelection();
+    selectedStartDate = null;
+    selectedEndDate = null;
+    
+    // UI 업데이트
+    updateSelectedDateDisplay();
+    updateAddButton();
+    
+    console.log('추가된 날짜 범위:', selectedDateRanges);
+}
+
+// 추가된 날짜들을 달력에 표시
+function markAddedDatesOnCalendar(dateRange) {
     const allDays = document.querySelectorAll('.day:not(.prev-month):not(.next-month)');
     
     allDays.forEach(day => {
@@ -230,8 +322,137 @@ function highlightDateRange() {
         
         const dayDate = new Date(year, month - 1, dayNumber);
         
-        if (dayDate > selectedStartDate && dayDate < selectedEndDate) {
-            day.classList.add('in-range');
+        if (dayDate >= dateRange.startDate && dayDate <= dateRange.endDate) {
+            day.classList.add('added-date');
+            day.classList.remove('selected', 'in-range', 'range-start', 'range-end');
+            
+            // 추가된 날짜 스타일
+            if (dayDate.getTime() === dateRange.startDate.getTime()) {
+                day.classList.add('added-range-start');
+            } else if (dayDate.getTime() === dateRange.endDate.getTime()) {
+                day.classList.add('added-range-end');
+            } else {
+                day.classList.add('added-in-range');
+            }
+        }
+    });
+}
+
+// 현재 선택 표시 업데이트 (추가 버튼 활성화/비활성화)
+function updateCurrentSelectionDisplay() {
+    updateAddButton();
+}
+
+// 추가 버튼 상태 업데이트
+function updateAddButton() {
+    const addButton = document.getElementById('addDateRangeButton');
+    const guideText = document.querySelector('.add-date-guide');
+    
+    if (selectedStartDate && selectedEndDate) {
+        addButton.disabled = false;
+        addButton.textContent = `${formatDate(selectedStartDate)} ~ ${formatDate(selectedEndDate)} 추가`;
+        guideText.textContent = '선택한 날짜 범위를 추가하시려면 버튼을 눌러주세요';
+    } else if (selectedStartDate) {
+        addButton.disabled = true;
+        addButton.textContent = '종료일을 선택해주세요';
+        guideText.textContent = '종료일을 선택한 후 추가할 수 있습니다';
+    } else {
+        addButton.disabled = true;
+        addButton.textContent = '선택한 날짜 추가';
+        guideText.textContent = '날짜 범위를 선택한 후 \'추가\' 버튼을 눌러주세요';
+    }
+}
+
+// 선택된 날짜 표시 업데이트 (다중 범위 표시)
+function updateSelectedDateDisplay() {
+    const selectedDateSection = document.getElementById('selectedDateSection');
+    const selectedDateContainer = document.getElementById('selectedDateContainer');
+    
+    if (selectedDateRanges.length > 0) {
+        // 선택된 날짜 섹션을 표시
+        selectedDateSection.style.display = 'block';
+        
+        // 날짜 범위 아이템들을 생성
+        const rangeItemsHTML = selectedDateRanges.map((range, index) => {
+            const rangeText = range.startDateFormatted === range.endDateFormatted 
+                ? range.startDateFormatted 
+                : `${range.startDateFormatted} ~ ${range.endDateFormatted}`;
+            
+            return `
+                <div class="date-range-item">
+                    <span class="range-text">${rangeText}</span>
+                    <button type="button" class="delete-range-btn" data-index="${index}">삭제</button>
+                </div>
+            `;
+        }).join('');
+        
+        const totalDays = calculateTotalDays();
+        
+        // 전체 컨테이너 HTML 업데이트
+        selectedDateContainer.innerHTML = `
+            <div class="date-range-display">
+                ${rangeItemsHTML}
+            </div>
+            <div class="date-info-text">
+                총 ${selectedDateRanges.length}개 구간, ${totalDays}일이 선택되었습니다!
+            </div>
+        `;
+        
+        // 삭제 버튼 이벤트 리스너 추가
+        selectedDateContainer.querySelectorAll('.delete-range-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                deleteDateRange(index);
+            });
+        });
+    } else {
+        selectedDateSection.style.display = 'none';
+    }
+}
+
+// 총 선택 일수 계산
+function calculateTotalDays() {
+    return selectedDateRanges.reduce((total, range) => {
+        const days = Math.ceil((range.endDate - range.startDate) / (1000 * 60 * 60 * 24)) + 1;
+        return total + days;
+    }, 0);
+}
+
+// 특정 날짜 범위 삭제
+function deleteDateRange(index) {
+    if (index < 0 || index >= selectedDateRanges.length) return;
+    
+    const deletedRange = selectedDateRanges[index];
+    
+    // 배열에서 제거
+    selectedDateRanges.splice(index, 1);
+    
+    // 달력에서 해당 날짜 마크 제거
+    removeAddedDatesFromCalendar(deletedRange);
+    
+    // UI 업데이트
+    updateSelectedDateDisplay();
+    
+    console.log('삭제된 날짜 범위:', deletedRange);
+    console.log('남은 날짜 범위들:', selectedDateRanges);
+}
+
+// 달력에서 추가된 날짜 마크 제거
+function removeAddedDatesFromCalendar(dateRange) {
+    const allDays = document.querySelectorAll('.day');
+    
+    allDays.forEach(day => {
+        const dayNumber = parseInt(day.textContent);
+        const monthElement = day.closest('.calendar-month');
+        if (!monthElement) return;
+        
+        const monthValue = monthElement.getAttribute('data-month');
+        const [year, month] = monthValue.split('-');
+        
+        const dayDate = new Date(year, month - 1, dayNumber);
+        
+        if (dayDate >= dateRange.startDate && dayDate <= dateRange.endDate) {
+            day.classList.remove('added-date', 'added-range-start', 'added-range-end', 'added-in-range');
         }
     });
 }
@@ -262,7 +483,10 @@ function showThreeMonthView() {
     singleCalendarContainer.style.display = 'none';
     
     // 기존 이벤트 리스너 재연결
-    initializeDateSelection();
+    setTimeout(() => {
+        initializeDateSelection();
+        restoreAddedDatesDisplay();
+    }, 100);
 }
 
 // 단일 월 보기 표시
@@ -337,58 +561,17 @@ function generateSingleMonthCalendar(monthValue, container) {
     container.innerHTML = calendarHTML;
     
     // 새로 생성된 달력에 이벤트 리스너 추가
-    initializeDateSelection();
+    setTimeout(() => {
+        initializeDateSelection();
+        restoreAddedDatesDisplay();
+    }, 100);
 }
 
-// 기본 날짜 범위 설정 (예시)
-function setDefaultDateRange() {
-    // 2025년 7월 21일 ~ 31일로 기본 설정
-    selectedStartDate = new Date(2025, 6, 21); // 월은 0부터 시작
-    selectedEndDate = new Date(2025, 6, 31);
-    
-    // UI에 반영
-    const startDay = document.querySelector('[data-month="2025-07"] .day:nth-child(24)'); // 21일
-    const endDay = document.querySelector('[data-month="2025-07"] .day:nth-child(34)'); // 31일
-    
-    if (startDay && endDay) {
-        clearDateSelection();
-        startDay.classList.add('range-start', 'selected');
-        endDay.classList.add('range-end', 'selected');
-        highlightDateRange();
-    }
-    
-    updateSelectedDateDisplay();
-}
-
-// 선택된 날짜 표시 업데이트
-function updateSelectedDateDisplay() {
-    const dateRangeText = document.getElementById('dateRangeText');
-    const dateInfoText = document.getElementById('dateInfoText');
-    const selectedDateSection = document.getElementById('selectedDateSection');
-    
-    if (selectedStartDate && selectedEndDate) {
-        const startFormatted = formatDate(selectedStartDate);
-        const endFormatted = formatDate(selectedEndDate);
-        const startInfo = formatDateInfo(selectedStartDate);
-        const endInfo = formatDateInfo(selectedEndDate);
-        
-        dateRangeText.textContent = `${startFormatted} ~ ${endFormatted}`;
-        dateRangeText.style.color = '#005792';
-        dateRangeText.style.fontWeight = '600';
-        dateInfoText.textContent = `${startInfo}에서 ${endInfo} 사이가 선택되었습니다!`;
-        selectedDateSection.style.display = 'block'; // 날짜 확인 섹션 표시
-    } else if (selectedStartDate) {
-        const startFormatted = formatDate(selectedStartDate);
-        const startInfo = formatDateInfo(selectedStartDate);
-        
-        dateRangeText.textContent = `${startFormatted} ~`;
-        dateRangeText.style.color = '#005792';
-        dateRangeText.style.fontWeight = '600';
-        dateInfoText.textContent = `${startInfo}부터 선택되었습니다. 종료일을 선택해주세요.`;
-        selectedDateSection.style.display = 'block'; // 날짜 확인 섹션 표시
-    } else {
-        selectedDateSection.style.display = 'none'; // 날짜 확인 섹션 숨김
-    }
+// 추가된 날짜들을 달력에 다시 표시
+function restoreAddedDatesDisplay() {
+    selectedDateRanges.forEach(range => {
+        markAddedDatesOnCalendar(range);
+    });
 }
 
 // 날짜 포맷팅 (YYYY.MM.DD)
@@ -414,9 +597,9 @@ function initializeNextButton() {
         nextButton.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // 유효성 검사
-            if (!selectedStartDate || !selectedEndDate) {
-                alert('여행 시작일과 종료일을 모두 선택해주세요.');
+            // 유효성 검사 - 다중 범위 체크
+            if (selectedDateRanges.length === 0) {
+                alert('최소 하나 이상의 여행 날짜를 추가해주세요.');
                 return;
             }
             
@@ -435,11 +618,8 @@ function initializeBackButton() {
 // 뒤로 가기 함수
 function goToPreviousPage() {
     // 현재 선택된 일정 임시 저장
-    if (selectedStartDate && selectedEndDate) {
-        localStorage.setItem('temp_selected_schedule', JSON.stringify({
-            startDate: selectedStartDate.toISOString(),
-            endDate: selectedEndDate.toISOString()
-        }));
+    if (selectedDateRanges.length > 0) {
+        localStorage.setItem('temp_selected_schedule', JSON.stringify(selectedDateRanges));
     }
     
     // 이전 페이지로 이동
@@ -449,10 +629,9 @@ function goToPreviousPage() {
 // 다음 페이지로 전달할 일정 데이터 저장
 function saveScheduleForNextPage() {
     const scheduleData = {
-        startDate: selectedStartDate.toISOString(),
-        endDate: selectedEndDate.toISOString(),
-        startDateFormatted: formatDate(selectedStartDate),
-        endDateFormatted: formatDate(selectedEndDate)
+        dateRanges: selectedDateRanges,
+        totalDays: calculateTotalDays(),
+        rangeCount: selectedDateRanges.length
     };
     
     const combinedData = {
@@ -483,8 +662,8 @@ function goToNextPage() {
 
 // 폼 유효성 검사 (HTML에서 onsubmit으로 호출됨)
 function validationPhase(form) {
-    if (!selectedStartDate || !selectedEndDate) {
-        alert('여행 시작일과 종료일을 모두 선택해주세요.');
+    if (selectedDateRanges.length === 0) {
+        alert('최소 하나 이상의 여행 날짜를 추가해주세요.');
         return false;
     }
     
@@ -504,13 +683,14 @@ function prepareFormSubmission() {
     existingInputs.forEach(input => input.remove());
     
     // 선택된 일정을 hidden input으로 추가
-    if (selectedStartDate && selectedEndDate) {
+    if (selectedDateRanges.length > 0) {
         const scheduleInput = document.createElement('input');
         scheduleInput.type = 'hidden';
         scheduleInput.name = 'selected_schedule';
         scheduleInput.value = JSON.stringify({
-            startDate: selectedStartDate.toISOString(),
-            endDate: selectedEndDate.toISOString()
+            dateRanges: selectedDateRanges,
+            totalDays: calculateTotalDays(),
+            rangeCount: selectedDateRanges.length
         });
         form.appendChild(scheduleInput);
     }
@@ -569,44 +749,17 @@ function restoreTemporarySchedule() {
     if (tempSchedule) {
         try {
             const schedule = JSON.parse(tempSchedule);
-            selectedStartDate = new Date(schedule.startDate);
-            selectedEndDate = new Date(schedule.endDate);
+            selectedDateRanges = schedule;
             
             // UI 업데이트
-            updateCalendarDisplay();
             updateSelectedDateDisplay();
+            restoreAddedDatesDisplay();
             
             localStorage.removeItem('temp_selected_schedule');
         } catch (e) {
             console.error('임시 저장된 일정 데이터 복원 실패:', e);
         }
     }
-}
-
-// 달력 표시 업데이트
-function updateCalendarDisplay() {
-    if (!selectedStartDate || !selectedEndDate) return;
-    
-    clearDateSelection();
-    
-    const allDays = document.querySelectorAll('.day:not(.prev-month):not(.next-month)');
-    
-    allDays.forEach(day => {
-        const dayNumber = parseInt(day.textContent);
-        const monthElement = day.closest('.calendar-month');
-        const monthValue = monthElement.getAttribute('data-month');
-        const [year, month] = monthValue.split('-');
-        
-        const dayDate = new Date(year, month - 1, dayNumber);
-        
-        if (dayDate.getTime() === selectedStartDate.getTime()) {
-            day.classList.add('range-start', 'selected');
-        } else if (dayDate.getTime() === selectedEndDate.getTime()) {
-            day.classList.add('range-end', 'selected');
-        } else if (dayDate > selectedStartDate && dayDate < selectedEndDate) {
-            day.classList.add('in-range');
-        }
-    });
 }
 
 // 최종 방 생성 제출
@@ -644,3 +797,24 @@ function clearAllData() {
     sessionStorage.removeItem('selected_schedule_step4');
     sessionStorage.removeItem('room_creation_data');
 }
+
+// 도움말 모달 열기
+function openHelpModal() {
+    const modal = document.getElementById('helpModal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// 도움말 모달 닫기
+function closeHelpModal() {
+    const modal = document.getElementById('helpModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// ESC 키로 모달 닫기
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeHelpModal();
+    }
+});

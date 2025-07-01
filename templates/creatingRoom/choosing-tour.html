@@ -59,7 +59,7 @@
                     <div class="room-create-form-section">
                         <div class="form-section-header">
                             <p class="form-section-title subtitle-1">여행지 선택</p>
-                            <button class="room-form-guide-button header-button btn btn-8-16" type="button">
+                            <button class="room-form-guide-button header-button btn btn-8-16" type="button" onclick="openHelpModal()">
                                 <img class="room-form-guide-button-img" src="/static/image/creatingRoom/question.svg">
                                 도움말
                             </button>
@@ -178,6 +178,212 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 여행지 선택 도움말 모달 -->
+    <div id="helpModal" class="help-modal" style="display: none;">
+        <div class="help-modal-overlay" onclick="closeHelpModal()"></div>
+        <div class="help-modal-content">
+            <div class="help-modal-header">
+                <h3>여행지 선택 도움말</h3>
+                <button class="help-modal-close" onclick="closeHelpModal()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="#666" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="help-modal-body">
+                <div class="help-section">
+                    <h4>📍 여행지 선택이란?</h4>
+                    <div class="destination-explanation">
+                        <p>선택한 <strong>감정에 맞는 여행지</strong>를 찾아 동행자들과 함께 의미 있는 시간을 보낼 장소를 정하는 단계입니다.</p>
+                        <p>감정과 여행지가 조화를 이룰 때 더욱 특별한 여행 경험을 만들 수 있어요!</p>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h4>🗺️ 감정별 추천 여행지</h4>
+                    <div class="destination-categories">
+                        <div class="destination-category-card positive-places">
+                            <h5>😊 긍정 에너지 충전지</h5>
+                            <div class="place-types">
+                                <span class="place-tag energy">테마파크</span>
+                                <span class="place-tag energy">축제장</span>
+                                <span class="place-tag energy">스포츠 경기장</span>
+                                <span class="place-tag energy">액티비티 센터</span>
+                            </div>
+                            <p class="destination-description">신나고 활동적인 장소에서 에너지를 발산하고 새로운 추억을 만들어보세요!</p>
+                        </div>
+
+                        <div class="destination-category-card healing-places">
+                            <h5>🌿 힐링 & 휴식공간</h5>
+                            <div class="place-types">
+                                <span class="place-tag healing">자연 공원</span>
+                                <span class="place-tag healing">호수 & 강변</span>
+                                <span class="place-tag healing">온천 & 스파</span>
+                                <span class="place-tag healing">조용한 카페</span>
+                            </div>
+                            <p class="destination-description">마음의 평화를 찾고 지친 마음을 달래는 여행지로 떠나보세요!</p>
+                        </div>
+
+                        <div class="destination-category-card cultural-places">
+                            <h5>🎨 문화 & 감성여행</h5>
+                            <div class="place-types">
+                                <span class="place-tag cultural">박물관 & 미술관</span>
+                                <span class="place-tag cultural">역사 유적지</span>
+                                <span class="place-tag cultural">공연장 & 극장</span>
+                                <span class="place-tag cultural">전통 마을</span>
+                            </div>
+                            <p class="destination-description">깊이 있는 대화와 사색의 시간을 가질 수 있는 문화적 공간들이에요!</p>
+                        </div>
+
+                        <div class="destination-category-card urban-places">
+                            <h5>🏙️ 도심 & 모던여행</h5>
+                            <div class="place-types">
+                                <span class="place-tag urban">쇼핑몰 & 백화점</span>
+                                <span class="place-tag urban">루프탑 카페</span>
+                                <span class="place-tag urban">전시 컨벤션</span>
+                                <span class="place-tag urban">트렌디한 거리</span>
+                            </div>
+                            <p class="destination-description">도시의 활기를 느끼며 트렌드를 공유하고 새로운 경험을 해보세요!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h4>🔍 효과적인 검색 방법</h4>
+                    <div class="search-tips">
+                        <div class="tip-item">
+                            <div class="tip-icon">📱</div>
+                            <div class="tip-content">
+                                <strong>키워드 조합</strong>
+                                <p>지역명 + 관심사로 검색해보세요. 예: "강남 카페", "부산 해변", "제주 액티비티"</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">🎯</div>
+                            <div class="tip-content">
+                                <strong>구체적 장소명</strong>
+                                <p>특정 장소가 있다면 정확한 이름으로 검색하면 더 정확한 결과를 얻을 수 있어요</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">🌍</div>
+                            <div class="tip-content">
+                                <strong>다양한 표현 시도</strong>
+                                <p>"서울 명동" 대신 "명동 쇼핑", "명동 거리" 등 다양하게 검색해보세요</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">🚇</div>
+                            <div class="tip-content">
+                                <strong>접근성 고려</strong>
+                                <p>대중교통이나 자동차로 접근 가능한지 미리 확인해보세요</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h4>✨ 여행지 선택 꿀팁</h4>
+                    <div class="selection-strategies">
+                        <div class="strategy-card">
+                            <h5>💡 감정 매칭</h5>
+                            <div class="strategy-content">
+                                <p><strong>이전 단계에서 선택한 감정을 참고하세요!</strong></p>
+                                <div class="emotion-place-matches">
+                                    <div class="match-item">
+                                        <span class="emotion-tag">행복 + 즐거움</span>
+                                        <span class="arrow">→</span>
+                                        <span class="place-suggestion">놀이공원, 축제, 스포츠 관람</span>
+                                    </div>
+                                    <div class="match-item">
+                                        <span class="emotion-tag">편안함 + 차분함</span>
+                                        <span class="arrow">→</span>
+                                        <span class="place-suggestion">공원, 호수, 조용한 카페</span>
+                                    </div>
+                                    <div class="match-item">
+                                        <span class="emotion-tag">설렘 + 자신감</span>
+                                        <span class="arrow">→</span>
+                                        <span class="place-suggestion">새로운 체험, 모험 활동</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="strategy-card">
+                            <h5>👥 동행자 고려사항</h5>
+                            <div class="strategy-content">
+                                <ul class="consideration-list">
+                                    <li><span class="bullet">🕐</span> 모임 시간과 장소의 편의성</li>
+                                    <li><span class="bullet">💰</span> 예상 비용과 부담 정도</li>
+                                    <li><span class="bullet">🚶</span> 체력적 요구사항과 난이도</li>
+                                    <li><span class="bullet">📷</span> 사진 촬영과 추억 만들기 가능성</li>
+                                    <li><span class="bullet">☔</span> 날씨의 영향 정도</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="strategy-card">
+                            <h5>🎈 분위기별 추천</h5>
+                            <div class="mood-suggestions">
+                                <div class="mood-item">
+                                    <div class="mood-icon">☀️</div>
+                                    <div class="mood-info">
+                                        <strong>활기찬 분위기</strong>
+                                        <p>쇼핑몰, 시장, 번화가, 펍</p>
+                                    </div>
+                                </div>
+                                <div class="mood-item">
+                                    <div class="mood-icon">🌙</div>
+                                    <div class="mood-info">
+                                        <strong>조용한 분위기</strong>
+                                        <p>도서관, 갤러리, 조용한 카페</p>
+                                    </div>
+                                </div>
+                                <div class="mood-item">
+                                    <div class="mood-icon">🎪</div>
+                                    <div class="mood-info">
+                                        <strong>특별한 분위기</strong>
+                                        <p>테마파크, 전시회, 콘서트홀</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="help-section">
+                    <h4>💼 실용적인 준비사항</h4>
+                    <div class="practical-tips">
+                        <div class="prep-category">
+                            <h6>📋 사전 확인사항</h6>
+                            <div class="prep-items">
+                                <span class="prep-tag">영업시간</span>
+                                <span class="prep-tag">입장료</span>
+                                <span class="prep-tag">예약 필요 여부</span>
+                                <span class="prep-tag">주차 가능 여부</span>
+                            </div>
+                        </div>
+                        <div class="prep-category">
+                            <h6>🎒 준비물 체크</h6>
+                            <div class="prep-items">
+                                <span class="prep-tag">편한 신발</span>
+                                <span class="prep-tag">충전기</span>
+                                <span class="prep-tag">카메라</span>
+                                <span class="prep-tag">여분 옷</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="help-modal-footer">
+                <div class="help-footer-info">
+                    <p>🎯 감정에 딱 맞는 여행지로 특별한 만남을 시작해보세요!</p>
+                </div>
             </div>
         </div>
     </div>
