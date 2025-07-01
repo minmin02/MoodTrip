@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+    
+    // 페이지 로드 시 임시 저장된 데이터 복원
+    restoreTemporaryData();
 });
 
 // 다음 버튼 눌렀을 경우, 1. 인원 선택 여부, 방 이름 여부, 방 소개 여부 유효성 검사
@@ -62,6 +65,49 @@ function validationPhase(form) {
     return false; // form 제출 막기
 }
 
+// 뒤로가기 함수 - 확인 메시지 없이 바로 이동 (구체적인 URL로 이동)
+function exitWithSubmit(formId, value) {
+    console.log('뒤로가기 버튼 클릭됨');
+    
+    // 현재 입력 내용 임시 저장 (조용히 저장)
+    const selectedPeople = document.querySelector('input[name="selected_people"]')?.value;
+    const roomNameInput = document.querySelector('.roomName-search-typing-input');
+    const roomIntroInput = document.querySelector('.roomName-search-typing-input2');
+    
+    if (selectedPeople) {
+        localStorage.setItem("temp_selected_people", selectedPeople);
+    }
+    if (roomNameInput && roomNameInput.value.trim()) {
+        localStorage.setItem("temp_room_name", roomNameInput.value.trim());
+    }
+    if (roomIntroInput && roomIntroInput.value.trim()) {
+        localStorage.setItem("temp_room_intro", roomIntroInput.value.trim());
+    }
+    window.location.href = "/templates/creatingRoom/creatingRoom-start.html";
+}
+
+function goToPreviousPage() {
+    console.log('뒤로가기 버튼 클릭됨');
+    
+    // 현재 입력 내용 임시 저장 (조용히 저장)
+    const selectedPeople = document.querySelector('input[name="selected_people"]')?.value;
+    const roomNameInput = document.querySelector('.roomName-search-typing-input');
+    const roomIntroInput = document.querySelector('.roomName-search-typing-input2');
+    
+    if (selectedPeople) {
+        localStorage.setItem("temp_selected_people", selectedPeople);
+    }
+    if (roomNameInput && roomNameInput.value.trim()) {
+        localStorage.setItem("temp_room_name", roomNameInput.value.trim());
+    }
+    if (roomIntroInput && roomIntroInput.value.trim()) {
+        localStorage.setItem("temp_room_intro", roomIntroInput.value.trim());
+    }
+    
+    // 바로 메인 페이지나 방 목록으로 이동 (확인 메시지 없음)
+    window.location.href = "/templates/creatingRoom/creatingRoom-start.html"; // 메인 페이지로 이동
+}
+
 // 다음 버튼을 눌렀을 때 해당 정보들을 가지고 다음 페이지로 넘어가는 JS 코드
 window.addEventListener("DOMContentLoaded", function () {
     const selected = localStorage.getItem("selected_people");
@@ -79,6 +125,53 @@ window.addEventListener("DOMContentLoaded", function () {
         previewIntro.textContent = intro;
     }
 });
+
+// 임시 저장된 데이터 복원
+function restoreTemporaryData() {
+    const tempPeople = localStorage.getItem("temp_selected_people");
+    const tempName = localStorage.getItem("temp_room_name");
+    const tempIntro = localStorage.getItem("temp_room_intro");
+    
+    // 인원 복원
+    if (tempPeople) {
+        const hiddenInput = document.querySelector('input[name="selected_people"]');
+        if (hiddenInput) {
+            hiddenInput.value = tempPeople;
+        }
+        
+        // 해당 카드 선택 상태 복원
+        const targetCard = document.querySelector(`[data-target="${tempPeople}"]`);
+        if (targetCard) {
+            const checkImg = targetCard.querySelector(".check-mark img");
+            if (checkImg) {
+                checkImg.src = "/static/image/creatingRoom/checkbox-checked.svg";
+            }
+            targetCard.classList.add("selected");
+        }
+        
+        localStorage.removeItem("temp_selected_people");
+    }
+    
+    // 방 이름 복원
+    if (tempName) {
+        const roomNameInput = document.querySelector('.roomName-search-typing-input');
+        if (roomNameInput && !roomNameInput.value) {
+            roomNameInput.value = tempName;
+            roomNameInput.dispatchEvent(new Event('input'));
+        }
+        localStorage.removeItem("temp_room_name");
+    }
+    
+    // 방 소개 복원
+    if (tempIntro) {
+        const roomIntroInput = document.querySelector('.roomName-search-typing-input2');
+        if (roomIntroInput && !roomIntroInput.value) {
+            roomIntroInput.value = tempIntro;
+            roomIntroInput.dispatchEvent(new Event('input'));
+        }
+        localStorage.removeItem("temp_room_intro");
+    }
+}
 
 // 도움말 모달 열기
 function openHelpModal() {
@@ -210,16 +303,19 @@ function getSelectedPeopleText(value) {
     return peopleMap[value] || '선택되지 않음';
 }
 
-// exitWithSubmit 함수 (기존 코드와 호환성을 위해)
-function exitWithSubmit(formId, value) {
-    // 뒤로 가기 로직
-    if (confirm('입력 중인 내용이 사라집니다. 정말 나가시겠습니까?')) {
-        // 임시 저장된 데이터 정리
-        localStorage.removeItem("selected_people");
-        localStorage.removeItem("room_name");
-        localStorage.removeItem("room_intro");
-        
-        // 이전 페이지로 이동
-        window.history.back();
+// 페이지 떠날 때 자동 저장 (사용자가 모르게)
+window.addEventListener('beforeunload', function() {
+    const selectedPeople = document.querySelector('input[name="selected_people"]')?.value;
+    const roomNameInput = document.querySelector('.roomName-search-typing-input');
+    const roomIntroInput = document.querySelector('.roomName-search-typing-input2');
+    
+    if (selectedPeople) {
+        localStorage.setItem("temp_selected_people", selectedPeople);
     }
-}
+    if (roomNameInput && roomNameInput.value.trim()) {
+        localStorage.setItem("temp_room_name", roomNameInput.value.trim());
+    }
+    if (roomIntroInput && roomIntroInput.value.trim()) {
+        localStorage.setItem("temp_room_intro", roomIntroInput.value.trim());
+    }
+});

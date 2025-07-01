@@ -12,6 +12,12 @@
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
 }
+
+body {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+}
+
 body.room-create .room-create-formview .container {
     width: 1080px;
 }
@@ -20,7 +26,7 @@ body.room-create .room-create-formview .container {
     margin: 0 auto;
 }
 
-/* 진행 상태 바 - 흰색 배경 박스 추가 */
+/* 진행 상태 바 */
 body.room-create .submit-progress {
     margin-right: 24px;
     float: left;
@@ -72,6 +78,10 @@ body.room-create .submit-progress .room-status-box .menu-title {
     line-height: 36px;
 }
 
+.mb4 {
+    margin-bottom: 4px;
+}
+
 body.room-create .submit-progress .input-group-status .status-main-menu {
     color: #bdbdbd;
 }
@@ -91,12 +101,21 @@ body.room-create .submit-progress .input-group-status .status-main-menu.active {
     font-weight: 400;
 }
 
+body.room-create .submit-progress .input-group-status .status-main-menu.completed {
+    color: #005792;
+    font-weight: 500;
+}
+
 body.room-create .submit-progress .input-group-status .status-sub-menu {
     margin-left: 8px;
 }
 
 body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.active {
     color: #616161;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.completed {
+    color: #005792;
 }
 
 body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title:first-child {
@@ -106,7 +125,6 @@ body.room-create .submit-progress .input-group-status .status-sub-menu .status-s
 body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title {
     padding: 8px 0;
     position: relative;
-    color: #bdbdbd;
     font-size: 14px;
     line-height: 24px;
     font-weight: 400;
@@ -128,6 +146,11 @@ body.room-create .submit-progress .input-group-status .status-sub-menu .status-s
     top: 0;
     left: 6px;
     border-left: 1px solid #e0e0e0;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.completed .bottom-border,
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.completed .top-border {
+    border-left: 1px solid #b3d4fc;
 }
 
 body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.active .sub-menu-marker {
@@ -167,7 +190,7 @@ body.room-create .submit-progress .input-group-status .status-sub-menu .status-s
     display: none;
 }
 
-/* 폼 섹션 */
+/* 메인 폼 섹션 */
 body.room-create .room-create-form-section {
     background-color: #fff;
     width: 800px;
@@ -231,147 +254,149 @@ button {
 
 body.room-create .room-create-form-section .form-input-section {
     padding: 32px;
-    padding-bottom: 60px;
+    padding-bottom: 0;
 }
 
-.form-group-light {
-    display: block;
+/* 요약 섹션들 */
+.summary-section {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 32px;
 }
 
-.form-group-light .form-group-title {
-    display: block;
+.summary-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
 }
 
-.body-1-bold {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 26px;
-}
-
-.required {
-    color: red;
-}
-
-.form-group-guide {
-    color: #616161;
-    font-size: 14px;
-    margin-bottom: 16px;
-}
-
-.text900 {
+.summary-title {
+    font-size: 18px;
+    font-weight: 600;
     color: #212121;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* 감정 태그 그리드 */
-.emotion-tags-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 12px;
-    margin-bottom: 32px;
-}
-
-.emotion-tag-item {
-    position: relative;
-}
-
-.emotion-checkbox {
-    display: none;
-}
-
-.emotion-label {
-    display: block;
-    padding: 12px 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 400;
-    color: #616161;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    background: #fff;
-}
-
-.emotion-label:hover {
-    border-color: #005792;
-    background: #f0f8ff;
+.summary-title::before {
+    content: '•';
     color: #005792;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.emotion-checkbox:checked + .emotion-label {
+/* 총 인원 */
+.people-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+    border-radius: 12px;
     border: 2px solid #005792;
-    background: #f0f8ff;
-    color: #005792;
-    font-weight: 500;
 }
 
-/* 커스텀 입력 섹션 */
-.roomName-search-form {
-    position: relative;
+.people-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
 }
 
-.roomName-search-form .roomName-search-typing-box {
-    position: relative;
-}
-
-.roomName-search-form .roomName-search-typing-box .roomName-search-input-group {
-    position: relative;
-}
-
-.search_icon {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 5px;
-    height: 5px;
+.people-icon {
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 87, 146, 0.2);
 }
 
-.text-icon {
-    width: 20px;
-    height: 20px;
-    opacity: 0.5;
+.people-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #005792;
 }
 
-.roomName-search-form .roomName-search-typing-box .roomName-search-input-group .roomName-search-typing-input {
+/* 방 이름 입력 */
+.room-name-display {
+    position: relative;
+}
+
+.room-name-input {
     width: 100%;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    background-color: #fff;
-    padding: 9px 12px 9px 36px;
-    font-size: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 500;
     color: #212121;
-    line-height: 24px;
+    background: #fff;
+    transition: all 0.2s ease;
 }
 
-.roomName-search-typing-input:focus {
+.room-name-input:focus {
     outline: none;
     border-color: #005792;
+    box-shadow: 0 0 0 3px rgba(0, 87, 146, 0.1);
 }
 
-.roomName-search-typing-input::placeholder {
+.room-name-input::placeholder {
+    color: #bdbdbd;
+    font-weight: 400;
+}
+
+/* 방 소개 입력 */
+.room-intro-display {
+    position: relative;
+}
+
+.room-intro-textarea {
+    width: 100%;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #212121;
+    background: #fff;
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+    line-height: 1.5;
+    transition: all 0.2s ease;
+}
+
+.room-intro-textarea:focus {
+    outline: none;
+    border-color: #005792;
+    box-shadow: 0 0 0 3px rgba(0, 87, 146, 0.1);
+}
+
+.room-intro-textarea::placeholder {
     color: #bdbdbd;
 }
 
-/* 선택된 감정 태그 표시 영역 */
-.selected-emotions-container {
-    margin-top: 24px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 4px;
-    border: 1px solid #e0e0e0;
+/* 입력 가이드 */
+.input-guide {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
 }
 
-.selected-emotions-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #212121;
-    margin: 0 0 16px 0;
-    line-height: 26px;
+.char-count {
+    font-size: 12px;
+    color: #616161;
+}
+
+/* 선택된 감정 태그 */
+.selected-emotions-container {
+    padding: 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
 }
 
 .selected-emotions-list {
@@ -380,90 +405,159 @@ body.room-create .room-create-form-section .form-input-section {
     gap: 8px;
 }
 
-.selected-emotion-tag {
+.emotion-tag {
     display: inline-flex;
     align-items: center;
-    padding: 8px 12px;
-    background: #005792;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #005792 0%, #0071b8 100%);
     color: white;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 14px;
-    font-weight: 400;
-    gap: 8px;
-    animation: slideIn 0.3s ease;
-    line-height: 24px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 87, 146, 0.2);
 }
 
-.selected-emotion-tag.custom {
-    background: #005792;
+.emotion-tag.custom {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.emotion-tag-remove {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 0;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
+.emotion-tag::before {
+    content: '#';
+    margin-right: 4px;
     opacity: 0.8;
-    transition: opacity 0.2s ease;
 }
 
-.emotion-tag-remove:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.2);
+/* 선택된 관광지 */
+.destination-card-display {
+    padding: 24px;
+    background: #fff;
+    border: 2px solid #005792;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 87, 146, 0.1);
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.destination-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
 }
 
-/* 버튼 스타일 */
-body.room-create .room-create-form-section .form-section-footer {
-    padding: 16px 32px;
+.destination-image {
+    width: 120px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.destination-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.destination-details {
+    flex: 1;
+}
+
+.destination-category {
+    font-size: 12px;
+    color: #005792;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.destination-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #212121;
+    margin-bottom: 12px;
+}
+
+.destination-description {
+    font-size: 14px;
+    color: #616161;
+    line-height: 1.5;
+}
+
+/* 선택된 날짜 */
+.schedule-summary {
+    text-align: center;
+    margin-top: 16px;
+    padding: 12px;
+    background: rgba(255, 152, 0, 0.1);
+    border-radius: 6px;
+    font-weight: 500;
+    color: #ef6c00;
+}
+
+/* 버튼 영역 */
+.form-section-footer {
+    padding: 24px 32px;
     border-top: 1px solid #e0e0e0;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    background: #fff;
+    border-radius: 0 0 8px 8px;
+}
+
+.button-group {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
 }
 
 .btn-client {
     background: linear-gradient(to right, #005792, #001A2C);
     color: #fff;
     border: none;
-}
-
-.btn-right {
-    float: right;
-}
-
-.btn-11-24 {
-    font-size: 16px;
-    line-height: 26px;
-    font-weight: 400;
-    padding: 11px 24px;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-client:hover {
     background: linear-gradient(to right, #004577, #001219);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 87, 146, 0.3);
 }
 
 .btn-client:disabled {
     background: #bdbdbd;
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-white-border {
+    border: 2px solid #005792;
+    background-color: #fff;
+    color: #005792;
+}
+
+.btn-white-border:hover {
+    background-color: #f0f8ff;
+    border-color: #004577;
+    color: #004577;
+    transform: translateY(-1px);
+}
+
+.btn-11-24 {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 500;
+    padding: 11px 24px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.loading-spinner {
+    display: none;
+}
+
+.btn-client.loading .submit-text {
+    display: none;
+}
+
+.btn-client.loading .loading-spinner {
+    display: inline;
 }
 
 /* clearfix */
@@ -485,14 +579,7 @@ body.room-create .room-create-formview .container::after {
     clear: both;
 }
 
-/* 마진 클래스들 */
-.mb4 { margin-bottom: 4px; }
-.mb8 { margin-bottom: 8px; }
-.mb16 { margin-bottom: 16px; }
-.mb32 { margin-bottom: 32px; }
-.mb48 { margin-bottom: 48px; }
-
-/* 감정 선택 도움말 모달 스타일 */
+/* 도움말 모달 */
 .help-modal {
     position: fixed;
     top: 0;
@@ -520,7 +607,7 @@ body.room-create .room-create-formview .container::after {
     background: white;
     border-radius: 16px;
     width: 90%;
-    max-width: 750px;
+    max-width: 700px;
     max-height: 85vh;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     animation: modalSlideIn 0.3s ease-out;
@@ -577,7 +664,7 @@ body.room-create .room-create-formview .container::after {
 }
 
 .help-section {
-    margin-bottom: 32px;
+    margin-bottom: 36px;
 }
 
 .help-section:last-child {
@@ -588,108 +675,33 @@ body.room-create .room-create-formview .container::after {
     font-size: 18px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-/* 감정 설명 */
-.emotion-explanation {
+.congrats-message {
     padding: 20px;
     background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
     border-radius: 12px;
     border-left: 4px solid #005792;
 }
 
-.emotion-explanation p {
-    margin: 0 0 12px 0;
+.congrats-message p {
+    margin: 0;
     line-height: 1.6;
     color: #333;
 }
 
-.emotion-explanation p:last-child {
-    margin-bottom: 0;
-}
-
-/* 감정 카테고리 */
-.emotion-categories {
-    display: grid;
-    gap: 20px;
-}
-
-.emotion-category {
-    padding: 20px;
-    border-radius: 12px;
-    border: 2px solid transparent;
-}
-
-.emotion-category.positive {
-    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-    border-color: #ff9800;
-}
-
-.emotion-category.healing {
-    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
-    border-color: #4caf50;
-}
-
-.emotion-category.sharing {
-    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-    border-color: #9c27b0;
-}
-
-.emotion-category h5 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 12px;
-}
-
-.emotion-tags-preview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 12px;
-}
-
-.preview-tag {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
-    color: white;
-}
-
-.preview-tag.positive {
-    background: #ff9800;
-}
-
-.preview-tag.healing {
-    background: #4caf50;
-}
-
-.preview-tag.sharing {
-    background: #9c27b0;
-}
-
-.emotion-description {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.5;
-    margin: 0;
-}
-
-/* 선택 팁 */
-.selection-tips {
+.checklist {
     display: grid;
     gap: 16px;
 }
 
-.tip-item {
+.checklist-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 16px;
     padding: 16px;
     background: #f8fafc;
@@ -697,7 +709,7 @@ body.room-create .room-create-formview .container::after {
     border-left: 3px solid #005792;
 }
 
-.tip-icon {
+.checklist-icon {
     font-size: 24px;
     width: 40px;
     height: 40px;
@@ -710,7 +722,69 @@ body.room-create .room-create-formview .container::after {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.tip-content strong {
+.checklist-text {
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.edit-tips {
+    display: grid;
+    gap: 20px;
+}
+
+.edit-tip {
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.edit-tip strong {
+    display: block;
+    color: #005792;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.edit-tip p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.after-registration {
+    display: grid;
+    gap: 20px;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 4px solid #005792;
+}
+
+.step-number {
+    background: #005792;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.step-content strong {
     display: block;
     color: #005792;
     font-weight: 600;
@@ -718,101 +792,11 @@ body.room-create .room-create-formview .container::after {
     margin-bottom: 6px;
 }
 
-.tip-content p {
+.step-content p {
     margin: 0;
     color: #666;
     font-size: 13px;
     line-height: 1.5;
-}
-
-/* 커스텀 태그 예시 */
-.custom-examples {
-    padding: 20px;
-    background: #f8fafc;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-}
-
-.custom-examples h5 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 16px;
-}
-
-.custom-tags-grid {
-    display: grid;
-    gap: 16px;
-    margin-bottom: 16px;
-}
-
-.custom-example h6 {
-    font-size: 13px;
-    font-weight: 600;
-    color: #005792;
-    margin-bottom: 8px;
-}
-
-.custom-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.custom-tag {
-    display: inline-block;
-    padding: 4px 8px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: 500;
-}
-
-.custom-tip {
-    color: #666;
-    font-size: 12px;
-    font-style: italic;
-    margin: 0;
-}
-
-/* 빠른 선택 */
-.quick-selection {
-    padding: 20px;
-    background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
-    border-radius: 12px;
-    border: 2px solid #005792;
-}
-
-.quick-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-    margin-bottom: 16px;
-}
-
-.quick-select-btn {
-    padding: 12px 16px;
-    background: linear-gradient(135deg, #005792 0%, #1976d2 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.quick-select-btn:hover {
-    background: linear-gradient(135deg, #004577 0%, #1565c0 100%);
-    transform: translateY(-1px);
-}
-
-.quick-tip {
-    color: #666;
-    font-size: 12px;
-    text-align: center;
-    margin: 0;
 }
 
 .help-modal-footer {
@@ -834,6 +818,90 @@ body.room-create .room-create-formview .container::after {
     color: #005792;
     font-size: 14px;
     font-weight: 500;
+}
+
+/* 성공 모달 */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+}
+
+.success-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.2);
+    animation: successModalShow 0.4s ease-out;
+}
+
+@keyframes successModalShow {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.success-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+    animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.success-modal-content h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #212121;
+    margin-bottom: 16px;
+}
+
+.success-modal-content p {
+    font-size: 16px;
+    color: #616161;
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+.success-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
 }
 
 /* 반응형 */
@@ -859,19 +927,27 @@ body.room-create .room-create-formview .container::after {
         float: none;
         width: 100%;
     }
-    
-    .emotion-tags-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 8px;
-    }
-    
-    .emotion-label {
-        padding: 10px 12px;
-        font-size: 13px;
-    }
 }
 
 @media (max-width: 768px) {
+    .destination-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .destination-image {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .success-buttons {
+        flex-direction: column;
+    }
+    
     .help-modal-content {
         width: 95%;
         margin: 20px;
@@ -898,21 +974,39 @@ body.room-create .room-create-formview .container::after {
         font-size: 16px;
     }
     
-    .tip-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-    }
-    
-    .tip-icon {
-        align-self: center;
-    }
-    
-    .quick-buttons {
-        grid-template-columns: 1fr;
-    }
-    
     .help-modal-footer {
         padding: 12px 20px 20px;
     }
+}-display {
+    padding: 24px;
+    background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+    border-radius: 12px;
+    border: 2px solid #ff9800;
+}
+
+.schedule-ranges {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.schedule-range-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(255, 152, 0, 0.1);
+}
+
+.schedule-icon {
+    font-size: 18px;
+}
+
+.schedule-date-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ef6c00;
+    flex: 1;
 }
