@@ -178,7 +178,6 @@ function exitWithSubmit(formId, canSubmit) {
     }
     
     // 기존 로직 실행 (있다면)
-    // 여기에 기존의 임시 저장 로직을 추가할 수 있습니다
     console.log('임시 저장:', selectedEmotions);
 }
 
@@ -274,4 +273,149 @@ function clearEmotionData() {
     localStorage.removeItem('selected_emotions_step2');
     sessionStorage.removeItem('selected_emotions_step2');
     localStorage.removeItem('temp_selected_emotions');
+}
+
+// 도움말 모달 열기
+function openHelpModal() {
+    const modal = document.getElementById('helpModal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+}
+
+// 도움말 모달 닫기
+function closeHelpModal() {
+    const modal = document.getElementById('helpModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // 배경 스크롤 복원
+}
+
+// ESC 키로 모달 닫기
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeHelpModal();
+    }
+});
+
+// 빠른 선택 기능
+function selectQuickEmotions(type) {
+    const emotionSets = {
+        'positive': ['행복', '즐거움', '설렘', '자신감'],
+        'healing': ['편안함', '차분함', '감동'],
+        'adventure': ['설렘', '자신감', '놀람'],
+        'comfort': ['연대감', '편안함', '감동']
+    };
+
+    // 기존 선택 해제
+    document.querySelectorAll('.emotion-checkbox:checked').forEach(checkbox => {
+        checkbox.checked = false;
+        removeEmotionTag(checkbox.value);
+    });
+
+    // 선택된 감정들 배열 초기화
+    selectedEmotions = [];
+
+    // 새로운 감정들 선택
+    if (emotionSets[type]) {
+        emotionSets[type].forEach(emotion => {
+            const checkbox = document.querySelector(`input[value="${emotion}"]`);
+            if (checkbox) {
+                checkbox.checked = true;
+                addEmotionTag(emotion, 'preset');
+            }
+        });
+    }
+
+    // UI 업데이트
+    updateSelectedEmotionsDisplay();
+    
+    // 모달 닫기
+    closeHelpModal();
+}
+
+// 감정 태그 추천 시스템 (선택사항)
+function recommendEmotions() {
+    // 현재 선택된 감정에 따라 추천
+    const recommendations = {
+        '행복': ['즐거움', '설렘'],
+        '슬픔': ['위로', '연대감'],
+        '스트레스': ['편안함', '차분함'],
+        '지침': ['힐링', '여유로움']
+    };
+    
+    // 현재 선택된 감정들을 기반으로 추천
+    const currentEmotions = selectedEmotions.map(e => e.text);
+    const suggested = [];
+    
+    currentEmotions.forEach(emotion => {
+        if (recommendations[emotion]) {
+            recommendations[emotion].forEach(rec => {
+                if (!currentEmotions.includes(rec) && !suggested.includes(rec)) {
+                    suggested.push(rec);
+                }
+            });
+        }
+    });
+    
+    return suggested;
+}
+
+// 입력 도우미 기능 (선택사항)
+function initializeInputHelper() {
+    const customInput = document.getElementById('customEmotionInput');
+    
+    // 인기 키워드 제안
+    const popularKeywords = [
+        '여유로움', '자유로움', '모험심', '호기심', 
+        '성취감', '만족감', '기대감', '설레임'
+    ];
+    
+    customInput.addEventListener('input', function() {
+        const value = this.value.toLowerCase();
+        if (value.length > 1) {
+            const suggestions = popularKeywords.filter(keyword => 
+                keyword.toLowerCase().includes(value)
+            );
+            
+            // 여기에 자동완성 UI를 추가할 수 있습니다
+            console.log('추천 키워드:', suggestions);
+        }
+    });
+}
+
+// 감정 통계 (선택사항)
+function getEmotionStats() {
+    const stats = {
+        total: selectedEmotions.length,
+        positive: selectedEmotions.filter(e => 
+            ['행복', '즐거움', '설렘', '자신감'].includes(e.text)
+        ).length,
+        healing: selectedEmotions.filter(e => 
+            ['편안함', '차분함', '감동'].includes(e.text)
+        ).length,
+        custom: selectedEmotions.filter(e => e.type === 'custom').length
+    };
+    
+    return stats;
+}
+
+// 감정 조합 검증 (선택사항)
+function validateEmotionCombination() {
+    const conflictingPairs = [
+        ['행복', '슬픔'],
+        ['차분함', '흥분'],
+        ['편안함', '스트레스']
+    ];
+    
+    const selectedTexts = selectedEmotions.map(e => e.text);
+    
+    for (let pair of conflictingPairs) {
+        if (selectedTexts.includes(pair[0]) && selectedTexts.includes(pair[1])) {
+            return {
+                valid: false,
+                message: `"${pair[0]}"과 "${pair[1]}"는 상반된 감정입니다. 정말 함께 선택하시겠습니까?`
+            };
+        }
+    }
+    
+    return { valid: true };
 }

@@ -13,6 +13,11 @@
     box-sizing: border-box;
 }
 
+body {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+}
+
 body.room-create .room-create-formview .container {
     width: 1080px;
 }
@@ -21,12 +26,15 @@ body.room-create .room-create-formview .container {
     margin: 0 auto;
 }
 
-/* 진행 상태 바 - 기존 스타일 유지 */
+/* 진행 상태 바 - 흰색 배경 박스 추가 */
 body.room-create .submit-progress {
     margin-right: 24px;
     float: left;
     width: 256px;
-    padding: 16px;
+    padding: 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 body.room-create .submit-progress .room-status-box {
@@ -141,17 +149,31 @@ body.room-create .submit-progress .input-group-status .status-sub-menu .status-s
     color: #fff;
     background-color: #bdbdbd;
     font-size: 10px;
-    padding: 2.5px 4.5px;
+    line-height: 14px;
+    text-align: center;
     margin-right: 20px;
     vertical-align: top;
     margin-top: 5px;
 }
 
-body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title .phase-complete-icon {
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.completed .phase-complete-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 20px;
+    vertical-align: top;
+    margin-top: 5px;
+}
+
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.completed .sub-menu-marker {
     display: none;
 }
 
-/* 폼 섹션 - 기존 스타일 적용 */
+body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title:not(.completed) .phase-complete-icon {
+    display: none;
+}
+
+/* 폼 섹션 */
 body.room-create .room-create-form-section {
     background-color: #fff;
     width: 800px;
@@ -236,7 +258,6 @@ body.room-create .room-create-form-section .form-input-section {
     color: red;
 }
 
-/* 감정 태그 그리드 - 기존 스타일 적용 */
 .form-group-guide {
     color: #616161;
     font-size: 14px;
@@ -247,6 +268,7 @@ body.room-create .room-create-form-section .form-input-section {
     color: #212121;
 }
 
+/* 감정 태그 그리드 */
 .emotion-tags-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -289,7 +311,7 @@ body.room-create .room-create-form-section .form-input-section {
     font-weight: 500;
 }
 
-/* 커스텀 입력 섹션 - 기존 스타일 적용 */
+/* 커스텀 입력 섹션 */
 .roomName-search-form {
     position: relative;
 }
@@ -341,7 +363,7 @@ body.room-create .room-create-form-section .form-input-section {
     color: #bdbdbd;
 }
 
-/* 선택된 감정 태그 표시 영역 - 기존 스타일에 맞춤 */
+/* 선택된 감정 태그 표시 영역 */
 .selected-emotions-container {
     margin-top: 24px;
     padding: 20px;
@@ -379,7 +401,7 @@ body.room-create .room-create-form-section .form-input-section {
 }
 
 .selected-emotion-tag.custom {
-    background: #3CC796;
+    background: #005792;
 }
 
 .emotion-tag-remove {
@@ -405,7 +427,6 @@ body.room-create .room-create-form-section .form-input-section {
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* 애니메이션 */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -417,7 +438,7 @@ body.room-create .room-create-form-section .form-input-section {
     }
 }
 
-/* 버튼 스타일 - 기존 스타일 적용 */
+/* 버튼 스타일 */
 body.room-create .room-create-form-section .form-section-footer {
     padding: 16px 32px;
     border-top: 1px solid #e0e0e0;
@@ -451,7 +472,7 @@ body.room-create .room-create-form-section .form-section-footer {
     cursor: not-allowed;
 }
 
-/* clearfix - 기존 스타일 */
+/* clearfix */
 body.room-create .room-create-form-section::after {
     content: "";
     display: table;
@@ -476,6 +497,350 @@ body.room-create .room-create-formview .container::after {
 .mb16 { margin-bottom: 16px; }
 .mb32 { margin-bottom: 32px; }
 .mb48 { margin-bottom: 48px; }
+
+/* 감정 선택 도움말 모달 스타일 */
+.help-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.help-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.help-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 750px;
+    max-height: 85vh;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: modalSlideIn 0.3s ease-out;
+    overflow-y: auto;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.help-modal-header {
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: white;
+    border-radius: 16px 16px 0 0;
+}
+
+.help-modal-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #005792;
+    margin: 0;
+    flex: 1;
+}
+
+.help-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.help-modal-close:hover {
+    background: #f5f5f5;
+}
+
+.help-modal-body {
+    padding: 24px;
+}
+
+.help-section {
+    margin-bottom: 32px;
+}
+
+.help-section:last-child {
+    margin-bottom: 0;
+}
+
+.help-section h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 감정 설명 */
+.emotion-explanation {
+    padding: 20px;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+    border-radius: 12px;
+    border-left: 4px solid #005792;
+}
+
+.emotion-explanation p {
+    margin: 0 0 12px 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+.emotion-explanation p:last-child {
+    margin-bottom: 0;
+}
+
+/* 감정 카테고리 */
+.emotion-categories {
+    display: grid;
+    gap: 20px;
+}
+
+.emotion-category {
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+}
+
+.emotion-category.positive {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border-color: #ff9800;
+}
+
+.emotion-category.healing {
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+    border-color: #4caf50;
+}
+
+.emotion-category.sharing {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    border-color: #9c27b0;
+}
+
+.emotion-category h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.emotion-tags-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.preview-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+}
+
+.preview-tag.positive {
+    background: #ff9800;
+}
+
+.preview-tag.healing {
+    background: #4caf50;
+}
+
+.preview-tag.sharing {
+    background: #9c27b0;
+}
+
+.emotion-description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 선택 팁 */
+.selection-tips {
+    display: grid;
+    gap: 16px;
+}
+
+.tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 3px solid #005792;
+}
+
+.tip-icon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 10px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tip-content strong {
+    display: block;
+    color: #005792;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.tip-content p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* 커스텀 태그 예시 */
+.custom-examples {
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.custom-examples h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.custom-tags-grid {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.custom-example h6 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #005792;
+    margin-bottom: 8px;
+}
+
+.custom-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.custom-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.custom-tip {
+    color: #666;
+    font-size: 12px;
+    font-style: italic;
+    margin: 0;
+}
+
+/* 빠른 선택 */
+.quick-selection {
+    padding: 20px;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+    border-radius: 12px;
+    border: 2px solid #005792;
+}
+
+.quick-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.quick-select-btn {
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #005792 0%, #1976d2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-select-btn:hover {
+    background: linear-gradient(135deg, #004577 0%, #1565c0 100%);
+    transform: translateY(-1px);
+}
+
+.quick-tip {
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+}
+
+.help-modal-footer {
+    padding: 16px 24px 24px;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 0;
+}
+
+.help-footer-info {
+    text-align: center;
+    padding: 16px;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+    border-radius: 12px;
+    border: 1px solid #bbdefb;
+}
+
+.help-footer-info p {
+    margin: 0;
+    color: #005792;
+    font-size: 14px;
+    font-weight: 500;
+}
 
 /* 반응형 */
 @media (max-width: 1200px) {
@@ -509,5 +874,51 @@ body.room-create .room-create-formview .container::after {
     .emotion-label {
         padding: 10px 12px;
         font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .help-modal-content {
+        width: 95%;
+        margin: 20px;
+        max-height: 90vh;
+    }
+    
+    .help-modal-header {
+        padding: 16px 20px 12px;
+    }
+    
+    .help-modal-header h3 {
+        font-size: 18px;
+    }
+    
+    .help-modal-body {
+        padding: 16px 20px;
+    }
+    
+    .help-section {
+        margin-bottom: 24px;
+    }
+    
+    .help-section h4 {
+        font-size: 16px;
+    }
+    
+    .tip-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .tip-icon {
+        align-self: center;
+    }
+    
+    .quick-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .help-modal-footer {
+        padding: 12px 20px 20px;
     }
 }

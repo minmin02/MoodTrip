@@ -4,15 +4,7 @@
     <meta charset="UTF-8">
     <title>무드트립 : 동행자 매칭 방 만들기 일정 선택</title>
     <link rel="stylesheet" href="/static/css/creatingRoom/choosing-schedule.css">
-    <script src = "/static/js/creatingRoom/choosing-schedule.js">
-    </script>
-</head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>무드트립 : 동행자 매칭 방 만들기 일정 선택</title>
-    <link rel="stylesheet" href="choosing-schedule.css">
+    <script src="/static/js/creatingRoom/choosing-schedule.js"></script>
 </head>
 <body class="room-create phase-4">
     <div class="big-frame">
@@ -66,7 +58,7 @@
                     <div class="room-create-form-section">
                         <div class="form-section-header">
                             <p class="form-section-title subtitle-1">일정 선택</p>
-                            <button class="room-form-guide-button header-button btn btn-8-16" type="button">
+                            <button class="room-form-guide-button header-button btn btn-8-16" type="button" onclick="openHelpModal()">
                                 <img class="room-form-guide-button-img" src="/static/image/creatingRoom/question.svg">
                                 도움말
                             </button>
@@ -93,156 +85,7 @@
 
                                 <!-- 달력 그리드 - 기본 3개월 표시 -->
                                 <div class="calendar-grid mb32" id="calendarGrid">
-                                    <div class="calendar-month" data-month="2025-07">
-                                        <div class="calendar-header">7월</div>
-                                        <div class="calendar-weekdays">
-                                            <div class="weekday">일</div>
-                                            <div class="weekday">월</div>
-                                            <div class="weekday">화</div>
-                                            <div class="weekday">수</div>
-                                            <div class="weekday">목</div>
-                                            <div class="weekday">금</div>
-                                            <div class="weekday">토</div>
-                                        </div>
-                                        <div class="calendar-days">
-                                            <div class="day prev-month">29</div>
-                                            <div class="day prev-month">30</div>
-                                            <div class="day">1</div>
-                                            <div class="day">2</div>
-                                            <div class="day">3</div>
-                                            <div class="day">4</div>
-                                            <div class="day">5</div>
-                                            <div class="day">6</div>
-                                            <div class="day">7</div>
-                                            <div class="day">8</div>
-                                            <div class="day">9</div>
-                                            <div class="day">10</div>
-                                            <div class="day">11</div>
-                                            <div class="day">12</div>
-                                            <div class="day">13</div>
-                                            <div class="day">14</div>
-                                            <div class="day">15</div>
-                                            <div class="day">16</div>
-                                            <div class="day">17</div>
-                                            <div class="day">18</div>
-                                            <div class="day">19</div>
-                                            <div class="day">20</div>
-                                            <div class="day">21</div>
-                                            <div class="day">22</div>
-                                            <div class="day">23</div>
-                                            <div class="day">24</div>
-                                            <div class="day">25</div>
-                                            <div class="day">26</div>
-                                            <div class="day">27</div>
-                                            <div class="day">28</div>
-                                            <div class="day">29</div>
-                                            <div class="day">30</div>
-                                            <div class="day">31</div>
-                                            <div class="day next-month">1</div>
-                                            <div class="day next-month">2</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="calendar-month" data-month="2025-08">
-                                        <div class="calendar-header">8월</div>
-                                        <div class="calendar-weekdays">
-                                            <div class="weekday">일</div>
-                                            <div class="weekday">월</div>
-                                            <div class="weekday">화</div>
-                                            <div class="weekday">수</div>
-                                            <div class="weekday">목</div>
-                                            <div class="weekday">금</div>
-                                            <div class="weekday">토</div>
-                                        </div>
-                                        <div class="calendar-days">
-                                            <div class="day prev-month">27</div>
-                                            <div class="day prev-month">28</div>
-                                            <div class="day prev-month">29</div>
-                                            <div class="day prev-month">30</div>
-                                            <div class="day prev-month">31</div>
-                                            <div class="day">1</div>
-                                            <div class="day">2</div>
-                                            <div class="day">3</div>
-                                            <div class="day">4</div>
-                                            <div class="day">5</div>
-                                            <div class="day">6</div>
-                                            <div class="day">7</div>
-                                            <div class="day">8</div>
-                                            <div class="day">9</div>
-                                            <div class="day">10</div>
-                                            <div class="day">11</div>
-                                            <div class="day">12</div>
-                                            <div class="day">13</div>
-                                            <div class="day">14</div>
-                                            <div class="day">15</div>
-                                            <div class="day">16</div>
-                                            <div class="day">17</div>
-                                            <div class="day">18</div>
-                                            <div class="day">19</div>
-                                            <div class="day">20</div>
-                                            <div class="day">21</div>
-                                            <div class="day">22</div>
-                                            <div class="day">23</div>
-                                            <div class="day">24</div>
-                                            <div class="day">25</div>
-                                            <div class="day">26</div>
-                                            <div class="day">27</div>
-                                            <div class="day">28</div>
-                                            <div class="day">29</div>
-                                            <div class="day">30</div>
-                                            <div class="day">31</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="calendar-month" data-month="2025-09">
-                                        <div class="calendar-header">9월</div>
-                                        <div class="calendar-weekdays">
-                                            <div class="weekday">일</div>
-                                            <div class="weekday">월</div>
-                                            <div class="weekday">화</div>
-                                            <div class="weekday">수</div>
-                                            <div class="weekday">목</div>
-                                            <div class="weekday">금</div>
-                                            <div class="weekday">토</div>
-                                        </div>
-                                        <div class="calendar-days">
-                                            <div class="day">1</div>
-                                            <div class="day">2</div>
-                                            <div class="day">3</div>
-                                            <div class="day">4</div>
-                                            <div class="day">5</div>
-                                            <div class="day">6</div>
-                                            <div class="day">7</div>
-                                            <div class="day">8</div>
-                                            <div class="day">9</div>
-                                            <div class="day">10</div>
-                                            <div class="day">11</div>
-                                            <div class="day">12</div>
-                                            <div class="day">13</div>
-                                            <div class="day">14</div>
-                                            <div class="day">15</div>
-                                            <div class="day">16</div>
-                                            <div class="day">17</div>
-                                            <div class="day">18</div>
-                                            <div class="day">19</div>
-                                            <div class="day">20</div>
-                                            <div class="day">21</div>
-                                            <div class="day">22</div>
-                                            <div class="day">23</div>
-                                            <div class="day">24</div>
-                                            <div class="day">25</div>
-                                            <div class="day">26</div>
-                                            <div class="day">27</div>
-                                            <div class="day">28</div>
-                                            <div class="day">29</div>
-                                            <div class="day">30</div>
-                                            <div class="day next-month">1</div>
-                                            <div class="day next-month">2</div>
-                                            <div class="day next-month">3</div>
-                                            <div class="day next-month">4</div>
-                                            <div class="day next-month">5</div>
-                                        </div>
-                                    </div>
+                                    <!-- 동적으로 생성됨 -->
                                 </div>
 
                                 <!-- 단일 월 표시용 달력 (처음엔 숨김) -->
@@ -275,6 +118,109 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 도움말 모달 -->
+    <div id="helpModal" class="help-modal" style="display: none;">
+        <div class="help-modal-overlay" onclick="closeHelpModal()"></div>
+        <div class="help-modal-content">
+            <div class="help-modal-header">
+                <h3>일정 선택 도움말</h3>
+                <button class="help-modal-close" onclick="closeHelpModal()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="#666" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="help-modal-body">
+                <div class="help-section">
+                    <h4>📅 날짜 선택 방법</h4>
+                    <div class="help-step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <p><strong>시작일과 종료일 선택</strong></p>
+                            <p>달력에서 여행 시작일을 클릭하고, 이어서 종료일을 클릭하세요.</p>
+                        </div>
+                    </div>
+                    <div class="help-step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <p><strong>날짜 범위 추가</strong></p>
+                            <p>"추가" 버튼을 눌러 선택한 날짜를 확정하세요.</p>
+                        </div>
+                    </div>
+                    <div class="help-step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <p><strong>여러 구간 선택</strong></p>
+                            <p>평일만 또는 주말만 선택하고 싶다면 1-2단계를 반복하세요.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h4>💡 이런 경우에 활용하세요</h4>
+                    <div class="help-examples">
+                        <div class="example-item">
+                            <div class="example-icon">🏢</div>
+                            <div class="example-text">
+                                <strong>평일 여행</strong>
+                                <p>월-금요일만 선택해서 주말 제외</p>
+                            </div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🎉</div>
+                            <div class="example-text">
+                                <strong>주말 여행</strong>
+                                <p>토-일요일만 선택해서 연속 주말 여행</p>
+                            </div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">📚</div>
+                            <div class="example-text">
+                                <strong>연휴 활용</strong>
+                                <p>공휴일 앞뒤로 분리해서 선택</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h4>🎯 색상 가이드</h4>
+                    <div class="color-guide">
+                        <div class="color-item">
+                            <div class="color-box current-selection"></div>
+                            <span>현재 선택 중인 날짜</span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-box added-selection"></div>
+                            <span>추가 완료된 날짜</span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-box disabled-date"></div>
+                            <span>선택 불가능한 날짜</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h4>⚠️ 주의사항</h4>
+                    <ul class="help-tips">
+                        <li>겹치는 날짜는 선택할 수 없습니다</li>
+                        <li>이미 추가된 날짜는 개별 삭제 가능합니다</li>
+                        <li>최소 1개 이상의 날짜 범위를 선택해야 합니다</li>
+                        <li>자세한 일정은 매칭 후 동행자와 조율 가능합니다</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="help-modal-footer">
+                <div class="help-footer-info">
+                    <p>💬 더 궁금한 점이 있으시면 고객센터로 문의해주세요</p>
+                </div>
             </div>
         </div>
     </div>
