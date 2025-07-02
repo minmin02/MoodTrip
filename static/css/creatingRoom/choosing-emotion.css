@@ -395,7 +395,7 @@ body.room-create .room-create-form-section .form-input-section {
 }
 
 .selected-emotion-tag.custom {
-    background: #005792;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .emotion-tag-remove {
