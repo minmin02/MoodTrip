@@ -441,19 +441,134 @@ function showErrorMessage(message) {
     alert(message); // 실제로는 더 예쁜 토스트나 모달을 사용
 }
 
-// 수정하기 버튼
+// ✨ 수정하기 버튼 - 모달 표시
 function editRoom() {
-    if (confirm('이전 단계로 돌아가서 수정하시겠습니까?\n현재 입력한 방 이름과 소개는 저장됩니다.')) {
-        // 현재 입력 내용 저장
-        const roomName = document.getElementById('roomNameInput').value.trim();
-        const roomIntro = document.getElementById('roomIntroTextarea').value.trim();
-        
-        if (roomName) localStorage.setItem('room_name', roomName);
-        if (roomIntro) localStorage.setItem('room_intro', roomIntro);
-        
-        // 이전 단계로 이동
-        window.location.href = '/templates/creatingRoom/choosing-schedule.html';
+    // 현재 입력 내용 임시 저장
+    const roomName = document.getElementById('roomNameInput').value.trim();
+    const roomIntro = document.getElementById('roomIntroTextarea').value.trim();
+    
+    if (roomName) localStorage.setItem('temp_room_name', roomName);
+    if (roomIntro) localStorage.setItem('temp_room_intro', roomIntro);
+    
+    // 수정 선택 모달 열기
+    openEditSelectionModal();
+}
+
+// ✨ 수정 선택 모달 열기
+function openEditSelectionModal() {
+    const modal = document.getElementById('editSelectionModal');
+    if (modal) {
+        // 모달 표시 전에 미리보기 데이터 업데이트
+        updateEditModalPreviews();
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
+}
+
+// ✨ 수정 모달의 미리보기 데이터 업데이트
+function updateEditModalPreviews() {
+    // 인원 미리보기
+    const peoplePreview = document.getElementById('editPeoplePreview');
+    if (peoplePreview) {
+        const people = finalRoomData.people || getPeopleData();
+        peoplePreview.textContent = people;
+    }
+    
+    // 감정 태그 미리보기
+    const emotionsPreview = document.getElementById('editEmotionsPreview');
+    if (emotionsPreview) {
+        const emotions = finalRoomData.emotions || getEmotionsData();
+        if (emotions && emotions.length > 0) {
+            emotionsPreview.textContent = `${emotions.length}개 선택됨`;
+        } else {
+            emotionsPreview.textContent = '선택 안됨';
+        }
+    }
+    
+    // 여행지 미리보기
+    const destinationPreview = document.getElementById('editDestinationPreview');
+    if (destinationPreview) {
+        const destination = finalRoomData.destination || getDestinationData();
+        if (destination && destination.name) {
+            destinationPreview.textContent = destination.name;
+        } else {
+            destinationPreview.textContent = '선택 안됨';
+        }
+    }
+    
+    // 일정 미리보기
+    const schedulePreview = document.getElementById('editSchedulePreview');
+    if (schedulePreview) {
+        const schedule = finalRoomData.schedule || getScheduleData();
+        if (schedule && schedule.totalDays) {
+            const nights = schedule.totalDays - 1;
+            schedulePreview.textContent = `${nights}박 ${schedule.totalDays}일`;
+        } else if (schedule && schedule.dateRanges && schedule.dateRanges.length > 0) {
+            const totalDays = calculateTotalDays(schedule.dateRanges);
+            const nights = totalDays - 1;
+            schedulePreview.textContent = `${nights}박 ${totalDays}일`;
+        } else {
+            schedulePreview.textContent = '선택 안됨';
+        }
+    }
+}
+
+// ✨ 수정 선택 모달 닫기
+function closeEditSelectionModal() {
+    const modal = document.getElementById('editSelectionModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// ✨ 특정 단계로 이동
+function goToEditStep(stepNumber) {
+    const stepUrls = {
+        1: '/templates/creatingRoom/creatingRoom-detail.html',     // 기본 정보
+        2: '/templates/creatingRoom/choosing-emotion.html',        // 감정 선택
+        3: '/templates/creatingRoom/choosing-destination.html',    // 여행지 선택
+        4: '/templates/creatingRoom/choosing-schedule.html'        // 일정 선택
+    };
+    
+    const stepNames = {
+        1: '기본 정보',
+        2: '감정 선택',
+        3: '여행지 선택',
+        4: '일정 선택'
+    };
+    
+    if (stepUrls[stepNumber]) {
+        // 사용자에게 확인
+        if (confirm(`${stepNames[stepNumber]} 수정 페이지로 이동하시겠습니까?\n현재 입력한 내용은 임시 저장됩니다.`)) {
+            // 현재 입력 내용 저장
+            saveCurrentInputs();
+            
+            // 해당 단계로 이동
+            window.location.href = stepUrls[stepNumber];
+        }
+        
+        // 모달 닫기
+        closeEditSelectionModal();
+    } else {
+        alert('잘못된 단계입니다.');
+    }
+}
+
+// ✨ 현재 입력 내용 저장
+function saveCurrentInputs() {
+    const roomNameInput = document.getElementById('roomNameInput');
+    const roomIntroTextarea = document.getElementById('roomIntroTextarea');
+    
+    if (roomNameInput && roomNameInput.value.trim()) {
+        localStorage.setItem('temp_room_name', roomNameInput.value.trim());
+    }
+    
+    if (roomIntroTextarea && roomIntroTextarea.value.trim()) {
+        localStorage.setItem('temp_room_intro', roomIntroTextarea.value.trim());
+    }
+    
+    console.log('현재 입력 내용이 임시 저장되었습니다.');
 }
 
 // 이전 페이지로 돌아가기
@@ -471,15 +586,230 @@ function goToPreviousPage() {
 
 // 내 방 보기로 이동
 function goToMyRooms() {
-    window.location.href = '/my-rooms'; // 실제 내 방 목록 페이지로 이동
+    window.location.href = "/templates/mypage/my-matching.html"; // 실제 내 방 목록 페이지로 이동
 }
 
 // 새 방 만들기
 function createNewRoom() {
-    if (confirm('새로운 방을 만드시겠습니까?')) {
+    if (confirm('새로운 방을 만드시겠습니까?\n현재 입력된 모든 정보가 삭제됩니다.')) {
+        // 모든 데이터 완전 초기화
         clearAllStoredData();
-        window.location.href = '/templates/creatingRoom/creating-room-detail.html';
+        
+        // 추가로 다른 가능한 저장소도 정리
+        clearAdditionalStorageData();
+        
+        // 성공 모달 닫기 (혹시 열려있다면)
+        const successModal = document.getElementById('successModal');
+        if (successModal) {
+            successModal.style.display = 'none';
+        }
+        
+        // 페이지 이동 전 로딩 표시 (선택사항)
+        showNewRoomCreationLoading();
+        
+        // 새 방 만들기 플래그 설정
+        sessionStorage.setItem('from_new_room_creation', 'true');
+        
+        setTimeout(() => {
+            // 첫 번째 단계(기본 정보 입력)로 이동 - URL 파라미터 추가
+            window.location.href = '/templates/creatingRoom/creatingRoom-detail.html?new=true';
+        }, 500); // 약간의 지연으로 사용자가 초기화를 인지할 수 있도록
     }
+}
+
+// ✨ 추가 저장소 데이터 정리 (더 완전한 초기화)
+function clearAdditionalStorageData() {
+    // 혹시 놓친 임시 데이터들도 정리
+    const additionalKeys = [
+        // 각 단계별 임시 데이터
+        'temp_people_selection',
+        'temp_emotion_selection', 
+        'temp_destination_selection',
+        'temp_schedule_selection',
+        
+        // 폼 상태 관련
+        'form_step_status',
+        'current_form_step',
+        'form_validation_state',
+        
+        // 사용자 입력 히스토리
+        'room_name_history',
+        'room_intro_history',
+        
+        // 기타 캐시 데이터
+        'cached_destination_list',
+        'cached_emotion_tags',
+        'user_preferences',
+        
+        // 진행 상태 관련
+        'room_creation_progress',
+        'step_completion_status'
+    ];
+    
+    additionalKeys.forEach(key => {
+        localStorage.removeItem(key);
+        sessionStorage.removeItem(key);
+    });
+    
+    // IndexedDB 정리 (만약 사용 중이라면)
+    clearIndexedDBData();
+    
+    console.log('모든 추가 저장소 데이터가 정리되었습니다.');
+}
+
+// ✨ IndexedDB 데이터 정리 (고급 기능)
+function clearIndexedDBData() {
+    try {
+        // IndexedDB 정리 (비동기)
+        const dbNames = ['roomCreationDB', 'userPreferencesDB', 'tempDataDB'];
+        
+        dbNames.forEach(dbName => {
+            const deleteReq = indexedDB.deleteDatabase(dbName);
+            deleteReq.onsuccess = () => {
+                console.log(`${dbName} 데이터베이스가 삭제되었습니다.`);
+            };
+            deleteReq.onerror = () => {
+                console.log(`${dbName} 데이터베이스 삭제 중 오류가 발생했습니다.`);
+            };
+        });
+    } catch (error) {
+        console.log('IndexedDB 정리 중 오류:', error);
+    }
+}
+
+// ✨ 새 방 생성 로딩 표시
+function showNewRoomCreationLoading() {
+    // 기존 모달들 모두 숨기기
+    const modals = document.querySelectorAll('.success-modal, .edit-selection-modal, .help-modal');
+    modals.forEach(modal => {
+        modal.style.display = 'none';
+    });
+    
+    // 로딩 오버레이 생성
+    const loadingOverlay = document.createElement('div');
+    loadingOverlay.id = 'newRoomLoadingOverlay';
+    loadingOverlay.innerHTML = `
+        <div class="loading-overlay-background"></div>
+        <div class="loading-content">
+            <div class="loading-spinner-new">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <div class="loading-text">
+                <h3>새로운 방 만들기 준비 중...</h3>
+                <p>모든 정보를 초기화하고 있습니다</p>
+            </div>
+        </div>
+    `;
+    
+    // 스타일 추가
+    loadingOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
+    
+    // 페이지에 추가
+    document.body.appendChild(loadingOverlay);
+    document.body.style.overflow = 'hidden';
+}
+
+// ✨ 개선된 모든 저장된 데이터 정리
+function clearAllStoredData() {
+    // 기본 방 생성 관련 데이터
+    const basicKeys = [
+        'selected_people',
+        'room_name', 
+        'room_intro',
+        'selected_emotions_step2',
+        'selected_destination_step3',
+        'selected_schedule_step4',
+        'room_creation_data',
+        'final_room_submission'
+    ];
+    
+    // 임시 저장 데이터
+    const tempKeys = [
+        'temp_room_name',
+        'temp_room_intro', 
+        'temp_selected_people',
+        'temp_selected_emotions',
+        'temp_selected_destination',
+        'temp_selected_schedule'
+    ];
+    
+    // 모든 키 합치기
+    const allKeys = [...basicKeys, ...tempKeys];
+    
+    // localStorage와 sessionStorage에서 삭제
+    allKeys.forEach(key => {
+        localStorage.removeItem(key);
+        sessionStorage.removeItem(key);
+    });
+    
+    // 메모리상의 데이터도 초기화
+    finalRoomData = {};
+    
+    // 쿠키 정리 (필요시)
+    clearRoomCreationCookies();
+    
+    console.log('=== 데이터 초기화 완료 ===');
+    console.log('삭제된 localStorage 항목:', allKeys.length);
+    console.log('초기화된 메모리 데이터: finalRoomData');
+    console.log('========================');
+}
+
+// ✨ 방 생성 관련 쿠키 정리
+function clearRoomCreationCookies() {
+    const cookiesToClear = [
+        'room_creation_session',
+        'user_preferences',
+        'form_auto_save',
+        'step_progress'
+    ];
+    
+    cookiesToClear.forEach(cookieName => {
+        // 쿠키 삭제 (만료일을 과거로 설정)
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+    });
+}
+
+// ✨ 초기화 확인 함수 (디버깅용)
+function verifyDataClearing() {
+    console.log('=== 데이터 초기화 검증 ===');
+    
+    // localStorage 확인
+    const remainingLocalStorage = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && (key.includes('room') || key.includes('temp') || key.includes('selected'))) {
+            remainingLocalStorage.push(key);
+        }
+    }
+    
+    // sessionStorage 확인  
+    const remainingSessionStorage = [];
+    for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
+        if (key && (key.includes('room') || key.includes('temp') || key.includes('selected'))) {
+            remainingSessionStorage.push(key);
+        }
+    }
+    
+    console.log('남은 localStorage 항목:', remainingLocalStorage);
+    console.log('남은 sessionStorage 항목:', remainingSessionStorage);
+    console.log('finalRoomData 상태:', finalRoomData);
+    console.log('========================');
+    
+    return remainingLocalStorage.length === 0 && remainingSessionStorage.length === 0;
 }
 
 // 모든 저장된 데이터 정리
@@ -531,6 +861,7 @@ function closeHelpModal() {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeHelpModal();
+        closeEditSelectionModal(); // ✨ 수정 모달도 ESC로 닫기
     }
 });
 
@@ -790,3 +1121,49 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 100);
 });
+
+/*
+// 실제 서버 연동 시 에러 처리
+function submitRoom() {
+    if (!validateFinalData()) {
+        return;
+    }
+    
+    setSubmitButtonLoading(true);
+    const submitData = prepareFinalSubmitData();
+    
+    // 실제 서버 요청
+    fetch('/api/rooms/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCsrfToken() // Django인 경우
+        },
+        body: JSON.stringify(submitData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`서버 오류: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('서버 응답:', data);
+        showSuccessModal();
+        clearAllStoredData();
+    })
+    .catch(error => {
+        console.error('제출 실패:', error);
+        
+        // 사용자 친화적인 에러 메시지
+        if (error.message.includes('Failed to fetch')) {
+            showErrorMessage('서버에 연결할 수 없습니다. 네트워크 상태를 확인해주세요.');
+        } else {
+            showErrorMessage('방 등록에 실패했습니다. 다시 시도해주세요.');
+        }
+    })
+    .finally(() => {
+        setSubmitButtonLoading(false);
+    });
+}
+*/

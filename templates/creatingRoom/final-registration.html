@@ -257,5 +257,94 @@
             </div>
         </div>
     </div>
+    <div id="editSelectionModal" class="edit-selection-modal" style="display: none;">
+    <div class="edit-modal-overlay" onclick="closeEditSelectionModal()"></div>
+    <div class="edit-modal-content">
+        <div class="edit-modal-header">
+            <h3>어느 단계를 수정하시겠습니까?</h3>
+            <button class="edit-modal-close" onclick="closeEditSelectionModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="#666" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="edit-modal-body">
+            <div class="edit-option-grid">
+                <!-- 기본 정보 수정 -->
+                <div class="edit-option-card" onclick="goToEditStep(1)">
+                    <div class="edit-option-icon">
+                        <img src="/static/image/creatingRoom/twopeople.svg" alt="기본정보" width="40" height="40">
+                    </div>
+                    <div class="edit-option-content">
+                        <h4>기본 정보</h4>
+                        <p>인원수, 방 이름, 방 소개</p>
+                        <div class="edit-option-status">
+                            <span class="current-value">현재: <span id="editPeoplePreview">2명</span></span>
+                        </div>
+                    </div>
+                    <div class="edit-option-arrow">→</div>
+                </div>
+
+                <!-- 감정 선택 수정 -->
+                <div class="edit-option-card" onclick="goToEditStep(2)">
+                    <div class="edit-option-icon">
+                        <span class="emotion-emoji">😊</span>
+                    </div>
+                    <div class="edit-option-content">
+                        <h4>감정 선택</h4>
+                        <p>여행 감정 태그</p>
+                        <div class="edit-option-status">
+                            <span class="current-value">현재: <span id="editEmotionsPreview">3개 선택됨</span></span>
+                        </div>
+                    </div>
+                    <div class="edit-option-arrow">→</div>
+                </div>
+
+                <!-- 여행지 선택 수정 -->
+                <div class="edit-option-card" onclick="goToEditStep(3)">
+                    <div class="edit-option-icon">
+                        <span class="destination-emoji">🗺️</span>
+                    </div>
+                    <div class="edit-option-content">
+                        <h4>여행지 선택</h4>
+                        <p>관광지 및 목적지</p>
+                        <div class="edit-option-status">
+                            <span class="current-value">현재: <span id="editDestinationPreview">제주도</span></span>
+                        </div>
+                    </div>
+                    <div class="edit-option-arrow">→</div>
+                </div>
+
+                <!-- 일정 선택 수정 -->
+                <div class="edit-option-card" onclick="goToEditStep(4)">
+                    <div class="edit-option-icon">
+                        <span class="schedule-emoji">📅</span>
+                    </div>
+                    <div class="edit-option-content">
+                        <h4>일정 선택</h4>
+                        <p>여행 날짜 및 기간</p>
+                        <div class="edit-option-status">
+                            <span class="current-value">현재: <span id="editSchedulePreview">3박 4일</span></span>
+                        </div>
+                    </div>
+                    <div class="edit-option-arrow">→</div>
+                </div>
+            </div>
+
+            <div class="edit-modal-notice">
+                <div class="notice-icon">💡</div>
+                <div class="notice-text">
+                    <strong>안내사항</strong><br>
+                    수정 페이지로 이동하면 현재 입력한 내용은 임시 저장됩니다.
+                </div>
+            </div>
+        </div>
+        
+        <div class="edit-modal-footer">
+            <button class="btn btn-white-border btn-11-24" onclick="closeEditSelectionModal()">취소</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
