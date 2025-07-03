@@ -1,5 +1,4 @@
-// 방 입장 요청 관리 JavaScript - 퍼블리싱용 (UI 인터랙션만)
-
+// 방 입장 요청 관리 
 document.addEventListener('DOMContentLoaded', function() {
     // UI 초기화
     initializeFilters();
@@ -11,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * 필터 기능 초기화 (UI만)
+ * 필터 기능 초기화 
  */
 function initializeFilters() {
     const roomFilter = document.getElementById('room-filter');
@@ -22,7 +21,7 @@ function initializeFilters() {
 }
 
 /**
- * 검색 기능 초기화 (UI만)
+ * 검색 기능 초기화
  */
 function initializeSearch() {
     const searchInput = document.getElementById('search-requests');
@@ -38,7 +37,7 @@ function initializeSearch() {
 }
 
 /**
- * 대량 작업 버튼 초기화 (UI만)
+ * 대량 작업 버튼 초기화 
  */
 function initializeBulkActions() {
     const approveAllBtn = document.getElementById('approve-all-btn');
@@ -69,7 +68,7 @@ function initializeBulkActions() {
 }
 
 /**
- * 개별 요청 액션 버튼 초기화 (UI만)
+ * 개별 요청 액션 버튼 초기화 
  */
 function initializeRequestActions() {
     // 승인 버튼 이벤트
@@ -92,7 +91,7 @@ function initializeRequestActions() {
 }
 
 /**
- * 모달 초기화 (UI만)
+ * 모달 초기화
  */
 function initializeModals() {
     const modal = document.getElementById('confirmModal');
@@ -119,7 +118,7 @@ function initializeModals() {
 }
 
 /**
- * 필터 적용 (UI 표시/숨김만)
+ * 필터 적용 
  */
 function applyFilters() {
     const roomFilter = document.getElementById('room-filter').value;
@@ -180,7 +179,7 @@ function applyFilters() {
 }
 
 /**
- * 검색 결과 없음 표시 (UI만)
+ * 검색 결과 없음 표시
  */
 function showNoResultsIfNeeded(show) {
     let noResultsDiv = document.getElementById('no-results');
@@ -204,7 +203,7 @@ function showNoResultsIfNeeded(show) {
 }
 
 /**
- * 요청 선택 토글 (UI만)
+ * 요청 선택 토글 
  */
 function toggleRequestSelection(checkbox) {
     const requestItem = checkbox.closest('.request-item-detailed');
@@ -216,7 +215,7 @@ function toggleRequestSelection(checkbox) {
 }
 
 /**
- * 대량 작업 버튼 상태 업데이트 (UI만)
+ * 대량 작업 버튼 상태 업데이트 
  */
 function updateBulkButtonStates() {
     const checkedBoxes = document.querySelectorAll('.request-select:checked');
@@ -229,7 +228,7 @@ function updateBulkButtonStates() {
 }
 
 /**
- * 모든 요청 승인 처리 (UI만 - 확인 모달 표시)
+ * 모든 요청 승인 처리
  */
 function handleApproveAll() {
     const selectedRequests = document.querySelectorAll('.request-select:checked');
@@ -482,7 +481,7 @@ function updateStats() {
 }
 
 /**
- * 대기 건수 업데이트 (UI만)
+ * 대기 건수 업데이트
  */
 function updateWaitingCounts() {
     // 백엔드 작업: 각 방별 대기 중인 요청 수 계산
