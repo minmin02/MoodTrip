@@ -36,17 +36,17 @@
         column-gap: 1.5rem;
     }
 }
-.py-8 {
+.py-left {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
-.gap-10 {
+.gap-left {
     gap: 2.5rem;
 }
-.justify-start {
+.left-justify-start {
     justify-content: flex-start;
 }
-.items-start {
+.left-items-start {
     align-items: flex-start;
 }
 .flex-col {
@@ -81,7 +81,7 @@
     box-sizing: border-box;
     border: 0 solid #e5e7eb;
 }
-*, :after, :before {
+*, ::after, ::before {
     --tw-border-spacing-x: 0;
     --tw-border-spacing-y: 0;
     --tw-translate-x: 0;
@@ -146,10 +146,10 @@
     --tw-text-opacity: 1;
     color: rgb(33 33 33 / var(--tw-text-opacity, 1));
 }
-.tracking-default {
+.textbox {
     letter-spacing: .48px;
 }
-.whitespace-pre {
+.introduce-title {
     white-space: pre;
 }
 .grid-in-welcome {
@@ -182,7 +182,7 @@ img[Attributes Style] {
 
 /*로그인박스*/
 
-.grid-in-form {
+.right-grid-in-form {
     grid-area: form;
 }
 .box-border {
@@ -224,12 +224,12 @@ img[Attributes Style] {
         box-sizing: border-box;
     }
 }
-.bg-w-white {
+.right-bg-w-white {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.h-full {
+.h-right-full {
     height: 100%;
 }
 
@@ -239,11 +239,11 @@ img[Attributes Style] {
         display: block;
     }
 }
-.typo-title3 {
+.typo-login-title {
     font-size: 24px;
     line-height: 36px;
 }
-.mb-8 {
+.mb-8-login-title {
     margin-bottom: 2rem;
 }
 
@@ -252,22 +252,22 @@ img[Attributes Style] {
 /* 로그인박스 정렬*/
 
 
-.justify-center {
+.right-justify-center {
     justify-content: center;
 }
-.items-center {
+.right-items-center {
     align-items: center;
 }
 
 
-.pb-6 {
+.pb-input {
     padding-bottom: 1.5rem;
 }
-.gap-6 {
+.gap-input {
     gap: 1.5rem;
 }
 
-.gap-2 {
+.gap-input-2 {
     gap: .5rem;
 }
 
@@ -281,14 +281,11 @@ img[Attributes Style] {
     min-width: fit-content;
 }
 
-.cursor-text {
+.input-text {
     cursor: text;
 }
-.py-\[11px\] {
-    padding-top: 11px;
-    padding-bottom: 11px;
-}
-.px-4 {
+
+.px-input-loginBtn {
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -314,6 +311,8 @@ img[Attributes Style] {
 .gap-0\.5 {
     gap: .125rem;
 }
+
+/*html에서 안 보이는데 빼면 스타일이 바뀜 이건 먼지?*/
 .h-\[42px\] {
     height: 42px;
 }
@@ -325,7 +324,7 @@ img[Attributes Style] {
     font-size: 16px;
     line-height: 26px;
 }
-.duration-300 {
+.id-pw-textbox {
     transition-duration: .3s;
 }
 
@@ -382,21 +381,21 @@ button, input, optgroup, select, textarea {
     user-select: none;
 }
 
-.min-w-fit {
+.min-w-fit-input {
     min-width: -moz-fit-content;
     min-width: fit-content;
 }
 .border {
     border-width: 1px;
 }
-.rounded-xl {
+.text-rounded-xl {
     border-radius: .75rem;
 }
 
 .overflow-hidden {
     overflow: hidden;
 }
-.gap-3 {
+.gap-input-chk {
     gap: .75rem;
 }
 
@@ -427,15 +426,16 @@ svg {
 }
 
 /*로그인 상태유지,비밀번호찾기 */
-
-.pb-8 {
+.chkBox-gap-loginBtn{
     padding-bottom: 2rem;
 }
+
+
 .justify-between {
     justify-content: space-between;
 }
 
-.size-fit {
+.size-chkBox-fit{
     width: fit-content;
     height: fit-content;
 }
@@ -545,10 +545,10 @@ a {
 .w-\[40\%\] {
     width: 40%;
 }
-.h-px {
+
+.h-orline-px {
     height: 1px;
 }
-
 .typo-caption1 {
     font-size: 12px;
     line-height: 18px;
@@ -560,14 +560,14 @@ a {
 .w-14 {
     width: 3.5rem;
 }
-.mx-3 {
+.or{
     margin-left: .75rem;
     margin-right: .75rem;
 }
 
 /* 구글,페이스북 */
 
-.gap-4 {
+.gap-UnitedLoginBtn {
     gap: 1rem;
 }
 
