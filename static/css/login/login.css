@@ -81,7 +81,7 @@
     box-sizing: border-box;
     border: 0 solid #e5e7eb;
 }
-*, :after, :before {
+*, ::after, ::before {
     --tw-border-spacing-x: 0;
     --tw-border-spacing-y: 0;
     --tw-translate-x: 0;
@@ -545,10 +545,10 @@ a {
 .w-\[40\%\] {
     width: 40%;
 }
-.h-px {
+
+.h-orline-px {
     height: 1px;
 }
-
 .typo-caption1 {
     font-size: 12px;
     line-height: 18px;
@@ -560,14 +560,14 @@ a {
 .w-14 {
     width: 3.5rem;
 }
-.mx-3 {
+.or{
     margin-left: .75rem;
     margin-right: .75rem;
 }
 
 /* 구글,페이스북 */
 
-.gap-4 {
+.gap-UnitedLoginBtn {
     gap: 1rem;
 }
 
