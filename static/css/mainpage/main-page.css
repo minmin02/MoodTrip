@@ -30,11 +30,10 @@ body {
     align-items: center;
     gap: 100px; /* flex 아이템 사이 간격 */
     padding: 100px 20px;
-
 }
 
 .container {
-     width: 100%;
+    width: 100%;
     max-width: 1280px; /* 원하는 최대 크기 */
     margin: 0 auto;
 }
