@@ -1,4 +1,4 @@
-// DOM 요소들 선택 (누락된 변수들 추가)
+// DOM 요소들 선택 
 const form = document.querySelector('.input-password-form-wrapper');
 const currentPasswordInput = document.querySelector('.current-password');
 const newPasswordInput = document.querySelector('.input-change-password');
