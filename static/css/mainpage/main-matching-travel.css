@@ -1,0 +1,108 @@
+
+/*동행 매칭*/
+.introduction {
+    padding: 103px 0 52px;
+    background-color: #fff;
+     background-image: -webkit-image-set(url(/static/img/acquisition/background.png?20250620) 1x, url(/static/img/acquisition/background@2x.png?20250620) 2x, url(/static/img/acquisition/background@3x.png?20250620) 3x);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+.introduction .introduction-guide {
+    padding-top: 10px;
+    float: left;
+    margin: 40px 0 32px;
+}
+.introduction .introduction-guide .title-wrapper {
+    width: 580px;
+    margin-bottom: 40px;
+    
+}
+.introduction .introduction-guide .title {
+    display: flex;
+    overflow: hidden;
+    height: 64px;
+}
+
+.introduction .introduction-guide .title .rolling-title {
+    position: relative;
+    display: inline-block;
+}
+ul {
+    list-style: none;
+}
+ul li {
+    padding: 0;
+    margin: 0;
+}
+.title-matching{
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 64px;
+}
+.textSevice {
+    color: #212121;
+}
+.introduction .introduction-guide .guide-body {
+    margin-bottom: 40px;
+    margin-top: 2px;
+    color: #616161;
+}
+.textIntro {
+    color: #616161;
+}
+
+.subtitle-2 {
+    font-size: 28px;
+    line-height: 38px;
+    font-weight: 700;
+}
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: none;
+}
+a {
+    color: #212121;
+}
+.introduction .introduction-img {
+    float: right;
+}
+ .introduction .introduction-img img {
+    width: 500px;
+    margin-top: 4px;
+}
+.introduction .introduction-guide .guide-btn {
+    background: linear-gradient(to right, #005792, #001A2C);
+    padding: 16px 24px;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0px 32px 32px -12px rgba(46, 107, 170, .12);
+}
+
+.match-top-btn {
+    position: relative;
+    transition: top ease .5s;
+    top: 0;
+}
+.subtitle-2-medium {
+    font-weight: 500;
+     font-size: 18px;
+    line-height: 28px;
+}
+
+.introduction .introduction-guide .ask-btn {
+    background-color: #fff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    color: linear-gradient(to right, #005792, #001A2C);
+    border: 1px solid #005792;
+}
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}

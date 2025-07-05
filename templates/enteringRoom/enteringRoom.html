@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무드트립 : 방 찾기</title>
+    <link rel="stylesheet" href="/static/css/enteringRoom/enteringRoom.css">
+    <script src="/static/js/enteringRoom/enteringRoom.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">방 찾기</h1>
+            <p class="page-subtitle">원하는 방에 들어가서 당신의 동행자를 매칭해보세요!</p>
+        </div>
+
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="키워드 검색" id="searchInput">
+                <button class="search-button" id="searchButton" aria-label="검색">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">전체 별</button>
+            <button class="filter-tab" data-filter="nearby">지역 별</button>
+            <button class="filter-tab" data-filter="popular">인원 별</button>
+        </div>
+
+        <div class="region-filter-section" id="regionFilterSection" style="display: none;">
+            <div class="region-filter-tabs">
+                <button class="region-filter-tab active" data-region="all">전체</button>
+                <button class="region-filter-tab" data-region="서울">서울</button>
+                <button class="region-filter-tab" data-region="경기">경기</button>
+                <button class="region-filter-tab" data-region="인천">인천</button>
+                <button class="region-filter-tab" data-region="강원">강원</button>
+                <button class="region-filter-tab" data-region="충북">충북</button>
+                <button class="region-filter-tab" data-region="충남">충남</button>
+                <button class="region-filter-tab" data-region="대전">대전</button>
+                <button class="region-filter-tab" data-region="경북">경북</button>
+                <button class="region-filter-tab" data-region="대구">대구</button>
+                <button class="region-filter-tab" data-region="울산">울산</button>
+                <button class="region-filter-tab" data-region="부산">부산</button>
+                <button class="region-filter-tab" data-region="경남">경남</button>
+                <button class="region-filter-tab" data-region="전북">전북</button>
+                <button class="region-filter-tab" data-region="전남">전남</button>
+                <button class="region-filter-tab" data-region="광주">광주</button>
+                <button class="region-filter-tab" data-region="제주">제주</button>
+            </div>
+        </div>
+
+        <div class="people-filter-section" id="peopleFilterSection" style="display: none;">
+            <div class="people-filter-tabs">
+                <button class="people-filter-tab active" data-people="all">전체</button>
+                <button class="people-filter-tab" data-people="2">2명</button>
+                <button class="people-filter-tab" data-people="4">4명</button>
+                <button class="people-filter-tab" data-people="other">기타</button>
+            </div>
+        </div>
+
+        <div class="results-header">
+            <div class="results-info">
+                <span class="results-count" id="resultsCount">3,201</span>개의 프로젝트
+            </div>
+            <div class="sort-controls">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="urgentOnly">
+                    <span class="checkmark"></span>
+                    마감 임박 보기
+                </label>
+                <div class="sort-dropdown">
+                    <button class="sort-button" id="sortButton">
+                        기본 정렬 순
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="sort-menu" id="sortMenu">
+                        <button class="sort-option active" data-sort="default">기본 정렬 순</button>
+                        <button class="sort-option" data-sort="nearest">가까운 날짜 순</button>
+                        <button class="sort-option" data-sort="popular">인기순</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="room-list" id="roomList">
+        </div>
+
+        <div class="pagination" id="pagination">
+            <button class="page-btn prev" id="prevBtn">‹</button>
+            <button class="page-btn active" data-page="1">1</button>
+            <button class="page-btn" data-page="2">2</button>
+            <button class="page-btn" data-page="3">3</button>
+            <button class="page-btn" data-page="4">4</button>
+            <button class="page-btn" data-page="5">5</button>
+            <span class="page-dots">...</span>
+            <button class="page-btn next" id="nextBtn">›</button>
+        </div>
+    </div>
+
+    <div id="applicationModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeApplicationModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>방 입장 신청</h3>
+                <button class="modal-close" onclick="closeApplicationModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="room-info-preview">
+                    <h4 id="modalRoomTitle">방 제목</h4>
+                    <p id="modalRoomMeta">방 정보</p>
+                </div>
+                <div class="application-form">
+                    <label for="applicationMessage">신청 메시지</label>
+                    <textarea id="applicationMessage" placeholder="간단한 자기소개와 함께 여행에 대한 의지를 보여주세요!" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" onclick="closeApplicationModal()">취소</button>
+                <button class="btn btn-primary" onclick="submitApplication()">신청하기</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

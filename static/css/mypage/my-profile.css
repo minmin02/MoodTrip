@@ -52,10 +52,9 @@
     font-weight: 600;
 }
 
-.my_matching, .my_tourist_attraction_wishlist, .change_password, .alarm {
+.my_profile {
     padding: 8px 20px;
     font-size: 14px;
-    font-weight: 400;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
@@ -63,7 +62,33 @@
     align-items: center;
     color: rgb(48, 52, 65);
     text-decoration: none;
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(0, 87, 146, 0.1) 0%, rgba(0, 26, 44, 0.05) 100%);
+    border-radius: 8px;
+    margin-bottom: 4px;
 }
+
+.my_matching, .change_password, .my_tourist_attraction_wishlist, .alarm, .join_requests {
+    padding: 8px 20px;
+    font-size: 14px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(48, 52, 65);
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.my_matching:hover, .change_password:hover, .my_tourist_attraction_wishlist:hover, .alarm:hover, .join_requests:hover {
+    background: linear-gradient(135deg, rgba(0, 87, 146, 0.05) 0%, rgba(0, 26, 44, 0.02) 100%);
+    color: #005792;
+}
+
 
 .mypage_info {
     flex: 1 1 0%;
@@ -73,7 +98,7 @@
     margin-left: 1.5rem;
 }
 
-/* 제목 개선 */
+/* 제목 */
 .info-title {
     font-size: 24px;
     color: #001A2C;
@@ -87,7 +112,7 @@
     margin-bottom: 1.5rem;
 }
 
-/* 메인 래퍼 개선 */
+/* 메인 래퍼 */
 .main-wrapper {
     padding: 2.5rem;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
@@ -109,7 +134,7 @@
     gap: 2.5rem;
 }
 
-/* 프로필 섹션 개선 */
+/* 프로필 섹션 */
 .change-profile-section {
     display: flex;
     flex-direction: column;
@@ -285,7 +310,7 @@
     color: #001A2C;
 }
 
-/* 입력 필드 개선 */
+/* 입력 필드 */
 .name-input-wrapper {
     width: 100%;
     height: fit-content;
@@ -435,7 +460,7 @@
     vertical-align: middle;
 }
 
-/* 연동된 계정 개선 */
+/* 연동된 계정 */
 .linked-account-type {
     display: flex;
     column-gap: 16px;
@@ -464,7 +489,7 @@
     box-shadow: 0 8px 24px rgba(0, 26, 44, 0.15);
 }
 
-/* 휴대폰 인증 개선 */
+/* 휴대폰 인증 */
 .phone-authentication-wrapper {
     -webkit-box-align: center;
     align-items: center;
@@ -522,7 +547,7 @@
     cursor: pointer;
 }
 
-/* 자기소개 개선 */
+/* 자기소개 */
 .self-introduction-wrapper {
     margin-bottom: 32px;
 }
@@ -586,7 +611,7 @@
     border-left: 3px solid #dc2626;
 }
 
-/* 탈퇴 버튼 개선 */
+/* 탈퇴 버튼 */
 .withdraw-btn-wrapper {
     display: flex;
     justify-content: flex-end;

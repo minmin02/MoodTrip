@@ -39,19 +39,6 @@
     height: 2px;
 }
 
-.my_profile, .my_matching, .change_password, .alarm {
-    padding: 8px 20px;
-    font-size: 14px;
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    align-items: center;
-    color: rgb(48, 52, 65);
-    text-decoration: none;
-    font-weight: 400;
-}
-
 .my_tourist_attraction_wishlist {
     padding: 8px 20px;
     font-size: 14px;
@@ -63,6 +50,30 @@
     color: rgb(48, 52, 65);
     text-decoration: none;
     font-weight: 600;
+    background: linear-gradient(135deg, rgba(0, 87, 146, 0.1) 0%, rgba(0, 26, 44, 0.05) 100%);
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.my_matching, .my_profile, .change_password, .alarm, .join_requests {
+    padding: 8px 20px;
+    font-size: 14px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(48, 52, 65);
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.my_matching:hover, .my_profile:hover, .change_password, .alarm:hover, .join_requests:hover {
+    background: linear-gradient(135deg, rgba(0, 87, 146, 0.05) 0%, rgba(0, 26, 44, 0.02) 100%);
+    color: #005792;
 }
 
 .mypage_info {
@@ -73,7 +84,7 @@
     margin-left: 1.5rem;
 }
 
-/* 제목 개선 */
+/* 제목 */
 .info-title {
     font-size: 24px;
     color: #001A2C;
@@ -238,7 +249,7 @@
     gap: 8px;
 }
 
-/* 페이지네이션 개선 */
+/* 페이지네이션 */
 .page-btn {
     width: 40px;
     height: 40px;

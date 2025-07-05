@@ -233,8 +233,9 @@ header.header .dropdown-nav-container {
     width: 100%;
     max-height: 0px;
     overflow: hidden;
-    transition: max-height .3s ease-out;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
     position: absolute;
+    
 }
 
 header.header .dropdown-nav-container .dropdown-nav {
@@ -432,4 +433,16 @@ header.header .dropdown-nav-container .dropdown-banner img {
     content: "";
     display: table;
     clear: both;
+}
+.left-nav-menu-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width는 인라인 style로 각 메뉴별로 다르게 지정 */
+}
+
+.dropdown-nav-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }

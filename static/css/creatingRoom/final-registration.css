@@ -1005,3 +1005,378 @@ body.room-create .room-create-formview .container::after {
     color: #ef6c00;
     flex: 1;
 }
+/* 수정 단계 선택 모달 */
+.edit-selection-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+}
+
+.edit-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.2);
+    animation: editModalShow 0.4s ease-out;
+    overflow-y: auto;
+}
+
+@keyframes editModalShow {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.edit-modal-header {
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+}
+
+.edit-modal-header h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #005792;
+    margin: 0;
+    flex: 1;
+}
+
+.edit-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.edit-modal-close:hover {
+    background: #f5f5f5;
+}
+
+.edit-modal-body {
+    padding: 24px;
+}
+
+.edit-option-grid {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.edit-option-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.edit-option-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 87, 146, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.edit-option-card:hover {
+    border-color: #005792;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 87, 146, 0.15);
+}
+
+.edit-option-card:hover::before {
+    left: 100%;
+}
+
+.edit-option-card:active {
+    transform: translateY(0);
+}
+
+.edit-option-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+    border-radius: 16px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.edit-option-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.emotion-emoji,
+.destination-emoji,
+.schedule-emoji {
+    font-size: 28px;
+}
+
+.edit-option-content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.edit-option-content h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #212121;
+    margin: 0 0 8px 0;
+}
+
+.edit-option-content p {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 12px 0;
+}
+
+.edit-option-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.current-value {
+    font-size: 12px;
+    color: #005792;
+    background: rgba(0, 87, 146, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.edit-option-arrow {
+    font-size: 20px;
+    color: #005792;
+    font-weight: bold;
+    margin-left: 16px;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.edit-option-card:hover .edit-option-arrow {
+    transform: translateX(4px);
+}
+
+/* 안내사항 */
+.edit-modal-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border-radius: 12px;
+    border-left: 4px solid #ff9800;
+}
+
+.notice-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.notice-text {
+    flex: 1;
+}
+
+.notice-text strong {
+    color: #ef6c00;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.notice-text br + text,
+.notice-text strong + br + text {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.edit-modal-footer {
+    padding: 16px 24px 24px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* 선택 단계별 시각적 구분 */
+.edit-option-card:nth-child(1) .edit-option-icon {
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c8 100%);
+}
+
+.edit-option-card:nth-child(2) .edit-option-icon {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.edit-option-card:nth-child(3) .edit-option-icon {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+}
+
+.edit-option-card:nth-child(4) .edit-option-icon {
+    background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+}
+
+/* 새 방 만들기 로딩 오버레이 */
+#newRoomLoadingOverlay .loading-overlay-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+#newRoomLoadingOverlay .loading-content {
+    position: relative;
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    animation: loadingContentShow 0.5s ease-out;
+}
+
+@keyframes loadingContentShow {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.loading-spinner-new {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+}
+
+.spinner-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid #f0f0f0;
+    border-radius: 50%;
+    animation: spinnerRotate 1.5s linear infinite;
+}
+
+.spinner-ring:nth-child(1) {
+    border-top-color: #005792;
+    animation-delay: 0s;
+}
+
+.spinner-ring:nth-child(2) {
+    border-top-color: #0071b8;
+    animation-delay: -0.5s;
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+}
+
+.spinner-ring:nth-child(3) {
+    border-top-color: #87CEEB;
+    animation-delay: -1s;
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+}
+
+@keyframes spinnerRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#newRoomLoadingOverlay .loading-text h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #005792;
+    margin: 0 0 12px 0;
+}
+
+#newRoomLoadingOverlay .loading-text p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    #newRoomLoadingOverlay .loading-content {
+        margin: 20px;
+        padding: 32px 24px;
+        max-width: none;
+    }
+    
+    .loading-spinner-new {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+    
+    #newRoomLoadingOverlay .loading-text h3 {
+        font-size: 18px;
+    }
+    
+    #newRoomLoadingOverlay .loading-text p {
+        font-size: 13px;
+    }
+}

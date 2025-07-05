@@ -1,0 +1,63 @@
+
+/*감정기반 페이지*/
+
+.mood-do-not-fail {
+   background: linear-gradient(to right, #005792, #001A2C);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'NotoSansKR', Sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.mood-do-not-fail .container {
+    display: flex;
+    align-items: center;
+    gap: 100px; /* flex 아이템 사이 간격 */
+    padding: 100px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px; /* 원하는 최대 크기 */
+    margin: 0 auto;
+}
+
+ .mood-do-not-fail .container .mood-question {
+   
+    width: 1000px;
+    margin-left: 60x;
+   
+}
+
+.text-white {
+    color: #fff;
+}
+
+.title-Mood-bold {
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 60px;
+     white-space: nowrap; /* 줄바꿈 방지 */
+      
+
+}
+
+.text-Q {
+    margin-bottom: 56px;
+}
+.mood-do-not-fail.container .mood-gif img {
+    width: 500px;
+}
+
+
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
