@@ -20,8 +20,10 @@ a {
     /*header*/
     text-decoration: none;
     color: #212121;
-   
-
+}
+body {
+    height: 100%;
+    background-color: #f5f5f5;
 }
 
 /*얘도 태그?*/
@@ -32,6 +34,38 @@ header.header {
 /*footer 얘도 태그?*/
 footer.footer {
     background-color: #f5f5f5;
+}
+
+*, ::after, ::before {
+    
+    box-sizing: border-box;
+    border: 0 solid #e5e7eb;
+ /* spacing */
+    border-spacing: 0;
+
+    /* transform */
+    transform: translate(0, 0) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
+
+    /* scroll-snap */
+    scroll-snap-type: proximity;
+
+    /* ring 효과 */
+    box-shadow: 0 0 0 0 rgba(75, 148, 250, 0.5);
+
+    /* 기본 box-shadow 초기화 */
+    box-shadow: none;
+
+    /* filter */
+    filter: none;
+
+    /* backdrop-filter */
+    backdrop-filter: none;
+
+    /* contain */
+    contain: size layout paint style;
+
+   
+
 }
 /*login*/
 img, video {
@@ -64,6 +98,10 @@ svg {
     color: inherit;
     margin: 0;
     padding: 0;
+}
+
+[hidden]:where(:not([hidden=until-found])) {
+    display: none;
 }
 
 button{

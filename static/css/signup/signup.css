@@ -567,7 +567,7 @@ a {
 
 /* 구글,페이스북 */
 
-.gap-UnitedLoginBtn {
+.gap-UnitedSignUpBtn {
     gap: 1rem;
 }
 
@@ -598,11 +598,11 @@ button{
 
 
 
-/*회원가입 링크*/
+/*로그인 링크*/
 .gap-1 {
     gap: .25rem;
 }
-.mt-6 {
+.isSignUp{
     margin-top: 1.5rem;
 }
 .items-end {
@@ -611,7 +611,14 @@ button{
 .font-medium {
     font-weight: 500;
 }
-
+/* hover 시 테두리와 그림자 효과 */
+.input-hover-focus {
+    border: 1px solid #005792 !important;
+    box-shadow: 0 0 0 2px rgba(0, 87, 146, 0.2);
+    transition: border 0.3s, box-shadow 0.3s;
+    z-index: 1;
+}
+/* floating label 올라갈 때 */
 .label-float {
     transform: translateY(-0.4rem) scale(0.75);
     transform-origin: top left;
@@ -619,19 +626,26 @@ button{
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.input-hover-focus {
-    border: 1px solid #005792 !important;
-    box-shadow: 0 0 0 2px rgba(0, 87, 146, 0.2);
-    transition: border 0.3s, box-shadow 0.3s;
-    z-index: 1;
-}
-
+/* input container 높이 조정 */
 .input-container-fix {
-    height: 56px !important;
+    height: 56px !important; /* 기존 42px → 여유 공간 확보 */
 }
 
+/* input 내부 패딩 조정 (텍스트가 label과 안 겹치도록) */
 .input-textbox-padding {
     padding-top: 20px !important;
+}
+
+.text-w-red-500 {
+    color: rgb(229, 41, 41); /* 동일한 경고색 */
+}
+
+.bg-primary-500 {
+    background-color: #005792 !important;
+}
+
+.text-white {
+    color: #ffffff;
 }
 
 /* input hover 시 테두리와 라벨 색상 */
@@ -653,8 +667,4 @@ button{
     transition: border 0.3s, color 0.3s;
 }
 
-/* 체크박스가 체크된 경우 SVG를 보이게 함 */
-input[type="checkbox"][name="remember"]:checked + div[role="checkbox-button"] svg {
-  visibility: visible;
-  color: #1877F2; /* 원하는 색상으로 변경 가능 */
-}
+
