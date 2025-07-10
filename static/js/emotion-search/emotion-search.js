@@ -190,18 +190,6 @@ function updateInputState() {
         }
     }
     
-    // 검색 버튼 상태
-    if (searchBtn) {
-        if (isMaxReached) {
-            searchBtn.disabled = true;
-            searchBtn.style.opacity = '0.5';
-            searchBtn.style.cursor = 'not-allowed';
-        } else {
-            searchBtn.disabled = false;
-            searchBtn.style.opacity = '';
-            searchBtn.style.cursor = '';
-        }
-    }
     
     // 감정 태그들 비활성화
     emotionTags.forEach(tag => {
