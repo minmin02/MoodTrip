@@ -414,17 +414,6 @@ document.addEventListener('DOMContentLoaded', function() {
         roomNameInput.addEventListener('input', function() {
             const value = this.value.trim();
             const length = value.length;
-            
-            // 글자 수에 따른 시각적 피드백
-            if (length > 0 && length < 5) {
-                this.style.borderColor = '#ffa726'; // 주황색 - 더 입력 필요
-            } else if (length >= 5 && length <= 20) {
-                this.style.borderColor = '#66bb6a'; // 초록색 - 적절
-            } else if (length > 20) {
-                this.style.borderColor = '#ef5350'; // 빨간색 - 너무 길음
-            } else {
-                this.style.borderColor = '#e0e0e0'; // 기본색
-            }
         });
     }
     
@@ -433,17 +422,6 @@ document.addEventListener('DOMContentLoaded', function() {
         roomIntroInput.addEventListener('input', function() {
             const value = this.value.trim();
             const length = value.length;
-            
-            // 글자 수에 따른 시각적 피드백
-            if (length > 0 && length < 10) {
-                this.style.borderColor = '#ffa726'; // 주황색 - 더 입력 필요
-            } else if (length >= 10 && length <= 100) {
-                this.style.borderColor = '#66bb6a'; // 초록색 - 적절
-            } else if (length > 100) {
-                this.style.borderColor = '#ef5350'; // 빨간색 - 너무 길음
-            } else {
-                this.style.borderColor = '#e0e0e0'; // 기본색
-            }
         });
     }
 });
