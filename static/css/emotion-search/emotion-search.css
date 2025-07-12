@@ -157,6 +157,23 @@ body {
 .input-area::placeholder {
     color: rgb(156, 163, 175);
     font-weight: 400;
+    transition: opacity 0.3s ease;
+}
+
+/* 태그 제한 안내 문구 */
+.tag-limit-text {
+    color: rgb(156, 163, 175);
+    font-size: 14px;
+    font-weight: 400;
+    transition: opacity 0.3s ease;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* 태그가 선택되었을 때 플레이스홀더 숨김 */
+.search-input.has-tags .input-area::placeholder {
+    opacity: 0;
 }
 
 .search-btn-wrapper {
@@ -301,6 +318,13 @@ body {
 .emotion-tag:active {
     transform: translateY(0);
     box-shadow: 0 2px 8px rgba(0, 87, 146, 0.2);
+}
+
+/* 선택된 감정 태그 스타일 */
+.emotion-tag.selected {
+    background: linear-gradient(135deg, #005792 0%, #001A2C 100%);
+    color: white;
+    box-shadow: 0 4px 16px rgba(0, 87, 146, 0.3);
 }
 
 /* 인기 검색어 섹션 */
