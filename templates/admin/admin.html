@@ -167,8 +167,8 @@
                                 <td>2024-06-15</td>
                                 <td><span class="status active">활성</span></td>
                                 <td>
-                                    <button class="btn-small">상세</button>
-                                    <button class="btn-small danger">정지</button>
+                                    <button class="btn-small" onclick="handleUserDetail(this)">상세</button>
+                                    <button class="btn-small danger" onclick="handleUserSuspension(this)">정지</button>
                                 </td>
                             </tr>
                             <tr>
@@ -178,8 +178,8 @@
                                 <td>2024-06-14</td>
                                 <td><span class="status active">활성</span></td>
                                 <td>
-                                    <button class="btn-small">상세</button>
-                                    <button class="btn-small danger">정지</button>
+                                    <button class="btn-small" onclick="handleUserDetail(this)">상세</button>
+                                    <button class="btn-small danger" onclick="handleUserSuspension(this)">정지</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -191,7 +191,7 @@
             <section class="content-section" id="content-section" style="display: none;">
                 <div class="section-header">
                     <h2>콘텐츠 관리</h2>
-                    <button class="btn-primary">새 콘텐츠 추가</button>
+                    <button class="btn-primary" onclick="showAddContentForm()">새 콘텐츠 추가</button>
                 </div>
                 
                 <div class="content-tabs">
@@ -222,8 +222,8 @@
                                     <td>2024-06-01</td>
                                     <td><span class="status active">공개</span></td>
                                     <td>
-                                        <button class="btn-small">수정</button>
-                                        <button class="btn-small danger">삭제</button>
+                                        <button class="btn-small" onclick="handleLocationEdit(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleLocationDelete(this)">삭제</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -233,8 +233,8 @@
                                     <td>2024-06-01</td>
                                     <td><span class="status active">공개</span></td>
                                     <td>
-                                        <button class="btn-small">수정</button>
-                                        <button class="btn-small danger">삭제</button>
+                                        <button class="btn-small" onclick="handleLocationEdit(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleLocationDelete(this)">삭제</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -242,11 +242,11 @@
                     </div>
                 </div>
 
-                <!-- 감정 태그 탭 -->
+               <!-- 감정 태그 탭 -->
                 <div class="tab-content" id="emotions-tab" style="display: none;">
                     <div class="section-header">
                         <h3>감정 태그 관리</h3>
-                        <button class="btn-primary">새 태그 추가</button>
+                        <button class="btn-primary" onclick="showAddEmotionTagModal()">새 태그 추가</button>
                     </div>
                     <div class="table-container">
                         <table class="data-table">
@@ -266,8 +266,8 @@
                                     <td>2024-01-01</td>
                                     <td><span class="status active">활성</span></td>
                                     <td>
-                                        <button class="btn-small">수정</button>
-                                        <button class="btn-small danger">비활성화</button>
+                                        <button class="btn-small" onclick="handleEmotionTagEdit(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleEmotionTagDeactivation(this)">비활성화</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -276,8 +276,8 @@
                                     <td>2024-01-01</td>
                                     <td><span class="status active">활성</span></td>
                                     <td>
-                                        <button class="btn-small">수정</button>
-                                        <button class="btn-small danger">비활성화</button>
+                                        <button class="btn-small" onclick="handleEmotionTagEdit(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleEmotionTagDeactivation(this)">비활성화</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -286,8 +286,18 @@
                                     <td>2024-01-01</td>
                                     <td><span class="status active">활성</span></td>
                                     <td>
-                                        <button class="btn-small">수정</button>
-                                        <button class="btn-small danger">비활성화</button>
+                                        <button class="btn-small" onclick="handleEmotionTagEdit(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleEmotionTagDeactivation(this)">비활성화</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>자연</td>
+                                    <td>1,567회</td>
+                                    <td>2024-01-01</td>
+                                    <td><span class="status suspended">비활성</span></td>
+                                    <td>
+                                        <button class="btn-small" onclick="handleEmotionTagEdit(this)">수정</button>
+                                        <button class="btn-small success" onclick="handleEmotionTagDeactivation(this)">활성화</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -328,8 +338,8 @@
                                     <td>2024-07-01</td>
                                     <td><span class="status pending">승인대기</span></td>
                                     <td>
-                                        <button class="btn-small success">승인</button>
-                                        <button class="btn-small danger">거부</button>
+                                        <button class="btn-small success" onclick="handleReviewApproval(this)">승인</button>
+                                        <button class="btn-small danger" onclick="handleReviewRejection(this)">거부</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -340,8 +350,20 @@
                                     <td>2024-06-30</td>
                                     <td><span class="status active">승인완료</span></td>
                                     <td>
-                                        <button class="btn-small">상세</button>
-                                        <button class="btn-small danger">삭제</button>
+                                        <button class="btn-small" onclick="handleReviewDetail(this)">상세</button>
+                                        <button class="btn-small danger" onclick="handleReviewDelete(this)">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>제주 성산일출봉</td>
+                                    <td>박민수</td>
+                                    <td>⭐⭐⭐⭐⭐</td>
+                                    <td>일출이 정말 장관이었어요!</td>
+                                    <td>2024-06-28</td>
+                                    <td><span class="status suspended">거부</span></td>
+                                    <td>
+                                        <button class="btn-small" onclick="handleReviewDetail(this)">상세</button>
+                                        <button class="btn-small success" onclick="handleReviewReapproval(this)">재승인</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -375,8 +397,8 @@
                             <p><strong>지역:</strong> 부산</p>
                         </div>
                         <div class="matching-actions">
-                            <button class="btn-small">상세보기</button>
-                            <button class="btn-small danger">강제종료</button>
+                            <button class="btn-small" onclick="handleMatchingDetail(this)">상세보기</button>
+                            <button class="btn-small danger" onclick="handleMatchingTerminate(this)">강제종료</button>
                         </div>
                     </div>
                     
@@ -392,7 +414,7 @@
                             <p><strong>지역:</strong> 제주</p>
                         </div>
                         <div class="matching-actions">
-                            <button class="btn-small">상세보기</button>
+                            <button class="btn-small" onclick="handleMatchingDetail(this)">상세보기</button>
                         </div>
                     </div>
                 </div>
@@ -402,18 +424,111 @@
             <section class="content-section" id="locations-section" style="display: none;">
                 <div class="section-header">
                     <h2>관광지 관리</h2>
-                    <button class="btn-primary">새 관광지 추가</button>
+                    <button class="btn-primary" onclick="showLocationForm()">새 관광지 추가</button>
                 </div>
                 
-                <div class="location-form">
+                <!-- 관광지 목록 -->
+                <div class="section-header">
+                    <h2>관광지 관리</h2>
+                    <button class="btn-primary" onclick="showLocationForm()">새 관광지 추가</button>
+                </div>
+                
+                <!-- 관광지 목록 -->
+                <div id="location-list-view">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>관광지명</th>
+                                    <th>지역</th>
+                                    <th>카테고리</th>
+                                    <th>감정태그</th>
+                                    <th>등록일</th>
+                                    <th>상태</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>경복궁</td>
+                                    <td>서울</td>
+                                    <td>역사/문화</td>
+                                    <td>감동, 힐링</td>
+                                    <td>2024-06-01</td>
+                                    <td><span class="status active">공개</span></td>
+                                    <td>
+                                        <button class="btn-small" onclick="handleLocationDetail(this)">상세</button>
+                                        <button class="btn-small" onclick="handleLocationEditFromList(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleLocationDeleteFromList(this)">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>해운대 해수욕장</td>
+                                    <td>부산</td>
+                                    <td>자연/휴양</td>
+                                    <td>휴식, 자연</td>
+                                    <td>2024-06-01</td>
+                                    <td><span class="status active">공개</span></td>
+                                    <td>
+                                        <button class="btn-small" onclick="handleLocationDetail(this)">상세</button>
+                                        <button class="btn-small" onclick="handleLocationEditFromList(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleLocationDeleteFromList(this)">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>제주 성산일출봉</td>
+                                    <td>제주</td>
+                                    <td>자연/휴양</td>
+                                    <td>모험, 자연, 감동</td>
+                                    <td>2024-05-15</td>
+                                    <td><span class="status active">공개</span></td>
+                                    <td>
+                                        <button class="btn-small" onclick="handleLocationDetail(this)">상세</button>
+                                        <button class="btn-small" onclick="handleLocationEditFromList(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleLocationDeleteFromList(this)">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>남산타워</td>
+                                    <td>서울</td>
+                                    <td>체험/액티비티</td>
+                                    <td>로맨틱, 전망</td>
+                                    <td>2024-05-20</td>
+                                    <td><span class="status pending">검토중</span></td>
+                                    <td>
+                                        <button class="btn-small" onclick="handleLocationDetail(this)">상세</button>
+                                        <button class="btn-small" onclick="handleLocationEditFromList(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleLocationDeleteFromList(this)">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>광안대교</td>
+                                    <td>부산</td>
+                                    <td>자연/휴양</td>
+                                    <td>야경, 로맨틱</td>
+                                    <td>2024-04-10</td>
+                                    <td><span class="status suspended">비공개</span></td>
+                                    <td>
+                                        <button class="btn-small" onclick="handleLocationDetail(this)">상세</button>
+                                        <button class="btn-small" onclick="handleLocationEditFromList(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleLocationDeleteFromList(this)">삭제</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 관광지 추가/수정 폼 -->
+                <div class="location-form" id="location-form-view" style="display: none;">
                     <div class="form-row">
                         <div class="form-group">
                             <label>관광지명</label>
-                            <input type="text" placeholder="관광지명을 입력하세요">
+                            <input type="text" id="location-name" placeholder="관광지명을 입력하세요">
                         </div>
                         <div class="form-group">
                             <label>지역</label>
-                            <select>
+                            <select id="location-region">
                                 <option>서울</option>
                                 <option>부산</option>
                                 <option>제주</option>
@@ -424,7 +539,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>카테고리</label>
-                            <select>
+                            <select id="location-category">
                                 <option>역사/문화</option>
                                 <option>자연/휴양</option>
                                 <option>체험/액티비티</option>
@@ -433,16 +548,16 @@
                         </div>
                         <div class="form-group">
                             <label>감정태그</label>
-                            <input type="text" placeholder="관련 감정태그를 입력하세요">
+                            <input type="text" id="location-tags" placeholder="관련 감정태그를 입력하세요">
                         </div>
                     </div>
                     <div class="form-group">
                         <label>설명</label>
-                        <textarea placeholder="관광지에 대한 설명을 입력하세요"></textarea>
+                        <textarea id="location-description" placeholder="관광지에 대한 설명을 입력하세요"></textarea>
                     </div>
                     <div class="form-actions">
-                        <button class="btn-primary">저장</button>
-                        <button class="btn-secondary">취소</button>
+                        <button class="btn-primary" onclick="saveLocation()">저장</button>
+                        <button class="btn-secondary" onclick="cancelLocationForm()">취소</button>
                     </div>
                 </div>
             </section>
@@ -471,9 +586,9 @@
                             <p><strong>내용:</strong> 채팅방에서 욕설 및 성희롱 발언</p>
                         </div>
                         <div class="report-actions">
-                            <button class="btn-small">상세보기</button>
-                            <button class="btn-small warning">경고</button>
-                            <button class="btn-small danger">계정정지</button>
+                            <button class="btn-small" onclick="handleReportDetail(this)">상세보기</button>
+                            <button class="btn-small warning" onclick="handleReportWarning(this)">경고</button>
+                            <button class="btn-small danger" onclick="handleReportSuspension(this)">계정정지</button>
                         </div>
                     </div>
                     
@@ -489,7 +604,59 @@
                             <p><strong>처리결과:</strong> 계정 삭제 처리</p>
                         </div>
                         <div class="report-actions">
-                            <button class="btn-small">상세보기</button>
+                            <button class="btn-small" onclick="handleReportDetail(this)">상세보기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-header">
+                            <h4>허위 정보 유포</h4>
+                            <span class="report-status pending">미처리</span>
+                        </div>
+                        <div class="report-info">
+                            <p><strong>신고자:</strong> 정수진</p>
+                            <p><strong>피신고자:</strong> 최민호</p>
+                            <p><strong>신고일:</strong> 2024-07-02 11:20</p>
+                            <p><strong>내용:</strong> 관광지에 대한 거짓 정보 게시</p>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn-small" onclick="handleReportDetail(this)">상세보기</button>
+                            <button class="btn-small warning" onclick="handleReportWarning(this)">경고</button>
+                            <button class="btn-small danger" onclick="handleReportSuspension(this)">계정정지</button>
+                        </div>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-header">
+                            <h4>사기 행위</h4>
+                            <span class="report-status warning-issued">경고처리</span>
+                        </div>
+                        <div class="report-info">
+                            <p><strong>신고자:</strong> 한지민</p>
+                            <p><strong>피신고자:</strong> 이상훈</p>
+                            <p><strong>신고일:</strong> 2024-06-28 16:45</p>
+                            <p><strong>내용:</strong> 가짜 여행 상품 판매 시도</p>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn-small" onclick="handleReportDetail(this)">상세보기</button>
+                            <button class="btn-small success" onclick="handleReportCancel(this)">처리취소</button>
+                        </div>
+                    </div>
+                    
+                    <div class="report-item urgent">
+                        <div class="report-header">
+                            <h4>괴롭힘 및 혐오 발언</h4>
+                            <span class="report-status suspended">계정정지</span>
+                        </div>
+                        <div class="report-info">
+                            <p><strong>신고자:</strong> 윤서연</p>
+                            <p><strong>피신고자:</strong> 강동욱</p>
+                            <p><strong>신고일:</strong> 2024-06-25 19:30</p>
+                            <p><strong>내용:</strong> 지속적인 괴롭힘 및 차별적 발언</p>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn-small" onclick="handleReportDetail(this)">상세보기</button>
+                            <button class="btn-small success" onclick="handleReportCancel(this)">처리취소</button>
                         </div>
                     </div>
                 </div>
@@ -499,18 +666,64 @@
             <section class="content-section" id="notices-section" style="display: none;">
                 <div class="section-header">
                     <h2>공지사항 관리</h2>
-                    <button class="btn-primary">새 공지사항 작성</button>
+                    <button class="btn-primary" onclick="showNoticeForm()">새 공지사항 작성</button>
                 </div>
                 
-                <div class="notice-form">
+                <!-- 공지사항 목록 -->
+                <div id="notice-list-view">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>제목</th>
+                                    <th>분류</th>
+                                    <th>작성자</th>
+                                    <th>작성일</th>
+                                    <th>조회수</th>
+                                    <th>상태</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>시스템 점검 안내</td>
+                                    <td>긴급공지</td>
+                                    <td>관리자</td>
+                                    <td>2024-07-01</td>
+                                    <td>1,234</td>
+                                    <td><span class="status active">공개</span></td>
+                                    <td>
+                                        <button class="btn-small">수정</button>
+                                        <button class="btn-small danger">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>새로운 기능 업데이트</td>
+                                    <td>업데이트</td>
+                                    <td>관리자</td>
+                                    <td>2024-06-28</td>
+                                    <td>856</td>
+                                    <td><span class="status active">공개</span></td>
+                                    <td>
+                                        <button class="btn-small" onclick="handleNoticeEdit(this)">수정</button>
+                                        <button class="btn-small danger" onclick="handleNoticeDelete(this)">삭제</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 공지사항 작성 폼 -->
+                <div class="notice-form" id="notice-form-view" style="display: none;">
                     <div class="form-group">
                         <label>제목</label>
-                        <input type="text" placeholder="공지사항 제목을 입력하세요">
+                        <input type="text" id="notice-title" placeholder="공지사항 제목을 입력하세요">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label>분류</label>
-                            <select>
+                            <select id="notice-category">
                                 <option>일반공지</option>
                                 <option>긴급공지</option>
                                 <option>이벤트</option>
@@ -519,7 +732,7 @@
                         </div>
                         <div class="form-group">
                             <label>공개설정</label>
-                            <select>
+                            <select id="notice-visibility">
                                 <option>즉시공개</option>
                                 <option>예약공개</option>
                                 <option>비공개</option>
@@ -528,11 +741,12 @@
                     </div>
                     <div class="form-group">
                         <label>내용</label>
-                        <textarea placeholder="공지사항 내용을 입력하세요" rows="6"></textarea>
+                        <textarea id="notice-content" placeholder="공지사항 내용을 입력하세요" rows="6"></textarea>
                     </div>
                     <div class="form-actions">
-                        <button class="btn-primary">발행</button>
-                        <button class="btn-secondary">임시저장</button>
+                        <button class="btn-primary" onclick="publishNotice()">발행</button>
+                        <button class="btn-secondary" onclick="draftNotice()">임시저장</button>
+                        <button class="btn-secondary" onclick="cancelNoticeForm()">취소</button>
                     </div>
                 </div>
             </section>
@@ -582,8 +796,8 @@
                 </div>
                 
                 <div class="form-actions">
-                    <button class="btn-primary">설정 저장</button>
-                    <button class="btn-secondary">초기화</button>
+                    <button class="btn-primary" onclick="saveSettings()">설정 저장</button>
+                    <button class="btn-secondary" onclick="resetSettings()">초기화</button>
                 </div>
             </section>
         </main>
