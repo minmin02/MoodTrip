@@ -527,7 +527,7 @@ function goToEditStep(stepNumber) {
     const stepUrls = {
         1: '/templates/creatingRoom/creatingRoom-detail.html',     // 기본 정보
         2: '/templates/creatingRoom/choosing-emotion.html',        // 감정 선택
-        3: '/templates/creatingRoom/choosing-destination.html',    // 여행지 선택
+        3: '/templates/creatingRoom/choosing-tour.html',           // 여행지 선택
         4: '/templates/creatingRoom/choosing-schedule.html'        // 일정 선택
     };
     
@@ -953,24 +953,6 @@ function initializeRealTimeValidation() {
         });
     }
 }
-
-// 방 이름 실시간 유효성 검사
-function validateRoomNameRealTime(input) {
-    const value = input.value;
-    const length = value.length;
-    
-    // 글자 수에 따른 시각적 피드백
-    if (length === 0) {
-        input.style.borderColor = '#e0e0e0';
-    } else if (length < 2) {
-        input.style.borderColor = '#ffa726'; // 주황색 - 더 입력 필요
-    } else if (length >= 2 && length <= 25) {
-        input.style.borderColor = '#66bb6a'; // 초록색 - 적절
-    } else if (length > 25) {
-        input.style.borderColor = '#ef5350'; // 빨간색 - 너무 길음
-    }
-}
-
 // 방 이름 최종 유효성 검사
 function validateRoomNameFinal(input) {
     const value = input.value.trim();
@@ -984,23 +966,6 @@ function validateRoomNameFinal(input) {
     } else {
         input.style.borderColor = '#66bb6a';
         return true;
-    }
-}
-
-// 방 소개 실시간 유효성 검사
-function validateRoomIntroRealTime(textarea) {
-    const value = textarea.value;
-    const length = value.length;
-    
-    // 글자 수에 따른 시각적 피드백
-    if (length === 0) {
-        textarea.style.borderColor = '#e0e0e0';
-    } else if (length < 10) {
-        textarea.style.borderColor = '#ffa726'; // 주황색 - 더 입력 필요
-    } else if (length >= 10 && length <= 180) {
-        textarea.style.borderColor = '#66bb6a'; // 초록색 - 적절
-    } else if (length > 180) {
-        textarea.style.borderColor = '#ef5350'; // 빨간색 - 너무 길음
     }
 }
 
