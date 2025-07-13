@@ -850,17 +850,28 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(0, 87, 146, 0.1);
     border-radius: 16px;
     padding: 2rem;
-    max-width: 500px;
+    max-width: 600px;
     width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
     box-shadow: 0 20px 40px rgba(0, 26, 44, 0.2);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.modal-content h3 {
+    margin: 0 0 1rem 0;
+    color: #001A2C;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .modal-actions {
@@ -870,6 +881,17 @@ body {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(0, 87, 146, 0.1);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 토스트 스타일 */
@@ -884,6 +906,7 @@ body {
     z-index: 1001;
     transform: translateX(100%);
     transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .toast.show {
@@ -916,10 +939,18 @@ body {
 }
 
 /* 사용자 상세 정보 */
-.user-detail p {
+.user-detail p,
+.matching-detail p,
+.report-detail p {
     margin-bottom: 8px;
     padding: 8px 0;
     border-bottom: 1px solid rgba(0, 87, 146, 0.05);
+}
+
+.user-detail p:last-child,
+.matching-detail p:last-child,
+.report-detail p:last-child {
+    border-bottom: none;
 }
 
 /* 반응형 */
@@ -1006,6 +1037,8 @@ body {
     .modal-content {
         padding: 1.5rem;
         margin: 1rem;
+        max-width: 100%;
+        width: calc(100% - 2rem);
     }
 }
 
@@ -1029,4 +1062,21 @@ body {
     .menu-toggle {
         display: block;
     }
+}
+
+/* 로딩 스피너 */
+.loading-spinner {
+    border: 3px solid rgba(0, 87, 146, 0.1);
+    border-top: 3px solid #005792;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
