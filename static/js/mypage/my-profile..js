@@ -26,7 +26,7 @@ document.querySelector('.modify-nickname-cancel').addEventListener('click', func
     inputSection.style.backgroundColor = '';
     
     const input = document.querySelector('#username');
-    input.disabled = false;
+    input.disabled = true; // false에서 true로 변경
     input.style.color = '';
 
     // 원래 닉네임 복원
@@ -34,7 +34,6 @@ document.querySelector('.modify-nickname-cancel').addEventListener('click', func
 
     document.querySelector('.modify-nickname-wrapper').hidden = false;
     document.querySelector('.complete-nickname-wrapper').hidden = true;
-    
 });
 
 document.querySelector('.save-nickname').addEventListener('click', function () {

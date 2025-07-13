@@ -260,21 +260,21 @@ function loadWishlistFromStorage() {
             title: '경복궁',
             category: '문화재',
             description: '조선왕조의 정궁으로 서울의 대표적인 고궁입니다.',
-            image: '/static/image/attraction/gyeongbokgung.jpg'
+            image: '/static/image/mypage/sample1.png'
         },
         {
             id: '2',
             title: '남산타워',
             category: '관광명소',
             description: '서울의 랜드마크로 멋진 야경을 볼 수 있습니다.',
-            image: '/static/image/attraction/namsan.jpg'
+            image: '/static/image/mypage/sample2.png'
         },
         {
             id: '3',
             title: '북촌한옥마을',
             category: '전통마을',
             description: '전통 한옥이 모여있는 아름다운 마을입니다.',
-            image: '/static/image/attraction/bukchon.jpg'
+            image: '/static/image/mypage/sample3.png'
         },
         // 더 많은 더미 데이터...
     ];

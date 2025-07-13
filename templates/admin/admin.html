@@ -222,7 +222,7 @@
                                     <td>2024-06-01</td>
                                     <td><span class="status active">공개</span></td>
                                     <td>
-                                        <button class="btn-small" onclick="handleLocationEdit(this)">수정</button>
+                                        <button class="btn-small" onclick="handleLocationEditFromList(this)">수정</button>
                                         <button class="btn-small danger" onclick="handleLocationDelete(this)">삭제</button>
                                     </td>
                                 </tr>
@@ -233,7 +233,7 @@
                                     <td>2024-06-01</td>
                                     <td><span class="status active">공개</span></td>
                                     <td>
-                                        <button class="btn-small" onclick="handleLocationEdit(this)">수정</button>
+                                        <button class="btn-small" onclick="handleLocationEditFromList(this)">수정</button>
                                         <button class="btn-small danger" onclick="handleLocationDelete(this)">삭제</button>
                                     </td>
                                 </tr>
@@ -421,12 +421,7 @@
             </section>
 
             <!-- 관광지 관리 섹션 -->
-            <section class="content-section" id="locations-section" style="display: none;">
-                <div class="section-header">
-                    <h2>관광지 관리</h2>
-                    <button class="btn-primary" onclick="showLocationForm()">새 관광지 추가</button>
-                </div>
-                
+            <section class="content-section" id="locations-section" style="display: none;">  
                 <!-- 관광지 목록 -->
                 <div class="section-header">
                     <h2>관광지 관리</h2>
