@@ -31,10 +31,14 @@
                     </div>
                 </div>
                 <div class="trip-detail">
-                    <div class="icon">💰</div>
+                    <div class="icon">🧡</div>
                     <div>
-                        <strong>예산</strong>
-                        <p>1인당 30만원</p>
+                        <strong>실시간 접속 인원 :</strong>
+                        <p id="onlineUsers">김상우, 노수민</p>
+                        <div class="online-status">
+                            <span class="online-indicator"></span>
+                            <span id="onlineCount">2명 온라인</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,7 +109,7 @@
                             <div class="no-schedule-icon">📅</div>
                             <p>달력에서 날짜를 선택하면<br>해당 날짜의 일정을 확인할 수 있습니다</p>
                         </div>
-                        <button class="add-btn">새 일정 추가</button>
+                        <button class="add-btn" onclick="openScheduleModal()">새 일정 추가</button>
                     </div>
                 </div>
             </div>
@@ -203,6 +207,34 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 일정 추가 모달 (새로 추가된 부분) -->
+    <div class="modal-overlay" id="scheduleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>새 일정 추가</h2>
+                <button class="modal-close" onclick="closeScheduleModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="scheduleTime">시간</label>
+                    <input type="time" id="scheduleTime" class="form-input" placeholder="예: 14:30">
+                </div>
+                <div class="form-group">
+                    <label for="scheduleTitle">일정 제목</label>
+                    <input type="text" id="scheduleTitle" class="form-input" placeholder="일정 제목을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="scheduleDescription">설명 (선택사항)</label>
+                    <textarea id="scheduleDescription" class="form-textarea" placeholder="일정에 대한 상세 설명을 입력하세요"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeScheduleModal()">취소</button>
+                <button class="btn-confirm" onclick="addScheduleFromModal()">일정 추가</button>
             </div>
         </div>
     </div>
@@ -431,4 +463,5 @@
         </div>
     </div>
 </body>
+
 </html>
