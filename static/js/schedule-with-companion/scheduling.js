@@ -5,6 +5,60 @@ let scheduleData = {}; // 일정 데이터를 저장할 객체
 let currentMessengerTab = 'home';
 let chatMessages = [];
 
+// 실시간 접속자 관리
+let allUsers = ['노수민', '김상우', '김민규', '서유진'];
+let onlineUsers = ['김상우', '노수민']; // 현재 접속 중인 사용자들
+
+// 실시간 접속자 업데이트 시뮬레이션
+function startRealtimeUpdates() {
+    setInterval(() => {
+        // 랜덤하게 사용자 접속/퇴장 시뮬레이션
+        if (Math.random() < 0.3) { // 30% 확률로 변경
+            const randomUser = allUsers[Math.floor(Math.random() * allUsers.length)];
+            
+            if (onlineUsers.includes(randomUser)) {
+                // 사용자 퇴장
+                if (onlineUsers.length > 1) { // 최소 1명은 유지
+                    onlineUsers = onlineUsers.filter(user => user !== randomUser);
+                    updateOnlineUsers();
+                    console.log(`${randomUser}님이 퇴장했습니다.`);
+                }
+            } else {
+                // 사용자 접속
+                if (onlineUsers.length < allUsers.length) {
+                    onlineUsers.push(randomUser);
+                    updateOnlineUsers();
+                    console.log(`${randomUser}님이 접속했습니다.`);
+                }
+            }
+        }
+    }, 8000); // 8초마다 체크
+}
+
+// 온라인 사용자 목록 업데이트
+function updateOnlineUsers() {
+    const onlineUsersElement = document.getElementById('onlineUsers');
+    const onlineCountElement = document.getElementById('onlineCount');
+    
+    if (onlineUsersElement) {
+        onlineUsersElement.textContent = onlineUsers.join(', ');
+    }
+    
+    if (onlineCountElement) {
+        onlineCountElement.textContent = `${onlineUsers.length}명 온라인`;
+        
+        // 접속자 수에 따른 색상 변경
+        const statusElement = onlineCountElement.parentElement;
+        if (onlineUsers.length >= 3) {
+            statusElement.style.color = '#FF9800'; // 주황색
+        } else if (onlineUsers.length >= 2) {
+            statusElement.style.color = '#FF9800'; // 주황색
+        } else {
+            statusElement.style.color = '#9E9E9E'; // 회색
+        }
+    }
+}
+
 // 탭 전환 기능
 function showSection(sectionId) {
     // 모든 탭과 섹션 비활성화
@@ -17,6 +71,68 @@ function showSection(sectionId) {
     // 선택된 탭과 섹션 활성화
     event.target.classList.add('active');
     document.getElementById(sectionId).classList.add('active');
+}
+
+// 새로 추가된 모달 관련 함수들
+function openScheduleModal() {
+    const modal = document.getElementById('scheduleModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // 첫 번째 입력 필드에 포커스
+    setTimeout(() => {
+        document.getElementById('scheduleTime').focus();
+    }, 300);
+}
+
+function closeScheduleModal() {
+    const modal = document.getElementById('scheduleModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    // 폼 초기화
+    document.getElementById('scheduleTime').value = '';
+    document.getElementById('scheduleTitle').value = '';
+    document.getElementById('scheduleDescription').value = '';
+}
+
+function addScheduleFromModal() {
+    const time = document.getElementById('scheduleTime').value;
+    const title = document.getElementById('scheduleTitle').value;
+    const description = document.getElementById('scheduleDescription').value;
+    
+    // 필수 필드 검증
+    if (!time || !title) {
+        alert('시간과 제목은 필수 입력사항입니다');
+        return;
+    }
+    
+    // 날짜가 선택되지 않았을 때
+    if (!selectedDate) {
+        alert('먼저 캘린더에서 날짜를 선택해주세요!');
+        return;
+    }
+    
+    // 선택된 날짜의 일정 데이터에 새 일정 추가
+    const dateKey = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${selectedDate}`;
+    
+    if (!scheduleData[dateKey]) {
+        scheduleData[dateKey] = [];
+    }
+    
+    scheduleData[dateKey].push({
+        time: time,
+        title: title,
+        description: description || ''
+    });
+    
+    // 일정 목록 UI 업데이트
+    updateScheduleForDate(selectedDate);
+    
+    // 모달 닫기
+    closeScheduleModal();
+    
+    console.log('새 일정이 추가되었습니다:', { time, title, description, dateKey });
 }
 
 // 메신저 앱 관련 함수들
@@ -233,6 +349,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 메신저 관련 이벤트 리스너 추가
     initializeMessengerEvents();
+    
+    // 실시간 접속자 업데이트 시작
+    updateOnlineUsers(); // 초기 상태 설정
+    startRealtimeUpdates(); // 실시간 업데이트 시작
 });
 
 // 초기 일정 데이터 설정
@@ -415,12 +535,6 @@ function initializeAnimations() {
 
 // 기타 이벤트 리스너 초기화
 function initializeEventListeners() {
-    // 일정 추가 버튼들
-    const addScheduleBtns = document.querySelectorAll('.schedule-list .add-btn');
-    addScheduleBtns.forEach(btn => {
-        btn.addEventListener('click', handleAddSchedule);
-    });
-    
     // 교통편 아이템 클릭 이벤트
     const transportItems = document.querySelectorAll('.transport-item');
     transportItems.forEach(item => {
@@ -441,6 +555,29 @@ function initializeEventListeners() {
                 navigateCalendar('next');
             }
         });
+    });
+    
+    // 모달 외부 클릭 시 닫기
+    document.addEventListener('click', function(e) {
+        const scheduleModal = document.getElementById('scheduleModal');
+        if (e.target === scheduleModal) {
+            closeScheduleModal();
+        }
+    });
+    
+    // ESC 키로 모달 닫기
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const scheduleModal = document.getElementById('scheduleModal');
+            const messengerModal = document.getElementById('messengerModal');
+            
+            if (scheduleModal && scheduleModal.classList.contains('active')) {
+                closeScheduleModal();
+            }
+            if (messengerModal && messengerModal.classList.contains('active')) {
+                closeMessenger();
+            }
+        }
     });
 }
 
@@ -481,50 +618,10 @@ function initializeMessengerEvents() {
     });
 }
 
-// 일정 추가 핸들러
+// 기존 일정 추가 핸들러 (이제 사용하지 않음)
 function handleAddSchedule() {
-    // 날짜가 선택되지 않았을 때
-    if (!selectedDate) {
-        alert('먼저 캘린더에서 날짜를 선택해주세요!');
-        return;
-    }
-    
-    const time = prompt('시간을 입력하세요 (예: 14:30):');
-    if (!time) return;
-    
-    const title = prompt('일정 제목을 입력하세요:');
-    if (!title) return;
-    
-    const description = prompt('일정 설명을 입력하세요 (선택사항):');
-    
-    // 선택된 날짜의 일정 데이터에 새 일정 추가
-    const dateKey = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${selectedDate}`;
-    
-    if (!scheduleData[dateKey]) {
-        scheduleData[dateKey] = [];
-    }
-    
-    scheduleData[dateKey].push({
-        time: time,
-        title: title,
-        description: description || ''
-    });
-    
-    // 일정 목록 UI 업데이트
-    const scheduleList = document.querySelector('.schedule-list');
-    
-    // 기존 "일정이 없습니다" 메시지 제거
-    const noScheduleDiv = scheduleList.querySelector('.no-schedule');
-    if (noScheduleDiv) {
-        noScheduleDiv.remove();
-    }
-    
-    // 새 일정 아이템 생성 및 추가
-    const newScheduleItem = createScheduleItem(time, title, description || '');
-    const addBtn = scheduleList.querySelector('.add-btn');
-    scheduleList.insertBefore(newScheduleItem, addBtn);
-    
-    console.log('새 일정이 추가되었습니다:', { time, title, description, dateKey });
+    // 이제 모달을 통해 처리하므로 이 함수는 사용하지 않음
+    openScheduleModal();
 }
 
 // 일정 아이템 생성
@@ -593,3 +690,4 @@ console.log('- 캘린더 날짜 클릭으로 일정 관리');
 console.log('- 탭 전환으로 날씨/교통편 확인');
 console.log('- 메신저 앱으로 고객 지원');
 console.log('- ESC 키로 메신저 앱 닫기');
+console.log('- 새로운 모달창으로 일정 추가');
