@@ -94,10 +94,11 @@ body.room-create .submit-progress .input-group-status .status-main-menu+.status-
 body.room-create .submit-progress .input-group-status .status-main-menu.active {
     color: #616161;
     font-weight: 400;
+    font-weight: bold;
 }
 
 body.room-create .submit-progress .input-group-status .status-main-menu.completed {
-    color: #005792;
+    color: #bdbdbd;
     font-weight: 500;
 }
 
@@ -110,7 +111,7 @@ body.room-create .submit-progress .input-group-status .status-sub-menu .status-s
 }
 
 body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title.completed {
-    color: #005792;
+    color: #bdbdbd;
 }
 
 body.room-create .submit-progress .input-group-status .status-sub-menu .status-sub-menu-title:first-child {

@@ -290,17 +290,14 @@ function handleRejectAll() {
  */
 function handleApproveRequest(requestId, roomId, buttonElement) {
     const requestItem = buttonElement.closest('.request-item-detailed');
-    const userName = requestItem.querySelector('.request-name-large').textContent.split('\n')[0].trim();
+    const nameElement = requestItem.querySelector('.request-name-large');
+    const userName = nameElement.firstChild.textContent.trim();
     
     showConfirmModal(
         '입장 승인',
         `${userName}님의 입장을 승인하시겠습니까?`,
         '',
         () => {
-            // 백엔드 작업: 실제 승인 API 호출
-            // API: POST /api/join-requests/{requestId}/approve
-            // 추가 처리: 방 인원 수 업데이트, 신청자에게 알림 전송
-            
             processRequestApproval(requestId, roomId, requestItem);
         }
     );
@@ -311,7 +308,8 @@ function handleApproveRequest(requestId, roomId, buttonElement) {
  */
 function handleRejectRequest(requestId, roomId, buttonElement) {
     const requestItem = buttonElement.closest('.request-item-detailed');
-    const userName = requestItem.querySelector('.request-name-large').textContent.split('\n')[0].trim();
+    const nameElement = requestItem.querySelector('.request-name-large');
+    const userName = nameElement.firstChild.textContent.trim();
     
     showConfirmModal(
         '입장 거절',
@@ -331,9 +329,17 @@ function handleRejectRequest(requestId, roomId, buttonElement) {
  * 대량 승인 처리 (UI 애니메이션만)
  */
 function processBulkApproval(selectedRequests) {
+    // 승인된 사용자 이름들을 수집
+    const approvedNames = [];
+    
     // UI 로딩 상태 표시
     selectedRequests.forEach((checkbox, index) => {
         const requestItem = checkbox.closest('.request-item-detailed');
+        
+        // 사용자 이름 추출
+        const nameElement = requestItem.querySelector('.request-name-large');
+        const userName = nameElement.firstChild.textContent.trim();
+        approvedNames.push(userName);
         
         setTimeout(() => {
             // 로딩 상태
@@ -350,7 +356,17 @@ function processBulkApproval(selectedRequests) {
                     
                     // 마지막 요청 처리 완료 시
                     if (index === selectedRequests.length - 1) {
-                        showToast('success', `${selectedRequests.length}개의 요청을 승인했습니다.`);
+                        // 이름들을 포함한 메시지 생성
+                        let message;
+                        if (approvedNames.length === 1) {
+                            message = `${approvedNames[0]}님의 요청을 승인했습니다.`;
+                        } else if (approvedNames.length <= 3) {
+                            message = `${approvedNames.join(', ')}님의 요청을 승인했습니다.`;
+                        } else {
+                            message = `${approvedNames.slice(0, 2).join(', ')} 외 ${approvedNames.length - 2}명의 요청을 승인했습니다.`;
+                        }
+                        
+                        showToast('success', message);
                         updateStats();
                         updateNotificationBadge();
                         checkEmptySections();
@@ -365,9 +381,17 @@ function processBulkApproval(selectedRequests) {
  * 대량 거절 처리 (UI 애니메이션만)
  */
 function processBulkRejection(selectedRequests) {
+    // 거절된 사용자 이름들을 수집
+    const rejectedNames = [];
+    
     // UI 로딩 상태 표시
     selectedRequests.forEach((checkbox, index) => {
         const requestItem = checkbox.closest('.request-item-detailed');
+        
+        // 사용자 이름 추출
+        const nameElement = requestItem.querySelector('.request-name-large');
+        const userName = nameElement.firstChild.textContent.trim();
+        rejectedNames.push(userName);
         
         setTimeout(() => {
             // 로딩 상태
@@ -384,7 +408,17 @@ function processBulkRejection(selectedRequests) {
                     
                     // 마지막 요청 처리 완료 시
                     if (index === selectedRequests.length - 1) {
-                        showToast('info', `${selectedRequests.length}개의 요청을 거절했습니다.`);
+                        // 이름들을 포함한 메시지 생성
+                        let message;
+                        if (rejectedNames.length === 1) {
+                            message = `${rejectedNames[0]}님의 요청을 거절했습니다.`;
+                        } else if (rejectedNames.length <= 3) {
+                            message = `${rejectedNames.join(', ')}님의 요청을 거절했습니다.`;
+                        } else {
+                            message = `${rejectedNames.slice(0, 2).join(', ')} 외 ${rejectedNames.length - 2}명의 요청을 거절했습니다.`;
+                        }
+                        
+                        showToast('info', message);
                         updateStats();
                         updateNotificationBadge();
                         checkEmptySections();
@@ -399,8 +433,9 @@ function processBulkRejection(selectedRequests) {
  * 개별 요청 승인 처리 (UI 애니메이션만)
  */
 function processRequestApproval(requestId, roomId, requestItem) {
-    const userName = requestItem.querySelector('.request-name-large').textContent.split('\n')[0].trim();
-    
+    const requestItem = buttonElement.closest('.request-item-detailed');
+    const nameElement = requestItem.querySelector('.request-name-large');
+    const userName = nameElement.firstChild.textContent.trim();
     // 버튼 비활성화 및 로딩 상태
     const buttons = requestItem.querySelectorAll('button');
     buttons.forEach(btn => {
