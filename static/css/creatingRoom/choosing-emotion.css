@@ -12,6 +12,7 @@
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
 }
+
 body.room-create .room-create-formview .container {
     width: 1080px;
 }
@@ -262,47 +263,254 @@ body.room-create .room-create-form-section .form-input-section {
     color: #212121;
 }
 
-/* 감정 태그 그리드 */
-.emotion-tags-grid {
+/* 카테고리 버튼들 */
+.emotion-category-buttons {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 12px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
-.emotion-tag-item {
+.category-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 15px;
+    font-weight: 500;
+    color: #334155;
+    min-height: 60px;
+}
+
+.category-btn:hover {
+    border-color: #005792;
+    background: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 87, 146, 0.15);
+}
+
+.category-btn.active {
+    border-color: #005792;
+    background: linear-gradient(135deg, #005792 0%, #1976d2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 87, 146, 0.3);
+}
+
+.category-btn .category-icon {
+    font-size: 24px;
+}
+
+.category-btn .category-name {
+    font-weight: 600;
+}
+
+/* 카테고리별 색상 테마 */
+.category-btn[data-category="healing"]:hover {
+    border-color: #16a34a;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    color: #166534;
+}
+
+.category-btn[data-category="healing"].active {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+}
+
+.category-btn[data-category="romance"]:hover {
+    border-color: #e11d48;
+    background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+    color: #be185d;
+}
+
+.category-btn[data-category="romance"].active {
+    background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+}
+
+.category-btn[data-category="adventure"]:hover {
+    border-color: #ea580c;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    color: #92400e;
+}
+
+.category-btn[data-category="adventure"].active {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+}
+
+.category-btn[data-category="freedom"]:hover {
+    border-color: #0284c7;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    color: #0c4a6e;
+}
+
+.category-btn[data-category="freedom"].active {
+    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+}
+
+.category-btn[data-category="joy"]:hover {
+    border-color: #ca8a04;
+    background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+    color: #713f12;
+}
+
+.category-btn[data-category="joy"].active {
+    background: linear-gradient(135deg, #ca8a04 0%, #eab308 100%);
+}
+
+.category-btn[data-category="artistic"]:hover {
+    border-color: #7c3aed;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    color: #581c87;
+}
+
+.category-btn[data-category="artistic"].active {
+    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+}
+
+/* 감정 태그 표시 영역 */
+.emotion-tags-display {
+    margin-top: 24px;
+    padding: 24px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+}
+
+.emotion-tags-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.selected-category-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.close-tags-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #e2e8f0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.close-tags-btn:hover {
+    background: #cbd5e1;
+    color: #1e293b;
+}
+
+/* 감정 태그 그리드 (표시 영역 내부) */
+.emotion-tags-display .emotion-tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+}
+
+.emotion-tags-display .emotion-tag-item {
     position: relative;
 }
 
-.emotion-checkbox {
+.emotion-tags-display .emotion-checkbox {
     display: none;
 }
 
-.emotion-label {
+.emotion-tags-display .emotion-label {
     display: block;
-    padding: 12px 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
     text-align: center;
     font-size: 14px;
     font-weight: 400;
-    color: #616161;
+    color: #64748b;
     cursor: pointer;
     transition: all 0.2s ease;
     background: #fff;
 }
 
-.emotion-label:hover {
+.emotion-tags-display .emotion-label:hover {
     border-color: #005792;
     background: #f0f8ff;
     color: #005792;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 87, 146, 0.2);
 }
 
-.emotion-checkbox:checked + .emotion-label {
-    border: 2px solid #005792;
-    background: #f0f8ff;
+.emotion-tags-display .emotion-checkbox:checked + .emotion-label {
+    border-color: #005792;
+    background: linear-gradient(135deg, #005792 0%, #1976d2 100%);
+    color: white;
+    font-weight: 600;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 87, 146, 0.3);
+}
+
+/* 선택된 감정 카운트 뱃지 (버튼에 표시) */
+.category-btn .emotion-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #dc2626;
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+    animation: badgeAppear 0.3s ease;
+}
+
+@keyframes badgeAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.category-btn.active .emotion-count-badge {
+    background: rgba(255, 255, 255, 0.9);
     color: #005792;
-    font-weight: 500;
 }
 
 /* 커스텀 입력 섹션 */
@@ -489,6 +697,7 @@ body.room-create .room-create-formview .container::after {
 .mb4 { margin-bottom: 4px; }
 .mb8 { margin-bottom: 8px; }
 .mb16 { margin-bottom: 16px; }
+.mb24 { margin-bottom: 24px; }
 .mb32 { margin-bottom: 32px; }
 .mb48 { margin-bottom: 48px; }
 
@@ -836,7 +1045,7 @@ body.room-create .room-create-formview .container::after {
     font-weight: 500;
 }
 
-/* 반응형 */
+/* 반응형 디자인 */
 @media (max-width: 1200px) {
     .big-frame {
         min-width: auto;
@@ -859,19 +1068,38 @@ body.room-create .room-create-formview .container::after {
         float: none;
         width: 100%;
     }
-    
-    .emotion-tags-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 8px;
-    }
-    
-    .emotion-label {
-        padding: 10px 12px;
-        font-size: 13px;
-    }
 }
 
 @media (max-width: 768px) {
+    .emotion-category-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 8px;
+    }
+    
+    .category-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+        min-height: 50px;
+    }
+    
+    .category-btn .category-icon {
+        font-size: 20px;
+    }
+    
+    .emotion-tags-display {
+        padding: 16px;
+    }
+    
+    .emotion-tags-display .emotion-tags-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 8px;
+    }
+    
+    .emotion-tags-display .emotion-label {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
     .help-modal-content {
         width: 95%;
         margin: 20px;
@@ -914,5 +1142,15 @@ body.room-create .room-create-formview .container::after {
     
     .help-modal-footer {
         padding: 12px 20px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .emotion-category-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .category-btn .category-name {
+        font-size: 13px;
     }
 }
