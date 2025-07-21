@@ -21,7 +21,7 @@ body.room-create .room-create-formview .container {
     margin: 0 auto;
 }
 
-/* 진행 상태 바 - 흰색 배경 박스 추가 */
+/* 진행 상태 바 */
 body.room-create .submit-progress {
     margin-right: 24px;
     float: left;
@@ -266,7 +266,7 @@ body.room-create .room-create-form-section .form-input-section {
 /* 카테고리 버튼들 */
 .emotion-category-buttons {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-bottom: 24px;
 }
@@ -312,6 +312,7 @@ body.room-create .room-create-form-section .form-input-section {
 }
 
 /* 카테고리별 색상 테마 */
+/* 평온 & 힐링 */
 .category-btn[data-category="healing"]:hover {
     border-color: #16a34a;
     background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
@@ -322,6 +323,7 @@ body.room-create .room-create-form-section .form-input-section {
     background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
 }
 
+/* 사랑 & 로맨스 */
 .category-btn[data-category="romance"]:hover {
     border-color: #e11d48;
     background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
@@ -332,6 +334,7 @@ body.room-create .room-create-form-section .form-input-section {
     background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
 }
 
+/* 모험 & 스릴 */
 .category-btn[data-category="adventure"]:hover {
     border-color: #ea580c;
     background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
@@ -342,6 +345,7 @@ body.room-create .room-create-form-section .form-input-section {
     background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
 }
 
+/* 자유 & 해방 */
 .category-btn[data-category="freedom"]:hover {
     border-color: #0284c7;
     background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
@@ -352,6 +356,7 @@ body.room-create .room-create-form-section .form-input-section {
     background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
 }
 
+/* 기쁨 & 즐거움 */
 .category-btn[data-category="joy"]:hover {
     border-color: #ca8a04;
     background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
@@ -362,6 +367,7 @@ body.room-create .room-create-form-section .form-input-section {
     background: linear-gradient(135deg, #ca8a04 0%, #eab308 100%);
 }
 
+/* 감성 & 예술 */
 .category-btn[data-category="artistic"]:hover {
     border-color: #7c3aed;
     background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
@@ -370,6 +376,105 @@ body.room-create .room-create-form-section .form-input-section {
 
 .category-btn[data-category="artistic"].active {
     background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+}
+
+/* 열정 & 에너지 */
+.category-btn[data-category="effort"]:hover {
+    border-color: #dc2626;
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+    color: #991b1b;
+}
+
+.category-btn[data-category="effort"].active {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+/* 성장 & 사색 */
+.category-btn[data-category="growth"]:hover {
+    border-color: #059669;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    color: #065f46;
+}
+
+.category-btn[data-category="growth"].active {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+/* 위로 & 공감 */
+.category-btn[data-category="comfort"]:hover {
+    border-color: #7c2d12;
+    background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%);
+    color: #9a3412;
+}
+
+.category-btn[data-category="comfort"].active {
+    background: linear-gradient(135deg, #7c2d12 0%, #c2410c 100%);
+}
+
+/* 희망 & 긍정 */
+.category-btn[data-category="hope"]:hover {
+    border-color: #0891b2;
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+    color: #134e4a;
+}
+
+.category-btn[data-category="hope"].active {
+    background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+}
+
+/* 우울 & 슬픔 */
+.category-btn[data-category="sadness"]:hover {
+    border-color: #6366f1;
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    color: #3730a3;
+}
+
+.category-btn[data-category="sadness"].active {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+
+/* 평안 & 지적 */
+.category-btn[data-category="calm"]:hover {
+    border-color: #65a30d;
+    background: linear-gradient(135deg, #f7fee7 0%, #ecfccb 100%);
+    color: #365314;
+}
+
+.category-btn[data-category="calm"].active {
+    background: linear-gradient(135deg, #65a30d 0%, #84cc16 100%);
+}
+
+/* 분노 & 짜증 */
+.category-btn[data-category="anger"]:hover {
+    border-color: #b91c1c;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    color: #7f1d1d;
+}
+
+.category-btn[data-category="anger"].active {
+    background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+}
+
+/* 퀴즈 & 무거움 */
+.category-btn[data-category="quiz"]:hover {
+    border-color: #374151;
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    color: #111827;
+}
+
+.category-btn[data-category="quiz"].active {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+}
+
+/* 솔직함 & 신기함 */
+.category-btn[data-category="honesty"]:hover {
+    border-color: #0d9488;
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+    color: #134e4a;
+}
+
+.category-btn[data-category="honesty"].active {
+    background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
 }
 
 /* 감정 태그 표시 영역 */
@@ -481,7 +586,7 @@ body.room-create .room-create-form-section .form-input-section {
     box-shadow: 0 6px 16px rgba(0, 87, 146, 0.3);
 }
 
-/* 선택된 감정 카운트 뱃지 (버튼에 표시) */
+/* 선택된 감정 카운트 뱃지 */
 .category-btn .emotion-count-badge {
     display: inline-flex;
     align-items: center;
@@ -701,7 +806,7 @@ body.room-create .room-create-formview .container::after {
 .mb32 { margin-bottom: 32px; }
 .mb48 { margin-bottom: 48px; }
 
-/* 감정 선택 도움말 모달 스타일 */
+/* 도움말 모달 스타일 */
 .help-modal {
     position: fixed;
     top: 0;
@@ -1072,7 +1177,7 @@ body.room-create .room-create-formview .container::after {
 
 @media (max-width: 768px) {
     .emotion-category-buttons {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px;
     }
     
@@ -1147,7 +1252,7 @@ body.room-create .room-create-formview .container::after {
 
 @media (max-width: 480px) {
     .emotion-category-buttons {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
     
     .category-btn .category-name {
