@@ -22,7 +22,7 @@ body {
 }
 
 .containers::after {
-    content: "";-
+    content: "";
     display: table;
     clear: both;
 }

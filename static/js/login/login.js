@@ -1,3 +1,8 @@
+/******************************************************
+ * 1. 인풋 라벨 플로팅(아이디/비밀번호 입력창 라벨 위로 이동 효과)
+ ******************************************************/
+
+
 function initInputLabelEffect() {
     const inputContainers = document.querySelectorAll('[data-testid="design-system--text-field-container"]');
 
@@ -45,7 +50,9 @@ if (document.readyState !== 'loading') {
 }
 
 
-
+/******************************************************
+ * 2. Hover 효과 (인풋박스/버튼)
+ ******************************************************/
 
 function initHoverEffect() {
     // 1. 인풋 컨테이너 hover 효과
@@ -81,6 +88,9 @@ if (document.readyState !== 'loading') {
     document.addEventListener('DOMContentLoaded', initHoverEffect);
 }
 
+/******************************************************
+ * 3. 로그인 상태 유지 체크박스 (체크 시 파란 아이콘 표시)
+ ******************************************************/
 document.addEventListener('DOMContentLoaded', function() {
   const rememberCheckbox = document.querySelector('input[type="checkbox"][name="remember"]');
   const svgIcon = rememberCheckbox.nextElementSibling.querySelector('svg');
@@ -101,8 +111,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-
-
+/******************************************************
+ * 4. 로그인 버튼 클릭 시 (에러 메시지 및 유효성 검사)
+ *    (1) 기존 텍스트 에러 메시지 (빨간 안내문)
+ ******************************************************/
 
 document.addEventListener("DOMContentLoaded", function () {
   const loginBtn = document.getElementById("loginBtn");
@@ -138,6 +150,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+/******************************************************
+ * 5. 로그인 버튼 클릭 시 (모달 팝업 에러 알림)
+ *    (2) 모달 창 활용 (입력 누락 시 경고 모달 표시)
+ ******************************************************/
 document.addEventListener("DOMContentLoaded", function () {
   const loginBtn = document.querySelector('.loginBtn');
   const emailLabel = document.querySelectorAll('[data-testid="design-system--lable-text"]')[0];
@@ -183,7 +199,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
+/******************************************************
+ * 6. 로그인 버튼 클릭 시 (모달 닫기 기능 + 배경 클릭 닫기 추가)
+ ******************************************************/
 
 
 document.addEventListener("DOMContentLoaded", function () {
