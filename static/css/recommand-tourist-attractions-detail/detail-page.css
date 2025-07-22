@@ -38,12 +38,19 @@
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-10px);
   }
+
   60% {
     transform: translateY(-5px);
   }
@@ -75,7 +82,7 @@
 .location-icon {
   width: 28px;
   height: 28px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .place-name {
@@ -333,6 +340,7 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 87, 146, 0.1);
+  margin-top: 120px;
 }
 
 .container-title {
@@ -385,7 +393,8 @@
   flex-wrap: wrap;
 }
 
-.guide-btn, .ask-btn {
+.guide-btn,
+.ask-btn {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -425,7 +434,8 @@
   border-color: #005792;
 }
 
-.btn-arrow, .btn-plus {
+.btn-arrow,
+.btn-plus {
   font-size: 18px;
   font-weight: bold;
 }
@@ -449,9 +459,12 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -462,49 +475,275 @@
   .container-place {
     padding: 0 16px;
   }
-  
+
   .container-match-service {
     max-width: 95%;
     margin: 40px auto 0;
   }
-  
+
   .page-title {
     font-size: 24px;
     padding: 12px 24px;
   }
-  
+
   .placeInfo {
     flex-direction: column;
   }
-  
+
   .place-tag-info {
     width: 100%;
     padding: 20px;
   }
-  
+
   .place {
     height: 200px;
   }
-  
+
   .container {
     flex-direction: column;
     padding: 30px 20px;
   }
-  
+
   .title-service {
     font-size: 24px;
   }
-  
+
   .button-group {
     flex-direction: column;
   }
-  
-  .guide-btn, .ask-btn {
+
+  .guide-btn,
+  .ask-btn {
     justify-content: center;
     width: 100%;
   }
-  
+
   .info-grid {
     grid-template-columns: 1fr;
   }
 }
+
+.container-review {
+  margin: 60px auto 0;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 87, 146, 0.1);
+
+  margin-bottom: 100px;
+  margin-top: 120px;
+}
+
+.review-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.review-icon {
+  font-size: 26px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 30px auto 12px auto;
+  padding: 0 80px;
+
+}
+
+.review-form label {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.review-form textarea {
+  padding: 1.7rem;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #333;
+  /* 글자 색 명시 */
+  background-color: #fff;
+  /* 배경색 명시 */
+  width: 100%;
+  /* 필요시 폭 고정 */
+  height: 150px;
+  box-sizing: border-box;
+  /* 패딩 포함 폭 계산 */
+  font-family: inherit;
+  /* 상위 폰트 상속 */
+}
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.my-review {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 40px 100px;
+  background: rgba(0, 87, 146, 0.1);
+  border-radius: 12px;
+  transition: background 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.submit-review-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.submit-review-btn {
+  background: linear-gradient(135deg, #005792 0%, #001A2C 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 87, 146, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 10px 0 20px;
+}
+
+.submit-review-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 87, 146, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.review-zip {
+  line-height: 20px;
+  width: 100%;
+  white-space: nowrap;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.review-more {
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+.review-count {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #888;
+  text-align: right;
+}
+
+.review-list ul {
+  padding-top: 15px;
+  list-style: none;
+  width: 700px;
+}
+
+.review-list li {
+  background-color: #cccccc46;
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+  margin-bottom: 15px;
+
+  word-wrap: break-word;
+  /* 너무 긴 단어 줄바꿈 */
+  overflow-wrap: break-word;
+  /* 표준 속성 */
+  white-space: normal;
+  /* 줄바꿈 허용 */
+}
+
+.star-rating {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  padding-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+/* 눌렀을 때 전체 별 커짐 */
+.star-rating.active {
+  transform: scale(0.95);
+  filter: brightness(1.1);
+}
+.star {
+  width: 40px;
+  height: 40px;
+  background: url('/static/image/recommand-tourist-attractions-detail/empty-star.png') no-repeat center;
+  background-size: contain;
+  display: inline-block;
+  position: relative;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+
+.star.full {
+  background-image: url('/static/image/recommand-tourist-attractions-detail/full-star.png');
+}
+
+.star.half {
+  background-image: url('/static/image/recommand-tourist-attractions-detail/half-star.png');
+}
+
+/* ⭐ 마우스 호버 시 살짝 커지고 색 강조 */
+.star:hover {
+  transform: scale(1.1);
+  filter: brightness(1);
+}
+
+/* ⭐ 클릭 시 눌리는 느낌 */
+.star:active {
+  transform: scale(0.95);
+  filter: brightness(1.1);
+}
+
+
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 24px 0;
+  /* 위아래 여백 */
+}
+
+.review-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between; /* 양 끝으로 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+}
+
+.review-text {
+  font-size:18px;
+  margin-top: 12px;
+}
+.review-date {
+  color: #888;
+  font-size:15px;
+  margin-top: 18px;
+}
+.review-box {
+  padding: 5px 8px;
+}
+
