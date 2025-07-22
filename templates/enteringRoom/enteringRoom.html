@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>무드트립 : 방 찾기</title>
     <link rel="stylesheet" href="/static/css/enteringRoom/enteringRoom.css">
-    <script src="/static/js/enteringRoom/enteringRoom.js"></script>
+    <script src="/static/js/enteringRoom/enteringRoom.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <div class="page-header">
+        <header class="page-header">
             <h1 class="page-title">방 찾기</h1>
             <p class="page-subtitle">원하는 방에 들어가서 당신의 동행자를 매칭해보세요!</p>
-        </div>
+        </header>
 
-        <div class="search-section">
+        <section class="search-section">
             <div class="search-container">
+                <label for="searchInput" class="sr-only">키워드 검색</label>
                 <input type="text" class="search-input" placeholder="키워드 검색" id="searchInput">
                 <button class="search-button" id="searchButton" aria-label="검색">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -24,13 +25,13 @@
                     </svg>
                 </button>
             </div>
-        </div>
+        </section>
 
-        <div class="filter-tabs">
+        <nav class="filter-tabs">
             <button class="filter-tab active" data-filter="all">전체 별</button>
             <button class="filter-tab" data-filter="nearby">지역 별</button>
             <button class="filter-tab" data-filter="popular">인원 별</button>
-        </div>
+        </nav>
 
         <div class="region-filter-section" id="regionFilterSection" style="display: none;">
             <div class="region-filter-tabs">
@@ -89,28 +90,29 @@
             </div>
         </div>
 
-        <div class="room-list" id="roomList">
-        </div>
+        <main class="room-list" id="roomList">
+            <!-- 방 카드들이 동적으로 생성됩니다 -->
+        </main>
 
-        <div class="pagination" id="pagination">
-            <button class="page-btn prev" id="prevBtn">‹</button>
+        <nav class="pagination" id="pagination">
+            <button class="page-btn prev" id="prevBtn" aria-label="이전 페이지">‹</button>
             <button class="page-btn active" data-page="1">1</button>
             <button class="page-btn" data-page="2">2</button>
             <button class="page-btn" data-page="3">3</button>
             <button class="page-btn" data-page="4">4</button>
             <button class="page-btn" data-page="5">5</button>
             <span class="page-dots">...</span>
-            <button class="page-btn next" id="nextBtn">›</button>
-        </div>
+            <button class="page-btn next" id="nextBtn" aria-label="다음 페이지">›</button>
+        </nav>
     </div>
 
     <!-- 상세보기 모달 -->
-    <div id="detailModal" class="modal" style="display: none;">
+    <div id="detailModal" class="modal" style="display: none;" role="dialog" aria-labelledby="detailModalTitle" aria-hidden="true">
         <div class="modal-overlay" onclick="closeDetailModal()"></div>
         <div class="modal-content detail-modal-content">
             <div class="modal-header">
-                <h3>방 상세보기</h3>
-                <button class="modal-close" onclick="closeDetailModal()">×</button>
+                <h3 id="detailModalTitle">방 상세보기</h3>
+                <button class="modal-close" onclick="closeDetailModal()" aria-label="모달 닫기">×</button>
             </div>
             <div class="modal-body">
                 <div class="detail-room-image">
@@ -155,18 +157,18 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-cancel" onclick="closeDetailModal()">닫기</button>
-                <button class="btn btn-primary" onclick="goToDetailPage()">자세히 보기</button>
+                <button class="btn btn-primary" onclick="applyFromModal()">입장 신청</button>
             </div>
         </div>
     </div>
 
     <!-- 입장 신청 모달 -->
-    <div id="applicationModal" class="modal" style="display: none;">
+    <div id="applicationModal" class="modal" style="display: none;" role="dialog" aria-labelledby="applicationModalTitle" aria-hidden="true">
         <div class="modal-overlay" onclick="closeApplicationModal()"></div>
         <div class="modal-content">
             <div class="modal-header">
-                <h3>방 입장 신청</h3>
-                <button class="modal-close" onclick="closeApplicationModal()">×</button>
+                <h3 id="applicationModalTitle">방 입장 신청</h3>
+                <button class="modal-close" onclick="closeApplicationModal()" aria-label="모달 닫기">×</button>
             </div>
             <div class="modal-body">
                 <div class="room-info-preview">
@@ -185,7 +187,41 @@
         </div>
     </div>
 
-    <!-- 상세보기 페이지 -->
+    <!-- 신고 모달 -->
+    <div id="reportModal" class="modal" style="display: none;" role="dialog" aria-labelledby="reportModalTitle" aria-hidden="true">
+        <div class="modal-overlay" onclick="closeReportModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="reportModalTitle">방 신고하기</h3>
+                <button class="modal-close" onclick="closeReportModal()" aria-label="모달 닫기">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="room-info-preview">
+                    <h4 id="reportRoomTitle">방 제목</h4>
+                    <p id="reportRoomMeta">방 정보</p>
+                </div>
+                <div class="report-form">
+                    <label for="reportReason">신고 사유</label>
+                    <select id="reportReason">
+                        <option value="">신고 사유를 선택해주세요</option>
+                        <option value="spam">스팸/광고</option>
+                        <option value="inappropriate">부적절한 내용</option>
+                        <option value="fraud">사기/허위정보</option>
+                        <option value="harassment">괴롭힘/혐오발언</option>
+                        <option value="other">기타</option>
+                    </select>
+                    <label for="reportMessage">상세 내용 (선택사항)</label>
+                    <textarea id="reportMessage" placeholder="신고 사유에 대한 자세한 내용을 입력해주세요." rows="4"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" onclick="closeReportModal()">취소</button>
+                <button class="btn btn-danger" onclick="submitReport()">신고하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 상세보기 페이지 (기존 유지) -->
     <div id="detailPage" class="detail-page" style="display: none;">
         <div class="detail-page-container">
             <div class="detail-page-header">
@@ -203,7 +239,7 @@
                 <h1 class="detail-page-title" id="detailPageTitle">경복궁 간장 게장 같이 먹으러 가요~!!</h1>
                 
                 <div class="detail-info-section">
-                    <h3 class="section-title">📍 인원</h3>
+                    <h3 class="section-title">📍 여행 정보</h3>
                     <div class="detail-info-boxes">
                         <div class="info-box">
                             <div class="info-icon">👥</div>
@@ -215,14 +251,14 @@
                         <div class="info-box">
                             <div class="info-icon">📅</div>
                             <div class="info-text">
-                                <span class="info-label">날짜 기간 :</span>
+                                <span class="info-label">날짜 기간</span>
                                 <span class="info-value" id="detailPageDateRange">7월</span>
                             </div>
                         </div>
                         <div class="info-box">
                             <div class="info-icon">🗓️</div>
                             <div class="info-text">
-                                <span class="info-label">여행 날짜 :</span>
+                                <span class="info-label">여행 날짜</span>
                                 <span class="info-value" id="detailPageTravelDate">2025.07.21 - 2025.07.31</span>
                             </div>
                         </div>
@@ -231,28 +267,28 @@
 
                 <div class="detail-info-list">
                     <div class="info-row">
-                        <span class="info-label">모집 마감일 :</span>
+                        <span class="info-label">모집 마감일</span>
                         <span class="info-value" id="detailPageDeadline">2025년 7월 31일</span>
                         <span class="deadline-highlight">* 마감 7일 전</span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">예상 출발일 :</span>
+                        <span class="info-label">예상 출발일</span>
                         <span class="info-value" id="detailPageDepartureDate">모집 이후 채팅으로 협의</span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">현재 인원 :</span>
+                        <span class="info-label">현재 인원</span>
                         <span class="info-value" id="detailPageCurrentPeople">2 / 4명</span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">지역 차액 :</span>
-                        <span class="info-value" id="detailPageRegionFee">지역 차액은 따로 없고, 사전 할 것는 준비 다들 다 합업합니다!</span>
+                        <span class="info-label">추가 정보</span>
+                        <span class="info-value" id="detailPageRegionFee">지역 차액은 따로 없고, 사전 준비는 다들 함께 합니다!</span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">감정 태그 :</span>
+                        <span class="info-label">감정 태그</span>
                         <div class="emotion-tags" id="detailPageEmotionTags">
                             <span class="emotion-tag">행복</span>
                             <span class="emotion-tag">설렘</span>
-                            <span class="emotion-tag">뜨뜻함</span>
+                            <span class="emotion-tag">따뜻함</span>
                         </div>
                     </div>
                 </div>
@@ -264,8 +300,7 @@
                 <div class="detail-description-section">
                     <h3 class="section-title">📝 여행 설명</h3>
                     <div class="description-content" id="detailPageDescription">
-                        안녕하세요! 저는 여행 여행에 방문한 할 수가지고 있습니다. 처음은 경복궁 아미지 재미 혹중 할게이게 합니다. 저는고 경복궁 아미지 재미 혹즁이 있의 지 개이디. 처음은 경복궁 아미지 재미 혹주이 있의 치게인게. 저는고 어장 혹륜을 때를 둘주지인습니다. 재기는 전쟁을 때을 둘주지고 있어서 새벽과 종하고 져은 지의여행을 친옵기가라리십니다. 지젼요. 지는다 계양 아미지 해미 혹주이 있의 차 개이 개이곳록 때을 된습니다.
-                        처음은 경복궁 아미지 재미 혹주이 있의 치게. 저는고 께양중 아미지 해미 혹주이 있의 지 개이에어. 간력 게직 즐여이머나 이려 게직 자는 해을 써벌게기 버여쁘십나.
+                        안녕하세요! 저는 여행을 정말 좋아하는 사람입니다. 이번에는 경복궁과 주변 맛집을 탐방하는 여행을 계획하고 있어요. 특히 간장게장으로 유명한 곳들을 함께 방문해보려고 합니다. 역사적인 장소에서 느끼는 감동과 함께 맛있는 음식까지 즐길 수 있는 완벽한 여행이 될 것 같아요. 처음 만나는 분들이지만 여행을 통해 좋은 추억을 만들어가요!
                     </div>
                 </div>
 

@@ -5,9 +5,9 @@ let roomsData = [
         title: "한성대학교 캠퍼스 투어!!!",
         location: "서울",
         date: "7월 셋째주",
-        dateValue: new Date('2025-07-21'), // 날짜 정렬을 위한 값 추가
+        dateValue: new Date('2025-07-21'),
         views: "3명이 봄",
-        viewCount: 3, // 조회수 숫자값 추가
+        viewCount: 3,
         description: "안녕하세요! 저희는 세상 최고 멋쟁이 김상우가 다니고 있는 한성대학교 캠퍼스 투어로 떠납니다!!",
         tags: ["설렘", "역사", "야경"],
         currentParticipants: 2,
@@ -22,9 +22,9 @@ let roomsData = [
         title: "고양 종합 운동장",
         location: "경기",
         date: "11월 둘째주",
-        dateValue: new Date('2025-11-10'), // 날짜 정렬을 위한 값 추가
+        dateValue: new Date('2025-11-10'),
         views: "11명이 봄",
-        viewCount: 11, // 조회수 숫자값 추가
+        viewCount: 11,
         description: "최근에 방탄소년단이 전부 전역했다는 소식 다 들었죠!!! 방탄소년단 콘서트가 11월 둘쨰주에 있다고 해요! 저랑 떠나실 분들 떠나요!!",
         tags: ["행복", "떨림", "설렘"],
         currentParticipants: 3,
@@ -39,9 +39,9 @@ let roomsData = [
         title: "고양 킨텍스",
         location: "경기",
         date: "9월 첫째주",
-        dateValue: new Date('2025-09-01'), // 날짜 정렬을 위한 값 추가
+        dateValue: new Date('2025-09-01'),
         views: "31명이 봄",
-        viewCount: 31, // 조회수 숫자값 추가
+        viewCount: 31,
         description: "킨텍스에서 싸이 워터밤이 열립니다!!!!!!!!!!!!!시원하게 노실 분 구해요!",
         tags: ["힐링", "행복", "설렘"],
         currentParticipants: 1,
@@ -60,10 +60,11 @@ const currentDate = new Date('2025-07-02');
 let currentFilter = 'all';
 let currentSort = 'default';
 let currentPage = 1;
-let currentPeopleFilter = 'all'; // 인원별 서브 필터 추가
-let currentRegionFilter = 'all'; // 지역별 서브 필터 추가
+let currentPeopleFilter = 'all';
+let currentRegionFilter = 'all';
 let filteredRooms = [...roomsData];
-let currentDetailRoomId = null; // 현재 상세보기 중인 방 ID
+let currentDetailRoomId = null;
+let currentReportRoomId = null;
 
 // 방 상태 계산 함수
 function calculateRoomStatus(room) {
@@ -86,7 +87,7 @@ function updateRoomStatuses() {
 
 // DOM 로드 후 초기화
 document.addEventListener('DOMContentLoaded', function() {
-    updateRoomStatuses(); // 상태 업데이트
+    updateRoomStatuses();
     initializeEventListeners();
     renderRooms();
     updateResultsCount();
@@ -98,12 +99,14 @@ function initializeEventListeners() {
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
     
-    searchButton.addEventListener('click', handleSearch);
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            handleSearch();
-        }
-    });
+    if (searchButton && searchInput) {
+        searchButton.addEventListener('click', handleSearch);
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+    }
 
     // 필터 탭
     const filterTabs = document.querySelectorAll('.filter-tab');
@@ -140,44 +143,48 @@ function initializeEventListeners() {
     const sortMenu = document.getElementById('sortMenu');
     const sortOptions = document.querySelectorAll('.sort-option');
 
-    sortButton.addEventListener('click', function() {
-        sortMenu.classList.toggle('show');
-    });
-
-    sortOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            const sort = this.getAttribute('data-sort');
-            setActiveSort(sort);
-            applySorting();
-            renderRooms();
-            updatePagination();
-            sortMenu.classList.remove('show');
+    if (sortButton && sortMenu) {
+        sortButton.addEventListener('click', function() {
+            sortMenu.classList.toggle('show');
         });
-    });
 
-    // 외부 클릭 시 드롭다운 닫기
-    document.addEventListener('click', function(e) {
-        if (!sortButton.contains(e.target) && !sortMenu.contains(e.target)) {
-            sortMenu.classList.remove('show');
-        }
-    });
+        sortOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const sort = this.getAttribute('data-sort');
+                setActiveSort(sort);
+                applySorting();
+                renderRooms();
+                updatePagination();
+                sortMenu.classList.remove('show');
+            });
+        });
+
+        // 외부 클릭 시 드롭다운 닫기
+        document.addEventListener('click', function(e) {
+            if (!sortButton.contains(e.target) && !sortMenu.contains(e.target)) {
+                sortMenu.classList.remove('show');
+            }
+        });
+    }
 
     // 마감 임박 체크박스
     const urgentOnly = document.getElementById('urgentOnly');
-    urgentOnly.addEventListener('change', applyFilters);
+    if (urgentOnly) {
+        urgentOnly.addEventListener('change', applyFilters);
+    }
 
     // 페이지네이션
     initializePagination();
 }
 
-// 방 상세보기 모달 열기 (원래대로 복구)
+// 방 상세보기 모달 열기
 function viewRoomDetail(roomId) {
     const room = roomsData.find(r => r.id === roomId);
     if (room) {
         currentDetailRoomId = roomId;
         openDetailModal(room);
         
-        // 조회수 증가 (실제로는 서버에 요청)
+        // 조회수 증가
         room.viewCount += 1;
         room.views = `${room.viewCount}명이 봄`;
     }
@@ -186,122 +193,77 @@ function viewRoomDetail(roomId) {
 // 상세보기 모달 열기
 function openDetailModal(room) {
     const modal = document.getElementById('detailModal');
+    if (!modal) return;
     
     // 모달 내용 업데이트
-    document.getElementById('detailRoomImage').src = room.image;
-    document.getElementById('detailRoomImage').alt = room.title;
-    document.getElementById('detailRoomStatus').textContent = room.status;
-    document.getElementById('detailRoomStatus').className = `detail-room-status ${room.urgent ? 'urgent' : ''}`;
-    document.getElementById('detailRoomTitle').textContent = room.title;
-    document.getElementById('detailRoomLocation').textContent = room.location;
-    document.getElementById('detailRoomDate').textContent = room.date;
-    document.getElementById('detailRoomParticipants').textContent = `${room.currentParticipants} / ${room.maxParticipants}명`;
-    document.getElementById('detailRoomViews').textContent = room.views;
-    document.getElementById('detailRoomPeriod').textContent = room.createdDate;
-    document.getElementById('detailRoomDesc').textContent = room.description;
+    const elements = {
+        detailRoomImage: document.getElementById('detailRoomImage'),
+        detailRoomStatus: document.getElementById('detailRoomStatus'),
+        detailRoomTitle: document.getElementById('detailRoomTitle'),
+        detailRoomLocation: document.getElementById('detailRoomLocation'),
+        detailRoomDate: document.getElementById('detailRoomDate'),
+        detailRoomParticipants: document.getElementById('detailRoomParticipants'),
+        detailRoomViews: document.getElementById('detailRoomViews'),
+        detailRoomPeriod: document.getElementById('detailRoomPeriod'),
+        detailRoomDesc: document.getElementById('detailRoomDesc'),
+        detailRoomTags: document.getElementById('detailRoomTags')
+    };
+
+    if (elements.detailRoomImage) {
+        elements.detailRoomImage.src = room.image;
+        elements.detailRoomImage.alt = room.title;
+    }
+    if (elements.detailRoomStatus) {
+        elements.detailRoomStatus.textContent = room.status;
+        elements.detailRoomStatus.className = `detail-room-status ${room.urgent ? 'urgent' : ''}`;
+    }
+    if (elements.detailRoomTitle) elements.detailRoomTitle.textContent = room.title;
+    if (elements.detailRoomLocation) elements.detailRoomLocation.textContent = room.location;
+    if (elements.detailRoomDate) elements.detailRoomDate.textContent = room.date;
+    if (elements.detailRoomParticipants) elements.detailRoomParticipants.textContent = `${room.currentParticipants} / ${room.maxParticipants}명`;
+    if (elements.detailRoomViews) elements.detailRoomViews.textContent = room.views;
+    if (elements.detailRoomPeriod) elements.detailRoomPeriod.textContent = room.createdDate;
+    if (elements.detailRoomDesc) elements.detailRoomDesc.textContent = room.description;
     
     // 태그 업데이트
-    const tagsContainer = document.getElementById('detailRoomTags');
-    tagsContainer.innerHTML = room.tags.map(tag => `<span class="tag"># ${tag}</span>`).join('');
+    if (elements.detailRoomTags) {
+        elements.detailRoomTags.innerHTML = room.tags.map(tag => `<span class="tag"># ${tag}</span>`).join('');
+    }
     
     // 모달 표시
     modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 }
 
 // 상세보기 모달 닫기
 function closeDetailModal() {
     const modal = document.getElementById('detailModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-    currentDetailRoomId = null;
+    if (modal) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = 'auto';
+        currentDetailRoomId = null;
+    }
 }
 
-// 상세보기 페이지로 이동 (모달에서 "자세히 보기" 클릭 시)
-function goToDetailPage() {
+// 모달에서 입장 신청 (상세보기 모달에서 바로 입장 신청 모달 열기)
+function applyFromModal() {
     if (currentDetailRoomId) {
         const room = roomsData.find(r => r.id === currentDetailRoomId);
         if (room) {
-            // localStorage에 방 데이터 저장
-            localStorage.setItem('selectedRoomData', JSON.stringify(room));
-            // 상세보기 페이지로 이동
-            window.location.href = 'enteringRoom-detail.html';
+            closeDetailModal();
+            openApplicationModal(room);
         }
-        closeDetailModal();
     }
 }
-
-// 이제 사용하지 않는 함수들 (주석 처리)
-/*
-// 상세보기 페이지 열기
-function openDetailPage(roomId) {
-    const room = roomsData.find(r => r.id === roomId);
-    if (!room) return;
-    
-    currentDetailRoomId = roomId;
-    
-    // 페이지 내용 업데이트
-    document.getElementById('detailPageStatus').textContent = room.status;
-    document.getElementById('detailPageStatus').className = `detail-page-status ${room.urgent ? 'urgent' : ''}`;
-    document.getElementById('detailPageRegDate').textContent = formatRegDate(new Date());
-    document.getElementById('detailPageTitle').textContent = room.title;
-    document.getElementById('detailPagePeople').textContent = `${room.maxParticipants}명`;
-    document.getElementById('detailPageDateRange').textContent = room.date;
-    document.getElementById('detailPageTravelDate').textContent = room.createdDate;
-    document.getElementById('detailPageDeadline').textContent = formatDeadline(room.dateValue);
-    document.getElementById('detailPageDepartureDate').textContent = '모집 이후 채팅으로 협의';
-    document.getElementById('detailPageCurrentPeople').textContent = `${room.currentParticipants} / ${room.maxParticipants}명`;
-    document.getElementById('detailPageRegionFee').textContent = '지역 차액은 따로 없고, 사전 할 것는 준비 다들 다 합업합니다!';
-    document.getElementById('detailPageImage').src = room.image;
-    document.getElementById('detailPageDescription').textContent = room.description;
-    
-    // 감정 태그 업데이트
-    const emotionTagsContainer = document.getElementById('detailPageEmotionTags');
-    emotionTagsContainer.innerHTML = room.tags.map(tag => `<span class="emotion-tag">${tag}</span>`).join('');
-    
-    // 페이지 표시
-    document.getElementById('detailPage').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-// 상세보기 페이지 닫기
-function closeDetailPage() {
-    document.getElementById('detailPage').style.display = 'none';
-    document.body.style.overflow = 'auto';
-    currentDetailRoomId = null;
-}
-
-// 상세보기 페이지에서 신청하기
-function applyFromDetailPage() {
-    if (currentDetailRoomId) {
-        closeDetailPage();
-        applyRoom(currentDetailRoomId);
-    }
-}
-*/
-
-// 헬퍼 함수들 (일부 제거)
-/*
-function formatRegDate(date) {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}.${month}.${day}`;
-}
-
-function formatDeadline(dateValue) {
-    const deadline = new Date(dateValue);
-    deadline.setDate(deadline.getDate() - 7); // 7일 전
-    const year = deadline.getFullYear();
-    const month = deadline.getMonth() + 1;
-    const day = deadline.getDate();
-    return `${year}년 ${month}월 ${day}일`;
-}
-*/
 
 // 검색 처리
 function handleSearch() {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
+    const searchTerm = searchInput.value.toLowerCase().trim();
     
     if (searchTerm === '') {
         filteredRooms = [...roomsData];
@@ -315,7 +277,7 @@ function handleSearch() {
     }
     
     currentPage = 1;
-    applySorting(); // 정렬 적용
+    applySorting();
     renderRooms();
     updateResultsCount();
     updatePagination();
@@ -323,11 +285,12 @@ function handleSearch() {
 
 // 필터 적용
 function applyFilters() {
-    const urgentOnly = document.getElementById('urgentOnly').checked;
+    const urgentOnly = document.getElementById('urgentOnly');
+    const urgentChecked = urgentOnly ? urgentOnly.checked : false;
     
     filteredRooms = roomsData.filter(room => {
-        // 마감 임박 보기 필터 (체크되면 마감임박만 보기)
-        if (urgentOnly && !room.urgent) {
+        // 마감 임박 보기 필터
+        if (urgentChecked && !room.urgent) {
             return false;
         }
         
@@ -335,14 +298,12 @@ function applyFilters() {
         if (currentFilter === 'all') {
             return true;
         } else if (currentFilter === 'nearby') {
-            // 지역별 필터가 선택된 경우 지역 서브 필터 적용
             if (currentRegionFilter === 'all') {
                 return true;
             } else {
                 return room.location.includes(currentRegionFilter);
             }
         } else if (currentFilter === 'popular') {
-            // 인원별 필터가 선택된 경우 인원 서브 필터 적용
             if (currentPeopleFilter === 'all') {
                 return true;
             } else if (currentPeopleFilter === '2') {
@@ -368,7 +329,6 @@ function applyFilters() {
 function applySorting() {
     switch (currentSort) {
         case 'nearest':
-            // 가까운 날짜 순 (현재 날짜와 가까운 순)
             filteredRooms.sort((a, b) => {
                 const aDiff = Math.abs(a.dateValue.getTime() - currentDate.getTime());
                 const bDiff = Math.abs(b.dateValue.getTime() - currentDate.getTime());
@@ -376,24 +336,19 @@ function applySorting() {
             });
             break;
         case 'popular':
-            // 인기순 = 조회수가 높은 순 (viewCount 기준)
             filteredRooms.sort((a, b) => {
                 return b.viewCount - a.viewCount;
             });
             break;
         default:
-            // 기본 정렬 (모집중 먼저, 그 다음 마감임박)
             filteredRooms.sort((a, b) => {
-                // 먼저 상태별로 정렬 (모집중이 먼저)
                 if (a.urgent !== b.urgent) {
                     return a.urgent ? 1 : -1;
                 }
-                // 같은 상태 내에서는 ID 순
                 return a.id - b.id;
             });
     }
     
-    // 정렬 후 페이지를 첫 페이지로 리셋
     currentPage = 1;
 }
 
@@ -405,26 +360,31 @@ function setActiveFilter(filter) {
     document.querySelectorAll('.filter-tab').forEach(tab => {
         tab.classList.remove('active');
     });
-    document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+    const activeTab = document.querySelector(`[data-filter="${filter}"]`);
+    if (activeTab) activeTab.classList.add('active');
     
     // 지역별 필터 섹션 표시/숨김
     const regionFilterSection = document.getElementById('regionFilterSection');
-    if (filter === 'nearby') {
-        regionFilterSection.style.display = 'block';
-    } else {
-        regionFilterSection.style.display = 'none';
-        currentRegionFilter = 'all'; // 다른 필터 선택 시 지역 필터 초기화
-        setActiveRegionFilter('all');
+    if (regionFilterSection) {
+        if (filter === 'nearby') {
+            regionFilterSection.style.display = 'block';
+        } else {
+            regionFilterSection.style.display = 'none';
+            currentRegionFilter = 'all';
+            setActiveRegionFilter('all');
+        }
     }
     
     // 인원별 필터 섹션 표시/숨김
     const peopleFilterSection = document.getElementById('peopleFilterSection');
-    if (filter === 'popular') {
-        peopleFilterSection.style.display = 'block';
-    } else {
-        peopleFilterSection.style.display = 'none';
-        currentPeopleFilter = 'all'; // 다른 필터 선택 시 인원 필터 초기화
-        setActivePeopleFilter('all');
+    if (peopleFilterSection) {
+        if (filter === 'popular') {
+            peopleFilterSection.style.display = 'block';
+        } else {
+            peopleFilterSection.style.display = 'none';
+            currentPeopleFilter = 'all';
+            setActivePeopleFilter('all');
+        }
     }
 }
 
@@ -432,33 +392,33 @@ function setActiveFilter(filter) {
 function setActiveRegionFilter(regionFilter) {
     currentRegionFilter = regionFilter;
     
-    // UI 업데이트
     document.querySelectorAll('.region-filter-tab').forEach(tab => {
         tab.classList.remove('active');
     });
-    document.querySelector(`[data-region="${regionFilter}"]`).classList.add('active');
+    const activeTab = document.querySelector(`[data-region="${regionFilter}"]`);
+    if (activeTab) activeTab.classList.add('active');
 }
 
 // 활성 인원별 필터 설정
 function setActivePeopleFilter(peopleFilter) {
     currentPeopleFilter = peopleFilter;
     
-    // UI 업데이트
     document.querySelectorAll('.people-filter-tab').forEach(tab => {
         tab.classList.remove('active');
     });
-    document.querySelector(`[data-people="${peopleFilter}"]`).classList.add('active');
+    const activeTab = document.querySelector(`[data-people="${peopleFilter}"]`);
+    if (activeTab) activeTab.classList.add('active');
 }
 
 // 활성 정렬 설정
 function setActiveSort(sort) {
     currentSort = sort;
     
-    // UI 업데이트
     document.querySelectorAll('.sort-option').forEach(option => {
         option.classList.remove('active');
     });
-    document.querySelector(`[data-sort="${sort}"]`).classList.add('active');
+    const activeOption = document.querySelector(`[data-sort="${sort}"]`);
+    if (activeOption) activeOption.classList.add('active');
     
     // 버튼 텍스트 업데이트
     const sortTexts = {
@@ -467,12 +427,16 @@ function setActiveSort(sort) {
         'popular': '인기순'
     };
     
-    document.getElementById('sortButton').firstChild.textContent = sortTexts[sort] + ' ';
+    const sortButton = document.getElementById('sortButton');
+    if (sortButton && sortButton.firstChild) {
+        sortButton.firstChild.textContent = sortTexts[sort] + ' ';
+    }
 }
 
 // 방 목록 렌더링
 function renderRooms() {
     const roomList = document.getElementById('roomList');
+    if (!roomList) return;
     
     if (filteredRooms.length === 0) {
         roomList.innerHTML = `
@@ -518,8 +482,9 @@ function renderRooms() {
                         <span class="created-date">${room.createdDate}</span>
                     </div>
                     <div class="room-actions">
-                        <button class="btn-detail" onclick="viewRoomDetail(${room.id})">상세보기</button>
-                        <button class="btn-apply" onclick="applyRoom(${room.id})">입장 신청</button>
+                        <button class="btn-detail" onclick="viewRoomDetail(${room.id})" aria-label="방 상세보기">상세보기</button>
+                        <button class="btn-apply" onclick="applyRoom(${room.id})" aria-label="방 입장 신청">입장 신청</button>
+                        <button class="btn-report-card" onclick="reportRoomFromCard(${room.id})" aria-label="방 신고하기">신고</button>
                     </div>
                 </div>
             </div>
@@ -530,7 +495,9 @@ function renderRooms() {
 // 결과 개수 업데이트
 function updateResultsCount() {
     const resultsCount = document.getElementById('resultsCount');
-    resultsCount.textContent = filteredRooms.length.toLocaleString();
+    if (resultsCount) {
+        resultsCount.textContent = filteredRooms.length.toLocaleString();
+    }
 }
 
 // 페이지네이션 초기화
@@ -538,22 +505,26 @@ function initializePagination() {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    prevBtn.addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            renderRooms();
-            updatePagination();
-        }
-    });
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderRooms();
+                updatePagination();
+            }
+        });
+    }
     
-    nextBtn.addEventListener('click', () => {
-        const totalPages = Math.ceil(filteredRooms.length / 5);
-        if (currentPage < totalPages) {
-            currentPage++;
-            renderRooms();
-            updatePagination();
-        }
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredRooms.length / 5);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderRooms();
+                updatePagination();
+            }
+        });
+    }
     
     // 페이지 번호 클릭
     document.addEventListener('click', function(e) {
@@ -571,6 +542,8 @@ function updatePagination() {
     const totalPages = Math.ceil(filteredRooms.length / 5);
     const pagination = document.getElementById('pagination');
     
+    if (!pagination) return;
+    
     if (totalPages <= 1) {
         pagination.style.display = 'none';
         return;
@@ -586,8 +559,11 @@ function updatePagination() {
     });
     
     // 이전/다음 버튼 상태
-    document.getElementById('prevBtn').disabled = currentPage === 1;
-    document.getElementById('nextBtn').disabled = currentPage === totalPages;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (prevBtn) prevBtn.disabled = currentPage === 1;
+    if (nextBtn) nextBtn.disabled = currentPage === totalPages;
 }
 
 // 방 입장 신청하기
@@ -601,34 +577,45 @@ function applyRoom(roomId) {
 // 신청 모달 열기
 function openApplicationModal(room) {
     const modal = document.getElementById('applicationModal');
+    if (!modal) return;
+    
     const modalRoomTitle = document.getElementById('modalRoomTitle');
     const modalRoomMeta = document.getElementById('modalRoomMeta');
     
-    modalRoomTitle.textContent = room.title;
-    modalRoomMeta.textContent = `${room.location} | ${room.currentParticipants}/${room.maxParticipants}명 | ${room.createdDate}`;
+    if (modalRoomTitle) modalRoomTitle.textContent = room.title;
+    if (modalRoomMeta) modalRoomMeta.textContent = `${room.location} | ${room.currentParticipants}/${room.maxParticipants}명 | ${room.createdDate}`;
     
     modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    
-    // 현재 선택된 방 ID 저장
+    modal.setAttribute('aria-hidden', 'false');
     modal.setAttribute('data-room-id', room.id);
+    document.body.style.overflow = 'hidden';
 }
 
 // 신청 모달 닫기
 function closeApplicationModal() {
     const modal = document.getElementById('applicationModal');
+    if (!modal) return;
+    
     modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'auto';
     
     // 폼 초기화
-    document.getElementById('applicationMessage').value = '';
+    const applicationMessage = document.getElementById('applicationMessage');
+    if (applicationMessage) applicationMessage.value = '';
 }
 
 // 신청 제출
 function submitApplication() {
     const modal = document.getElementById('applicationModal');
+    if (!modal) return;
+    
     const roomId = parseInt(modal.getAttribute('data-room-id'));
-    const message = document.getElementById('applicationMessage').value.trim();
+    const messageElement = document.getElementById('applicationMessage');
+    
+    if (!messageElement) return;
+    
+    const message = messageElement.value.trim();
     
     if (!message) {
         alert('신청 메시지를 입력해주세요.');
@@ -636,6 +623,7 @@ function submitApplication() {
     }
     
     const room = roomsData.find(r => r.id === roomId);
+    if (!room) return;
     
     // 실제로는 서버에 신청 데이터 전송
     console.log('신청 데이터:', {
@@ -649,11 +637,87 @@ function submitApplication() {
     closeApplicationModal();
 }
 
+// 방 신고하기 (카드에서만)
+function reportRoomFromCard(roomId) {
+    const room = roomsData.find(r => r.id === roomId);
+    if (room) {
+        openReportModal(room);
+    }
+}
+
+// 신고 모달 열기
+function openReportModal(room) {
+    const modal = document.getElementById('reportModal');
+    if (!modal) return;
+    
+    currentReportRoomId = room.id;
+    
+    const reportRoomTitle = document.getElementById('reportRoomTitle');
+    const reportRoomMeta = document.getElementById('reportRoomMeta');
+    
+    if (reportRoomTitle) reportRoomTitle.textContent = room.title;
+    if (reportRoomMeta) reportRoomMeta.textContent = `${room.location} | ${room.currentParticipants}/${room.maxParticipants}명`;
+    
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+// 신고 모달 닫기
+function closeReportModal() {
+    const modal = document.getElementById('reportModal');
+    if (!modal) return;
+    
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+    currentReportRoomId = null;
+    
+    // 폼 초기화
+    const reportReason = document.getElementById('reportReason');
+    const reportMessage = document.getElementById('reportMessage');
+    
+    if (reportReason) reportReason.value = '';
+    if (reportMessage) reportMessage.value = '';
+}
+
+// 신고 제출
+function submitReport() {
+    const reasonElement = document.getElementById('reportReason');
+    const messageElement = document.getElementById('reportMessage');
+    
+    if (!reasonElement) return;
+    
+    const reason = reasonElement.value;
+    const message = messageElement ? messageElement.value.trim() : '';
+    
+    if (!reason) {
+        alert('신고 사유를 선택해주세요.');
+        return;
+    }
+    
+    const room = roomsData.find(r => r.id === currentReportRoomId);
+    if (!room) return;
+    
+    // 실제로는 서버에 신고 데이터 전송
+    console.log('신고 데이터:', {
+        roomId: currentReportRoomId,
+        roomTitle: room.title,
+        reason: reason,
+        message: message,
+        timestamp: new Date().toISOString()
+    });
+    
+    alert('신고가 접수되었습니다.\n검토 후 적절한 조치를 취하겠습니다.');
+    closeReportModal();
+}
+
 // ESC 키로 모달 닫기
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeDetailModal();
         closeApplicationModal();
+        closeReportModal();
     }
 });
 
@@ -662,18 +726,17 @@ document.addEventListener('click', function(e) {
     if (e.target.classList.contains('modal-overlay')) {
         closeDetailModal();
         closeApplicationModal();
+        closeReportModal();
     }
 });
 
 // localStorage에서 사용자 생성 방 데이터 불러오기
 function loadUserCreatedRooms() {
     try {
-        // final-registration에서 생성된 방 데이터 확인
         const finalSubmission = localStorage.getItem('final_room_submission');
         if (finalSubmission) {
             const roomData = JSON.parse(finalSubmission);
             
-            // 사용자가 만든 방을 roomsData에 추가
             const newRoom = {
                 id: roomsData.length + 1,
                 title: roomData.roomName || '새로운 여행',
@@ -681,7 +744,7 @@ function loadUserCreatedRooms() {
                 date: formatScheduleForDisplay(roomData.schedule),
                 dateValue: roomData.schedule?.dateRanges?.[0]?.start ? new Date(roomData.schedule.dateRanges[0].start) : new Date(),
                 views: '0명이 봄',
-                viewCount: 0, // 조회수 숫자값 추가
+                viewCount: 0,
                 description: roomData.roomIntro || '여행 소개가 없습니다.',
                 tags: roomData.emotions?.map(e => typeof e === 'string' ? e : e.text) || ['여행'],
                 currentParticipants: 1,
@@ -692,9 +755,8 @@ function loadUserCreatedRooms() {
                 urgent: false
             };
             
-            // 중복 방지를 위해 ID 체크
             if (!roomsData.find(room => room.id === newRoom.id)) {
-                roomsData.unshift(newRoom); // 맨 앞에 추가
+                roomsData.unshift(newRoom);
                 console.log('사용자 생성 방이 목록에 추가되었습니다:', newRoom);
             }
         }
@@ -732,3 +794,20 @@ function formatDate(date) {
 document.addEventListener('DOMContentLoaded', function() {
     loadUserCreatedRooms();
 });
+
+// 상세보기 페이지 관련 함수들 (기존 유지)
+function closeDetailPage() {
+    const detailPage = document.getElementById('detailPage');
+    if (detailPage) {
+        detailPage.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        currentDetailRoomId = null;
+    }
+}
+
+function applyFromDetailPage() {
+    if (currentDetailRoomId) {
+        closeDetailPage();
+        applyRoom(currentDetailRoomId);
+    }
+}

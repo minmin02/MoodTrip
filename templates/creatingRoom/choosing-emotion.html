@@ -69,73 +69,94 @@
                                 </label>
                                 <p class="body-2 text900 form-group-guide mb16">해당 감정을 가진 사람들이 들어올 수 있게 선택해주세요!</p>
                                 
-                                <!-- 감정 태그 그리드 -->
-                                <div class="emotion-tags-grid mb32">
-                                    <div class="emotion-tag-item" data-emotion="행복">
-                                        <input type="checkbox" id="emotion-happy" name="emotions" value="행복" class="emotion-checkbox">
-                                        <label for="emotion-happy" class="emotion-label">행복</label>
+                                <!-- 모든 카테고리 버튼들 -->
+                                <div class="emotion-category-buttons mb24">
+                                    <!-- 첫 번째 줄 -->
+                                    <button type="button" class="category-btn" data-category="healing">
+                                        <span class="category-icon">🌿</span>
+                                        <span class="category-name">평온 & 힐링</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="romance">
+                                        <span class="category-icon">💕</span>
+                                        <span class="category-name">사랑 & 로맨스</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="adventure">
+                                        <span class="category-icon">⚡</span>
+                                        <span class="category-name">모험 & 스릴</span>
+                                    </button>
+
+                                    <!-- 두 번째 줄 -->
+                                    <button type="button" class="category-btn" data-category="freedom">
+                                        <span class="category-icon">🕊️</span>
+                                        <span class="category-name">자유 & 해방</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="joy">
+                                        <span class="category-icon">✨</span>
+                                        <span class="category-name">기쁨 & 즐거움</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="artistic">
+                                        <span class="category-icon">🎨</span>
+                                        <span class="category-name">감성 & 예술</span>
+                                    </button>
+
+                                    <!-- 세 번째 줄 -->
+                                    <button type="button" class="category-btn" data-category="effort">
+                                        <span class="category-icon">🔥</span>
+                                        <span class="category-name">열정 & 에너지</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="growth">
+                                        <span class="category-icon">🌱</span>
+                                        <span class="category-name">성장 & 사색</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="comfort">
+                                        <span class="category-icon">🤗</span>
+                                        <span class="category-name">위로 & 공감</span>
+                                    </button>
+
+                                    <!-- 네 번째 줄 -->
+                                    <button type="button" class="category-btn" data-category="hope">
+                                        <span class="category-icon">🌟</span>
+                                        <span class="category-name">희망 & 긍정</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="sadness">
+                                        <span class="category-icon">😢</span>
+                                        <span class="category-name">우울 & 슬픔</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="calm">
+                                        <span class="category-icon">🧘</span>
+                                        <span class="category-name">평안 & 지적</span>
+                                    </button>
+
+                                    <!-- 다섯 번째 줄 -->
+                                    <button type="button" class="category-btn" data-category="anger">
+                                        <span class="category-icon">😠</span>
+                                        <span class="category-name">분노 & 짜증</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="quiz">
+                                        <span class="category-icon">🤔</span>
+                                        <span class="category-name">퀴즈 & 무거움</span>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="honesty">
+                                        <span class="category-icon">💎</span>
+                                        <span class="category-name">솔직함 & 신기함</span>
+                                    </button>
+                                </div>
+
+                                <!-- 선택된 카테고리의 감정 태그들이 표시될 영역 -->
+                                <div class="emotion-tags-display" id="emotionTagsDisplay" style="display: none;">
+                                    <div class="emotion-tags-header">
+                                        <h4 class="selected-category-title" id="selectedCategoryTitle"></h4>
+                                        <button type="button" class="close-tags-btn" id="closeTagsBtn">×</button>
                                     </div>
-                                    <div class="emotion-tag-item" data-emotion="즐거움">
-                                        <input type="checkbox" id="emotion-joy" name="emotions" value="즐거움" class="emotion-checkbox">
-                                        <label for="emotion-joy" class="emotion-label">즐거움</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="편안함">
-                                        <input type="checkbox" id="emotion-comfort" name="emotions" value="편안함" class="emotion-checkbox">
-                                        <label for="emotion-comfort" class="emotion-label">편안함</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="설렘">
-                                        <input type="checkbox" id="emotion-excitement" name="emotions" value="설렘" class="emotion-checkbox">
-                                        <label for="emotion-excitement" class="emotion-label">설렘</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="자신감">
-                                        <input type="checkbox" id="emotion-confidence" name="emotions" value="자신감" class="emotion-checkbox">
-                                        <label for="emotion-confidence" class="emotion-label">자신감</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="차분함">
-                                        <input type="checkbox" id="emotion-calm" name="emotions" value="차분함" class="emotion-checkbox">
-                                        <label for="emotion-calm" class="emotion-label">차분함</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="슬픔">
-                                        <input type="checkbox" id="emotion-sadness" name="emotions" value="슬픔" class="emotion-checkbox">
-                                        <label for="emotion-sadness" class="emotion-label">슬픔</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="우울함">
-                                        <input type="checkbox" id="emotion-depression" name="emotions" value="우울함" class="emotion-checkbox">
-                                        <label for="emotion-depression" class="emotion-label">우울함</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="분노">
-                                        <input type="checkbox" id="emotion-anger" name="emotions" value="분노" class="emotion-checkbox">
-                                        <label for="emotion-anger" class="emotion-label">분노</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="두려움">
-                                        <input type="checkbox" id="emotion-fear" name="emotions" value="두려움" class="emotion-checkbox">
-                                        <label for="emotion-fear" class="emotion-label">두려움</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="후회">
-                                        <input type="checkbox" id="emotion-regret" name="emotions" value="후회" class="emotion-checkbox">
-                                        <label for="emotion-regret" class="emotion-label">후회</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="속상함">
-                                        <input type="checkbox" id="emotion-upset" name="emotions" value="속상함" class="emotion-checkbox">
-                                        <label for="emotion-upset" class="emotion-label">속상함</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="놀람">
-                                        <input type="checkbox" id="emotion-surprise" name="emotions" value="놀람" class="emotion-checkbox">
-                                        <label for="emotion-surprise" class="emotion-label">놀람</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="감동">
-                                        <input type="checkbox" id="emotion-touched" name="emotions" value="감동" class="emotion-checkbox">
-                                        <label for="emotion-touched" class="emotion-label">감동</label>
-                                    </div>
-                                    <div class="emotion-tag-item" data-emotion="연대감">
-                                        <input type="checkbox" id="emotion-solidarity" name="emotions" value="연대감" class="emotion-checkbox">
-                                        <label for="emotion-solidarity" class="emotion-label">연대감</label>
+                                    <div class="emotion-tags-grid" id="emotionTagsGrid">
+                                        <!-- 선택된 카테고리의 감정 태그들이 여기에 동적으로 생성됩니다 -->
                                     </div>
                                 </div>
 
+                                <!-- 커스텀 감정 입력 -->
                                 <div class="form-group-light">
-                                    <label class="form-group-title body-1-bold mb4">입력하고 싶은 감정 태그 입력</label>
-                                    <p class="mb16 body-2 text900">위에 원하시는 태그가 없다면 아래 검색창에 입력하여 새로운 감정 태그를 추가해보세요!</p>
+                                    <label class="form-group-title body-1-bold mb4">커스텀 감정 태그 추가</label>
+                                    <p class="mb16 body-2 text900">위에 원하시는 태그가 없다면 직접 입력하여 새로운 감정 태그를 추가해보세요!</p>
                                     <div class="form-content">
                                         <div class="roomName-search-form theme-client mb8">
                                             <input name="roomName_name" type="hidden">
@@ -145,7 +166,7 @@
                                                         <img class="text-icon" src="/static/image/creatingRoom/search.svg">
                                                     </i>
                                                     <div class="roomName-search-selected"></div>
-                                                    <input class="roomName-search-typing-input theme-client body-2" id="customEmotionInput" placeholder="입력하고 싶은 감정 태그를 입력해주세요. ex) 기모찌" type="text">
+                                                    <input class="roomName-search-typing-input theme-client body-2" id="customEmotionInput" placeholder="새로운 감정 태그를 입력해주세요. ex) 기모찌" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -154,7 +175,7 @@
 
                                 <!-- 선택된 감정 태그 표시 -->
                                 <div class="selected-emotions-container" id="selectedEmotionsContainer">
-                                    <h4 class="selected-emotions-title">추가된 태그 확인</h4>
+                                    <h4 class="selected-emotions-title">선택된 감정 태그</h4>
                                     <div class="selected-emotions-list" id="selectedEmotionsList">
                                         <!-- 선택된 감정들이 여기에 표시됩니다 -->
                                     </div>
