@@ -38,7 +38,7 @@
     height: 2px;
 }
 
-.my_profile, .change_password, .my_tourist_attraction_wishlist, .alarm, .join_requests {
+.my_profile, .change_password, .my_tourist_attraction_wishlist, .alarm, .join_requests, .my_reviews {
     padding: 8px 20px;
     font-size: 14px;
     display: flex;
@@ -54,9 +54,15 @@
     margin-bottom: 4px;
 }
 
-.my_profile:hover, .change_password:hover, .my_tourist_attraction_wishlist:hover, .alarm:hover, .join_requests:hover {
+.my_profile:hover, .change_password:hover, .my_tourist_attraction_wishlist:hover, .alarm:hover, .join_requests:hover, .my_reviews:hover {
     background: linear-gradient(135deg, rgba(0, 87, 146, 0.05) 0%, rgba(0, 26, 44, 0.02) 100%);
     color: #005792;
+}
+
+.my_matching.active {
+    background: linear-gradient(135deg, rgba(0, 87, 146, 0.1) 0%, rgba(0, 26, 44, 0.05) 100%);
+    color: #005792;
+    font-weight: 600;
 }
 
 .my_matching {

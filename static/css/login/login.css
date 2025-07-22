@@ -81,6 +81,7 @@
     box-sizing: border-box;
     border: 0 solid #e5e7eb;
 }
+
 *, ::after, ::before {
     --tw-border-spacing-x: 0;
     --tw-border-spacing-y: 0;
@@ -155,22 +156,22 @@
 .grid-in-welcome {
     grid-area: welcome;
 }
-.gap-10 {
-    gap: 2.5rem;
-}
 
 /*이미지*/
 .flex-none {
     flex: none;
 }
+
 img, video {
     max-width: 100%;
     height: auto;
 }
+
 audio, canvas, embed, iframe, img, object, svg, video {
     display: block;
     vertical-align: middle;
 }
+
 /*
 img[Attributes Style] {
     width: 461px;
@@ -185,6 +186,7 @@ img[Attributes Style] {
 .right-grid-in-form {
     grid-area: form;
 }
+
 .box-border {
     box-sizing: border-box;
 }
@@ -375,12 +377,6 @@ button, input, optgroup, select, textarea {
     margin: 0;
     padding: 0;
 }
-
-.select-none {
-    -moz-user-select: none;
-    user-select: none;
-}
-
 .min-w-fit-input {
     min-width: -moz-fit-content;
     min-width: fit-content;
@@ -403,6 +399,7 @@ button, input, optgroup, select, textarea {
     transition-property: transform;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
 }
+
 button, input, optgroup, select, textarea {
     font-family: inherit;
     font-feature-settings: inherit;
@@ -415,10 +412,6 @@ button, input, optgroup, select, textarea {
 .cursor-pointer {
     cursor: pointer;
 }
-
-
-
-
 
 svg {
     display: block;
@@ -439,14 +432,25 @@ svg {
     width: fit-content;
     height: fit-content;
 }
-.opacity-0 {
+
+.option-m-px {
+    margin: 1px;
+}
+
+
+.option-opacity-0 {
     opacity: 0;
 }
-.w-0 {
+.option-w-0 {
     width: 0;
 }
-.h-0 {
+.option-h-0 {
     height: 0;
+}
+
+.option-size-4 {
+    width: 1rem;
+    height: 1rem;
 }
 
 
@@ -472,13 +476,8 @@ svg {
 .rounded {
     border-radius: .25rem;
 }
-.size-4 {
-    width: 1rem;
-    height: 1rem;
-}
-.m-px {
-    margin: 1px;
-}
+
+
 .text-transparent {
     color: transparent;
 }
@@ -506,7 +505,7 @@ a {
 }
 
 /* 로그인 버튼 */
-.pb-4 {
+.btn-login-pb-4 {
     padding-bottom: 1rem;
 }
 .text-w-white {
@@ -524,12 +523,10 @@ a {
     background-color: rgb(59 163 199 / var(--tw-bg-opacity, 1)); */
     background: linear-gradient(to right, #005792, #001A2C);
 }
-.border-0 {
+.btn-login-border-0 {
     border-width: 0;
 }
-.rounded-xl {
-    border-radius: .75rem;
-}
+
 .gap-x-1\.5 {
     -moz-column-gap: .375rem;
     column-gap: .375rem;

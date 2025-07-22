@@ -1,5 +1,4 @@
 //input 
-
 document.addEventListener("DOMContentLoaded", function () {
     const inputContainers = document.querySelectorAll('[data-testid="design-system--text-field-container"]');
 
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 label.classList.remove('label-float');
             }
         };
-
         toggleLabel(); // 초기 상태
 
         input.addEventListener('focus', () => {

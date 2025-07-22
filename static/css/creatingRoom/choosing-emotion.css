@@ -12,6 +12,7 @@
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
 }
+
 body.room-create .room-create-formview .container {
     width: 1080px;
 }
@@ -20,7 +21,7 @@ body.room-create .room-create-formview .container {
     margin: 0 auto;
 }
 
-/* 진행 상태 바 - 흰색 배경 박스 추가 */
+/* 진행 상태 바 */
 body.room-create .submit-progress {
     margin-right: 24px;
     float: left;
@@ -262,47 +263,359 @@ body.room-create .room-create-form-section .form-input-section {
     color: #212121;
 }
 
-/* 감정 태그 그리드 */
-.emotion-tags-grid {
+/* 카테고리 버튼들 */
+.emotion-category-buttons {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
-.emotion-tag-item {
+.category-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 15px;
+    font-weight: 500;
+    color: #334155;
+    min-height: 60px;
+}
+
+.category-btn:hover {
+    border-color: #005792;
+    background: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 87, 146, 0.15);
+}
+
+.category-btn.active {
+    border-color: #005792;
+    background: linear-gradient(135deg, #005792 0%, #1976d2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 87, 146, 0.3);
+}
+
+.category-btn .category-icon {
+    font-size: 24px;
+}
+
+.category-btn .category-name {
+    font-weight: 600;
+}
+
+/* 카테고리별 색상 테마 */
+/* 평온 & 힐링 */
+.category-btn[data-category="healing"]:hover {
+    border-color: #16a34a;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    color: #166534;
+}
+
+.category-btn[data-category="healing"].active {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+}
+
+/* 사랑 & 로맨스 */
+.category-btn[data-category="romance"]:hover {
+    border-color: #e11d48;
+    background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+    color: #be185d;
+}
+
+.category-btn[data-category="romance"].active {
+    background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+}
+
+/* 모험 & 스릴 */
+.category-btn[data-category="adventure"]:hover {
+    border-color: #ea580c;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    color: #92400e;
+}
+
+.category-btn[data-category="adventure"].active {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+}
+
+/* 자유 & 해방 */
+.category-btn[data-category="freedom"]:hover {
+    border-color: #0284c7;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    color: #0c4a6e;
+}
+
+.category-btn[data-category="freedom"].active {
+    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+}
+
+/* 기쁨 & 즐거움 */
+.category-btn[data-category="joy"]:hover {
+    border-color: #ca8a04;
+    background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+    color: #713f12;
+}
+
+.category-btn[data-category="joy"].active {
+    background: linear-gradient(135deg, #ca8a04 0%, #eab308 100%);
+}
+
+/* 감성 & 예술 */
+.category-btn[data-category="artistic"]:hover {
+    border-color: #7c3aed;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    color: #581c87;
+}
+
+.category-btn[data-category="artistic"].active {
+    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+}
+
+/* 열정 & 에너지 */
+.category-btn[data-category="effort"]:hover {
+    border-color: #dc2626;
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+    color: #991b1b;
+}
+
+.category-btn[data-category="effort"].active {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+/* 성장 & 사색 */
+.category-btn[data-category="growth"]:hover {
+    border-color: #059669;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    color: #065f46;
+}
+
+.category-btn[data-category="growth"].active {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+/* 위로 & 공감 */
+.category-btn[data-category="comfort"]:hover {
+    border-color: #7c2d12;
+    background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%);
+    color: #9a3412;
+}
+
+.category-btn[data-category="comfort"].active {
+    background: linear-gradient(135deg, #7c2d12 0%, #c2410c 100%);
+}
+
+/* 희망 & 긍정 */
+.category-btn[data-category="hope"]:hover {
+    border-color: #0891b2;
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+    color: #134e4a;
+}
+
+.category-btn[data-category="hope"].active {
+    background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+}
+
+/* 우울 & 슬픔 */
+.category-btn[data-category="sadness"]:hover {
+    border-color: #6366f1;
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    color: #3730a3;
+}
+
+.category-btn[data-category="sadness"].active {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+
+/* 평안 & 지적 */
+.category-btn[data-category="calm"]:hover {
+    border-color: #65a30d;
+    background: linear-gradient(135deg, #f7fee7 0%, #ecfccb 100%);
+    color: #365314;
+}
+
+.category-btn[data-category="calm"].active {
+    background: linear-gradient(135deg, #65a30d 0%, #84cc16 100%);
+}
+
+/* 분노 & 짜증 */
+.category-btn[data-category="anger"]:hover {
+    border-color: #b91c1c;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    color: #7f1d1d;
+}
+
+.category-btn[data-category="anger"].active {
+    background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+}
+
+/* 퀴즈 & 무거움 */
+.category-btn[data-category="quiz"]:hover {
+    border-color: #374151;
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    color: #111827;
+}
+
+.category-btn[data-category="quiz"].active {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+}
+
+/* 솔직함 & 신기함 */
+.category-btn[data-category="honesty"]:hover {
+    border-color: #0d9488;
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+    color: #134e4a;
+}
+
+.category-btn[data-category="honesty"].active {
+    background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+}
+
+/* 감정 태그 표시 영역 */
+.emotion-tags-display {
+    margin-top: 24px;
+    padding: 24px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+}
+
+.emotion-tags-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.selected-category-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.close-tags-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #e2e8f0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.close-tags-btn:hover {
+    background: #cbd5e1;
+    color: #1e293b;
+}
+
+/* 감정 태그 그리드 (표시 영역 내부) */
+.emotion-tags-display .emotion-tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+}
+
+.emotion-tags-display .emotion-tag-item {
     position: relative;
 }
 
-.emotion-checkbox {
+.emotion-tags-display .emotion-checkbox {
     display: none;
 }
 
-.emotion-label {
+.emotion-tags-display .emotion-label {
     display: block;
-    padding: 12px 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
     text-align: center;
     font-size: 14px;
     font-weight: 400;
-    color: #616161;
+    color: #64748b;
     cursor: pointer;
     transition: all 0.2s ease;
     background: #fff;
 }
 
-.emotion-label:hover {
+.emotion-tags-display .emotion-label:hover {
     border-color: #005792;
     background: #f0f8ff;
     color: #005792;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 87, 146, 0.2);
 }
 
-.emotion-checkbox:checked + .emotion-label {
-    border: 2px solid #005792;
-    background: #f0f8ff;
+.emotion-tags-display .emotion-checkbox:checked + .emotion-label {
+    border-color: #005792;
+    background: linear-gradient(135deg, #005792 0%, #1976d2 100%);
+    color: white;
+    font-weight: 600;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 87, 146, 0.3);
+}
+
+/* 선택된 감정 카운트 뱃지 */
+.category-btn .emotion-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #dc2626;
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+    animation: badgeAppear 0.3s ease;
+}
+
+@keyframes badgeAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.category-btn.active .emotion-count-badge {
+    background: rgba(255, 255, 255, 0.9);
     color: #005792;
-    font-weight: 500;
 }
 
 /* 커스텀 입력 섹션 */
@@ -489,10 +802,11 @@ body.room-create .room-create-formview .container::after {
 .mb4 { margin-bottom: 4px; }
 .mb8 { margin-bottom: 8px; }
 .mb16 { margin-bottom: 16px; }
+.mb24 { margin-bottom: 24px; }
 .mb32 { margin-bottom: 32px; }
 .mb48 { margin-bottom: 48px; }
 
-/* 감정 선택 도움말 모달 스타일 */
+/* 도움말 모달 스타일 */
 .help-modal {
     position: fixed;
     top: 0;
@@ -836,7 +1150,7 @@ body.room-create .room-create-formview .container::after {
     font-weight: 500;
 }
 
-/* 반응형 */
+/* 반응형 디자인 */
 @media (max-width: 1200px) {
     .big-frame {
         min-width: auto;
@@ -859,19 +1173,38 @@ body.room-create .room-create-formview .container::after {
         float: none;
         width: 100%;
     }
-    
-    .emotion-tags-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 8px;
-    }
-    
-    .emotion-label {
-        padding: 10px 12px;
-        font-size: 13px;
-    }
 }
 
 @media (max-width: 768px) {
+    .emotion-category-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .category-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+        min-height: 50px;
+    }
+    
+    .category-btn .category-icon {
+        font-size: 20px;
+    }
+    
+    .emotion-tags-display {
+        padding: 16px;
+    }
+    
+    .emotion-tags-display .emotion-tags-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 8px;
+    }
+    
+    .emotion-tags-display .emotion-label {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
     .help-modal-content {
         width: 95%;
         margin: 20px;
@@ -914,5 +1247,15 @@ body.room-create .room-create-formview .container::after {
     
     .help-modal-footer {
         padding: 12px 20px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .emotion-category-buttons {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .category-btn .category-name {
+        font-size: 13px;
     }
 }
